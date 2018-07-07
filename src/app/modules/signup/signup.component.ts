@@ -15,4 +15,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+    onLoginAttempt() {
+        console.log(this.userName, this.password, this.userEmail);
+    }
+
 }

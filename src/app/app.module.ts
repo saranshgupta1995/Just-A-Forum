@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),
         BrowserModule,
-        FormsModule
+        FormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
