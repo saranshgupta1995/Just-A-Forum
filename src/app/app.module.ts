@@ -6,12 +6,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './modules/signup/signup.component';
+import { HttpClientModule } from '@angular/common/http'; 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent },
-    // { path: '', component: AppComponent },
 ]
 
 @NgModule({
@@ -25,6 +25,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),
         BrowserModule,
         FormsModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

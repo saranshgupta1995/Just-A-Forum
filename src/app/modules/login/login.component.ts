@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginSignupService } from '../../http/login-signup/login-signup.service';
 
 @Component({
     selector: 'app-login',
@@ -9,13 +10,16 @@ export class LoginComponent implements OnInit {
 
     userName = '';
     password = '';
-    constructor() { }
+    constructor(private loginSignupService: LoginSignupService) { }
 
     ngOnInit() {
     }
 
     onLoginAttempt() {
-        console.log(this.userName, this.password);
+        this.loginSignupService.validateLoginAttempt({
+            "userName": this.userName,
+            "password": this.password
+        });
     }
 
 }
