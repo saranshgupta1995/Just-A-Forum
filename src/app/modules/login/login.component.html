@@ -1,0 +1,13 @@
+<div>
+    <form #loginForm="ngForm">
+        <div class="form-group">
+            <label for="userName">User Name</label>
+            <input id="userName" name="userName" class="form-control" required ="userName" type="text">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" class="form-control" required [(ngModel)]="password" type="text">
+        </div>
+        <button class="btn btn-success" type="submit">Login!!</button>
+    </form>
+</div>
