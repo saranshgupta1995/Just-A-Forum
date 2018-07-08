@@ -1,0 +1,11 @@
+<form class="navbar-form navbar-left" role="search">
+    <div class="row basic-padding-md">
+        <div class="col-md-8">
+            <h4 class="basic-margin-sm" >DeSocialize</h4>
+        </div>
+        <div class="col-md-4" [hidden]="loginFormView">
+            <button type="submit" [@shrinker]="state" class="basic-margin-sm btn float-sm-right" (click)="toggleState()">Login</button>
+            <button type="submit" [@shrinker]="state" class="basic-margin-sm btn float-sm-right">SignUp</button>
+        </div>
+    </div>
+</form>

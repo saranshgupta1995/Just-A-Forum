@@ -1,2 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.basic-padding-sm{
+    padding: 4px;
+}
+
+.basic-padding-md{
+    padding: 8px;
+}
+
+.basic-padding-lg{
+    padding: 12px;
+}
+
+.basic-margin-sm{
+    margin: 4px;
+}
+
+.basic-margin-md{
+    margin: 8px;
+}
+
+.basic-margin-lg{
+    margin: 12px;
+}
