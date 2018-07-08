@@ -7,37 +7,62 @@ import { transition, animate, state, style, trigger } from '@angular/animations'
     styleUrls: ['./sexy-navbar.component.css'],
     animations: [
         trigger('shrinker', [
-            state('inactive', style({ height: 0 })),
-            state('active', style({ height: '*' })),
-            // state('active', style({
-            //     backgroundColor: '#cfd8dc',
-            //     transform: 'scale(1.1)'
-            // })),
+            // state('inactive', style({ right:-800 })),
+            // state('active', style({ right:0 })),
             transition('active => inactive', [
-                style({ height: '*' }),
-                animate(100, style({ height: 0 }),)]),
+                style({ right:0 }),
+                animate(200, style({ right:-800 }),)]),
             transition('inactive => active', [
-                style({ height: 0 }),
-                animate(100, style({ height: '*' }),)])
+                style({ right:-800 }),
+                animate(200, style({ right:0 }),)])
         ])
     ]
 })
 export class SexyNavbarComponent implements OnInit {
 
     name='login';
-    state='active'
+    buttonViewState='active'
+    loginFormViewState='inactive'
     loginFormView=false;
+    signupFormViewState='inactive'
+    signupFormView=false;
+    animTime=200;
     constructor() { }
 
     ngOnInit() {
     }
 
-    toggleState() {
-        this.state = this.state === 'active' ? 'inactive' : 'active';
+    toggleToLogin() {
+        this.buttonViewState = this.buttonViewState === 'active' ? 'inactive' : 'active';
         let that=this
         setTimeout(()=>{
             that.loginFormView = !that.loginFormView;
-        },100)
+            that.loginFormViewState = that.loginFormViewState === 'active' ? 'inactive' : 'active';
+        }, that.animTime)
+    }
+
+    toggleToSignup() {
+        this.buttonViewState = this.buttonViewState === 'active' ? 'inactive' : 'active';
+        let that=this
+        setTimeout(()=>{
+            that.signupFormView = !that.signupFormView;
+            that.signupFormViewState = that.signupFormViewState === 'active' ? 'inactive' : 'active';
+        }, that.animTime)
+    }
+
+    toggleToHomeNav(src){
+        if(src=='login')
+        this.loginFormViewState = this.loginFormViewState === 'active' ? 'inactive' : 'active';
+        else
+        this.signupFormViewState = this.signupFormViewState === 'active' ? 'inactive' : 'active';
+        let that=this;
+        setTimeout(() => {
+            if (src == 'login')
+            that.loginFormView = !that.loginFormView;
+            else
+            that.signupFormView = !that.signupFormView;
+            that.buttonViewState = that.buttonViewState === 'active' ? 'inactive' : 'active';
+        }, that.animTime)
     }
 
 }

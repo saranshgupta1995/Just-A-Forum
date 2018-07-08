@@ -1,3 +1,18 @@
+.header-input-box{
+    border: 1px solid #c2c1c1e1;
+    background-color: rgba(245, 244, 244, 0.699);
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 0px 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 28px;
+    outline: none;
+}
+
+.header-input-box:hover {
+    background-color: rgba(250, 252, 252, 0.911);
+}
+
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; /* green */
 }

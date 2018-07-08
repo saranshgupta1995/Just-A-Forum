@@ -28,3 +28,7 @@
 .basic-margin-lg{
     margin: 12px;
 }
+
+.no-bg{
+    background: none;
+}

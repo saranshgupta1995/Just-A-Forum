@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginSignupService } from '../../http/login-signup/login-signup.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
     userName = '';
     password = '';
+    @Output() onReturn=new EventEmitter();
     constructor(private loginSignupService: LoginSignupService) { }
 
     ngOnInit() {
@@ -20,6 +21,10 @@ export class LoginComponent implements OnInit {
             "userName": this.userName,
             "password": this.password
         });
+    }
+
+    backFromLogin(){
+        this.onReturn.emit('');
     }
 
 }
