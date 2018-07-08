@@ -1,7 +1,22 @@
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+.header-input-box{
+    border: 1px solid #c2c1c1e1;
+    background-color: rgba(245, 244, 244, 0.699);
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 0px 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 28px;
+    outline: none;
 }
 
+.header-input-box:hover {
+    background-color: rgba(248, 252, 252, 0.911);
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 3px solid #42A948; /* green */
+}
+        
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+    border-left: 3px solid #a94442; /* red */
 }
