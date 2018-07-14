@@ -1,6 +1,10 @@
 const express = require('express');
 const http = require('http')
 const path = require('path');
+const requestLogger = require('./middlewares/RequestLogger.js');
+const routes = require('./routes/routes.js');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -13,6 +17,12 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3000;
 app.set('port', port);
 
+
+app.use(requestLogger);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use(routes);
 const server = http.createServer(app);
 server.listen(port, () => console.log('running'));
 
