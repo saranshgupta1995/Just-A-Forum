@@ -8,7 +8,7 @@ dbOperations.insertOneOpr = function (collection,dataObj) {
             return coll.coll.insertOne(dataObj)
                 .then((oprRes) => {
                     coll.client.close();
-                    return oprRes.insertedCount == 1
+                    return oprRes
                 })
         });
 }

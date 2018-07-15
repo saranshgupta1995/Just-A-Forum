@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class HttpUrls {
 
-    addNewUserUrl ='http://localhost:3000/addNewUser';
-    validateLoginUrl ='http://localhost:3000/validateUserLogin'
+    addNewUserUrl ='http://obscure-sea-69570.herokuapp.com/addNewUser';
+    validateLoginUrl ='http://obscure-sea-69570.herokuapp.com/validateUserLogin'
 
 }

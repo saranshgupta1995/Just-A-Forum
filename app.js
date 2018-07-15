@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http')
 const path = require('path');
 const requestLogger = require('./middlewares/RequestLogger.js');
-const routes = require('./routes/routes.js');
+const routes = require('./routes/loginSignupRoutes.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/dist/DeSocialize')));
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/dist/DeSocialize/index.html'));
 });
 
