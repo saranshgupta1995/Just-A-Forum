@@ -13,5 +13,9 @@ loginSignupDbOpr.validateUserLogin = function (loginObj){
     return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName,loginObj);
 }
 
+loginSignupDbOpr.verifyAccount = function (primaryId){
+    return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName,{_id:primaryId},{$set:{unverified:false}});
+}
+
 module.exports=loginSignupDbOpr;
 

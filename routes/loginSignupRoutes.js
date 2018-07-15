@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/verify', (req, res) => {
-    console.log(req.query.a);
+    loginSignupDbOpr.verifyAccount(req.query.a);
 });
 
 router.post('/addNewUser',(req, res)=>{
@@ -28,7 +28,7 @@ router.post('/addNewUser',(req, res)=>{
         <p style="margin:4px;">You must follow this link to activate your account</p>
         <p>http://obscure-sea-69570.herokuapp.com/verify?a=${oprRes.insertedId}</p>
         <p style="margin-bottom:4px;">Thanks and Regards</p>
-        <p style="margin-top:4px;">Saransh Gupta</p>
+        <p style="margin-top:4px;">The DeSocializers</p>
         `;
         loginSignupDbOpr.emailer.sendMail();
     });

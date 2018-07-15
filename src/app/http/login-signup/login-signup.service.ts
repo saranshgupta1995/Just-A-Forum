@@ -17,7 +17,7 @@ export class LoginSignupService {
     }
 
     verifyShit(){
-        return this.http.get('http://localhost:3000/verify', { params: new HttpParams().append('a', '1') }).subscribe(res => console.log(res));
+        return this.http.get('http://obscure-sea-69570.herokuapp.com/verify', { params: new HttpParams().append('a', '1') }).subscribe(res => console.log(res));
     }
 
 }

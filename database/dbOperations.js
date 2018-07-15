@@ -23,5 +23,15 @@ dbOperations.findOpr = function (collection,dataObj) {
         });
 }
 
+dbOperations.updateOne = function (collection,findQuery,updateTarget) {
+    return dbOperations.database.getCollection(collection)
+        .then((coll) => {
+            return coll.coll.updateOne(findQuery,updateTarget).count().then((oprRes) => {
+                coll.client.close();
+                return oprRes
+            });
+        });
+}
+
 module.exports = dbOperations;
 

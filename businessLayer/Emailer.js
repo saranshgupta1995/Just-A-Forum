@@ -14,9 +14,7 @@ emailer.mailOptions = {
 };
 
 emailer.sendMail=function(){
-    console.log('trying email')
     emailer.smtpTrans.sendMail(emailer.mailOptions, function(err){
-        console.log('in email func')
         if(!err){
             console.log('email has been sent')
         }else {
