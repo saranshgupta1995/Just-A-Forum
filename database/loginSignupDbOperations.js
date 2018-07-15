@@ -4,6 +4,8 @@ loginSignupDbOpr.dbOpr = require('./dbOperations.js');
 loginSignupDbOpr.tableName = 'LoginDetails';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj){
+    console.log('adding details')
+    loginObj.unverified=true;
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName,loginObj);
 }
 
