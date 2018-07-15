@@ -4,13 +4,13 @@ var nodemailer = require('nodemailer');
 emailer.smtpTrans = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "saranshgupta1995@gmail.com",
-        pass: "gHsnaras184_l"
+        user: "desocializeapp@gmail.com",
+        pass: "hsnaras184"
     }
 });
 
 emailer.mailOptions = {
-    from: 'saranshgupta1995@gmail.com'
+    from: 'desocializeapp@gmail.com'
 };
 
 emailer.sendMail=function(){
