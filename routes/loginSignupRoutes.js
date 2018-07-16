@@ -12,7 +12,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/verify', (req, res) => {
-    loginSignupDbOpr.verifyAccount(req.query.a);
+    loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes)=>{
+        if(oprRes.result.n){
+            res.send({'message':'Thank you for signing up'})
+        }else{
+            res.send(oprRes)
+        }
+    }).catch((err)=>{
+        res.send({'message':'Maybe the link is broken??'})
+    });
 });
 
 router.post('/addNewUser',(req, res)=>{

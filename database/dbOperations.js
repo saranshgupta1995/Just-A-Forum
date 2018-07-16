@@ -26,7 +26,9 @@ dbOperations.findOpr = function (collection,dataObj) {
 dbOperations.updateOne = function (collection,findQuery,updateTarget) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
-            return coll.coll.updateOne(findQuery,updateTarget).count().then((oprRes) => {
+            console.log('found coll');
+            console.log(findQuery,updateTarget)
+            return coll.coll.updateOne(findQuery,updateTarget).then((oprRes) => {
                 coll.client.close();
                 return oprRes
             });
