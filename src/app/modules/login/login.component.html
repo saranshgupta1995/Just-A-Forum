@@ -1,14 +1,19 @@
-<button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" style="float: right;">Back</button>
-<form style="float: right;"(ngSubmit)="onLoginAttempt()" #loginForm="ngForm">
-    <div class="same-line basic-margin-md">
-        <label class="sr-only" for="userName">User Name</label>
-        <input class="header-input-box" id="userName" placeholder="Username" pattern="[a-z0-9_-]+" maxlength="20" minlength="7" name="userName"
-            required [(ngModel)]="userName" type="text">
+<div class="row">
+    <div class="col-md-12">
+
+        <form (ngSubmit)="onLoginAttempt()" #loginForm="ngForm" style="float: right;">
+            <div class="same-line basic-margin-md sm-row">
+                <label class="sr-only" for="userName">User Name</label>
+                <input class="header-input-box" id="userName" placeholder="Username" pattern="[A-Za-z0-9_-]+" minlength="4" name="userName"
+                    required [(ngModel)]="userName" type="text">
+            </div>
+            <div class="same-line basic-margin-md sm-row">
+                <label class="sr-only" for="password">Password</label>
+                <!-- TODO add password regex -->
+                <input class="header-input-box" id="password" placeholder="Password" name="password" required [(ngModel)]="password" type="text">
+            </div>
+            <button [disabled]="loginForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Login!!</button>
+            <button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg">Back</button>
+        </form>
     </div>
-    <div class="same-line basic-margin-md">
-        <label class="sr-only" for="password">Password</label>
-        <!-- TODO add password regex -->
-        <input class="header-input-box" id="password" placeholder="Password" name="password" required [(ngModel)]="password" type="text">
-    </div>
-    <button [disabled]="loginForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Login!!</button>
-</form>
+</div>

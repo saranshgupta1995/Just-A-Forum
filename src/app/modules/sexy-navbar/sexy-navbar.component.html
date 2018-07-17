@@ -1,16 +1,16 @@
 <form class="navbar-form navbar-left" role="search">
     <div class="row basic-padding-md">
-        <div class="col-md-4">
-            <h4 class="basic-margin-sm" >DeSocialize</h4>
+        <div class="col-sm-3">
+            <h4 class="basic-margin-sm">DeSocialize</h4>
         </div>
-        <div [@shrinker]="buttonViewState" class="col-md-8" *ngIf="(!loginFormView) && (!signupFormView)">
+        <div [@shrinker]="buttonViewState" class="col-sm-9" *ngIf="(!loginFormView) && (!signupFormView)">
             <button class="basic-margin-sm btn float-sm-right no-bg" (click)="toggleToLogin()">Login</button>
             <button class="basic-margin-sm btn float-sm-right no-bg" (click)="toggleToSignup()">SignUp</button>
         </div>
-        <div *ngIf="loginFormView" [@shrinker]="loginFormViewState" class="col-md-8">
+        <div *ngIf="loginFormView" [@shrinker]="loginFormViewState" class="col-md-9">
             <app-login (onReturn)="toggleToHomeNav('login');"></app-login>
         </div>
-        <div *ngIf="signupFormView" [@shrinker]="signupFormViewState" class="col-md-8">
+        <div *ngIf="signupFormView" [@shrinker]="signupFormViewState" class="col-md-9">
             <app-signup (onReturn)="toggleToHomeNav('signup');"></app-signup>
         </div>
     </div>
