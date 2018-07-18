@@ -10,7 +10,7 @@
             <div class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="password">Password</label>
                 <!-- TODO add password regex -->
-                <input class="header-input-box" id="password" placeholder="Password" name="password" required [(ngModel)]="password" type="text">
+                <input class="header-input-box" id="password" placeholder="Password" name="password" required [(ngModel)]="password" type="password">
             </div>
             <button [disabled]="loginForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Login!!</button>
             <button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" type="button">Back</button>
