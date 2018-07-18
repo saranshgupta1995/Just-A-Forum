@@ -1,5 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://heroku_f7j5lj97:kjj0mr6j4flseh5dgkojr4cfmp@ds137581.mlab.com:37581/heroku_f7j5lj97";
+var url = process.env.MONGODB_URI;
+
 
 let data = {};
 
