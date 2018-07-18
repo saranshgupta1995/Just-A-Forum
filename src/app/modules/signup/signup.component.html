@@ -1,18 +1,23 @@
-<button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" style="float: right;">Back</button>
-<form style="float: right;" (ngSubmit)="onSignupAttempt()" #signupForm="ngForm">
-    <div class="same-line basic-margin-md">
-        <label class="sr-only" for="userEmail">Email Address</label>
-        <input id="userEmail" minlength="7" name="userEmail" placeholder="Email Address" class="header-input-box" required [(ngModel)]="userEmail" type="text">
+<div class="row">
+    <div class="col-md-12">
+        <form style="float: right;" (ngSubmit)="onSignupAttempt()" #signupForm="ngForm">
+            <div class="same-line basic-margin-md sm-row">
+                <label class="sr-only" for="userEmail">Email Address</label>
+                <input id="userEmail" minlength="7" name="userEmail" placeholder="Email Address" class="header-input-box" required [(ngModel)]="userEmail"
+                type="text">
+            </div>
+            <div class="same-line basic-margin-md sm-row">
+                <label class="sr-only" for="userName">User Name</label>
+                <input id="userName" pattern="[a-z0-9_-]+" maxlength="20" minlength="7" placeholder="User Name" name="userName" class="header-input-box"
+                required [(ngModel)]="userName" type="text">
+            </div>
+            <div class="same-line basic-margin-md sm-row">
+                <label class="sr-only" for="password">Password</label>
+                <!-- TODO add password regex -->
+                <input id="password" name="password" placeholder="Password" class="header-input-box" required [(ngModel)]="password" type="text">
+            </div>
+            <button [disabled]="signupForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Signup!!</button>
+            <button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" type="button">Back</button>
+        </form>
     </div>
-    <div class="same-line basic-margin-md">
-        <label class="sr-only" for="userName">User Name</label>
-        <input id="userName" pattern="[a-z0-9_-]+" maxlength="20" minlength="7" placeholder="User Name" name="userName" class="header-input-box" required [(ngModel)]="userName"
-            type="text">
-    </div>
-    <div class="same-line basic-margin-md">
-        <label class="sr-only" for="password">Password</label>
-        <!-- TODO add password regex -->
-        <input id="password" name="password" placeholder="Password" class="header-input-box" required [(ngModel)]="password" type="text">
-    </div>
-    <button [disabled]="signupForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Signup!!</button>
-</form>
+</div>
