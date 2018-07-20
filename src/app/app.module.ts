@@ -8,7 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './modules/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SexyNavbarComponent } from './modules/sexy-navbar/sexy-navbar.component'; 
+import { SexyNavbarComponent } from './modules/sexy-navbar/sexy-navbar.component';
+import { UserNavComponent } from './modules/user-nav/user-nav.component'; 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
         LoginComponent,
         HomeComponent,
         SignupComponent,
-        SexyNavbarComponent
+        SexyNavbarComponent,
+        UserNavComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),

@@ -27,6 +27,8 @@ export class SexyNavbarComponent implements OnInit {
     signupFormViewState='inactive'
     signupFormView=false;
     animTime=200;
+    errorState=false;
+    loggedIn=false;
     constructor() { }
 
     ngOnInit() {
@@ -39,6 +41,14 @@ export class SexyNavbarComponent implements OnInit {
             that.loginFormView = !that.loginFormView;
             that.loginFormViewState = that.loginFormViewState === 'active' ? 'inactive' : 'active';
         }, that.animTime)
+    }
+
+    loginEvent(status){
+        this.loggedIn=status;
+    }
+
+    signupEvent(){
+
     }
 
     toggleToSignup() {

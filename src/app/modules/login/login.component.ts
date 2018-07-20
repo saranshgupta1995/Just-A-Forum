@@ -11,16 +11,23 @@ export class LoginComponent implements OnInit {
     userName = '';
     password = '';
     @Output() onReturn=new EventEmitter();
+    @Output() loginEvent=new EventEmitter();
+
     constructor(private loginSignupService: LoginSignupService) { }
 
     ngOnInit() {
     }
 
+
     onLoginAttempt() {
         this.loginSignupService.validateLoginAttempt({
             "userName": this.userName,
             "password": this.password
-        });
+        })
+        .subscribe(res=>{
+            this.loginEvent.emit(res['status']);
+        })
+        
     }
 
     backFromLogin(){
