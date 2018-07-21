@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-md-12">
 
-        <form (ngSubmit)="onLoginAttempt()" #loginForm="ngForm" style="float: right;">
+        <form (ngSubmit)="onLoginAttempt()" class="sm-row" #loginForm="ngForm" style="float: right;">
             <info-text #infoText></info-text>
-            <div class="same-line basic-margin-md sm-row">
+            <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="userName">User Name</label>
                 <input class="header-input-box" id="userName" placeholder="Username" pattern="[A-Za-z0-9_-]+" minlength="4" name="userName"
                     required [(ngModel)]="userName" type="text">
             </div>
-            <div class="same-line basic-margin-md sm-row">
+            <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="password">Password</label>
                 <!-- TODO add password regex -->
                 <input class="header-input-box" id="password" placeholder="Password" name="password" required [(ngModel)]="password" type="password">
             </div>
-            <button [disabled]="loginForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Login!!</button>
+            <button *ngIf="showForm" [disabled]="loginForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Login!!</button>
             <button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" type="button">Back</button>
         </form>
     </div>
