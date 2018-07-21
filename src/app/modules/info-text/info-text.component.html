@@ -1,0 +1,3 @@
+<div *ngIf="infoText.length" class="same-line basic-margin-md sm-row">
+    <p class="info-text" [ngClass]="{'info-info':infoType=='info','info-error':infoType=='err','info-success':infoType=='succ'}">{{infoText}}</p>
+</div>

@@ -9,7 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './modules/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SexyNavbarComponent } from './modules/sexy-navbar/sexy-navbar.component';
-import { UserNavComponent } from './modules/user-nav/user-nav.component'; 
+import { UserNavComponent } from './modules/user-nav/user-nav.component';
+import { MyFixedAlertComponent } from './modules/my-fixed-alert/my-fixed-alert.component';
+import { InfoTextComponent } from './modules/info-text/info-text.component'; 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -24,7 +26,9 @@ const appRoutes: Routes = [
         HomeComponent,
         SignupComponent,
         SexyNavbarComponent,
-        UserNavComponent
+        UserNavComponent,
+        MyFixedAlertComponent,
+        InfoTextComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),

@@ -2,6 +2,7 @@
     <div class="col-md-12">
 
         <form (ngSubmit)="onLoginAttempt()" #loginForm="ngForm" style="float: right;">
+            <info-text #infoText></info-text>
             <div class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="userName">User Name</label>
                 <input class="header-input-box" id="userName" placeholder="Username" pattern="[A-Za-z0-9_-]+" minlength="4" name="userName"
