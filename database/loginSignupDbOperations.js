@@ -15,7 +15,7 @@ loginSignupDbOpr.validateUserLogin = function (loginObj){
 }
 
 loginSignupDbOpr.verifyAccount = function (primaryId){
-    return loginSignupDbOpr.dbOpr.updateOne(loginSignupDbOpr.tableName,{_id:ObjectId(primaryId)},{$set:{unverified:false}});
+    return loginSignupDbOpr.dbOpr.updateOne(loginSignupDbOpr.tableName,{_id:ObjectId(primaryId),unverified:true},{$set:{unverified:false}});
 }
 
 module.exports=loginSignupDbOpr;
