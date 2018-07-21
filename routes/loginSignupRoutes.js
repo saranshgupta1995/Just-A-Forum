@@ -13,10 +13,17 @@ router.get('/', (req, res) => {
 
 router.get('/verify', (req, res) => {
     loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes)=>{
-        if(oprRes.result.n){
-            res.send({'message':'Thank you for signing up'})
+        if (oprRes.result.n) {
+            res.send(`
+            <h2>DeSocialize</h2>
+            <p>Your account has been verified.</p>
+            <a href='/'>Click here to Login</a>`)
         }else{
-            res.send(oprRes)
+            res.send(`
+            <h2>DeSocialize</h2>
+            <p>Maybe the link is broken?</p>
+            <p>Or perhaps this account has already been verified.</p>
+            <a href='/'>Click here to Login</a>`)
         }
     }).catch((err)=>{
         res.send({'message':'Maybe the link is broken??'})
