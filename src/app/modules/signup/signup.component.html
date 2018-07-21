@@ -1,22 +1,23 @@
 <div class="row">
     <div class="col-md-12">
-        <form style="float: right;" (ngSubmit)="onSignupAttempt()" #signupForm="ngForm">
-            <div class="same-line basic-margin-md sm-row">
+        <form style="float: right;" class="sm-row" (ngSubmit)="onSignupAttempt()" #signupForm="ngForm">
+            <info-text #infoText></info-text>
+            <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="userEmail">Email Address</label>
-                <input id="userEmail" pattern="[a-zA-Z0-9.-_]+@[a-zA-Z]{2,}\.[a-zA-Z]{2,}" minlength="7" name="userEmail" placeholder="Email Address" class="header-input-box" required [(ngModel)]="userEmail"
-                type="email">
+                <input id="userEmail" pattern="[a-zA-Z0-9.-_]+@[a-zA-Z]{2,}\.[a-zA-Z]{2,}" name="userEmail" placeholder="Email Address"
+                    class="header-input-box" required [(ngModel)]="userEmail" type="email">
             </div>
-            <div class="same-line basic-margin-md sm-row">
+            <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="userName">User Name</label>
                 <input id="userName" pattern="[a-z0-9_-]+" minlength="4" placeholder="User Name" name="userName" class="header-input-box"
-                required [(ngModel)]="userName" type="text">
+                    required [(ngModel)]="userName" type="text">
             </div>
-            <div class="same-line basic-margin-md sm-row">
+            <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="password">Password</label>
                 <!-- TODO add password regex -->
                 <input id="password" name="password" placeholder="Password" class="header-input-box" required [(ngModel)]="password" type="password">
             </div>
-            <button [disabled]="signupForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Signup!!</button>
+            <button *ngIf="showForm" [disabled]="signupForm.invalid" class="btn btn-success basic-margin-sm" type="submit">Signup!!</button>
             <button (click)="backFromLogin();" class="btn btn-default basic-margin-sm no-bg" type="button">Back</button>
         </form>
     </div>

@@ -47,8 +47,8 @@ export class SexyNavbarComponent implements OnInit {
         this.loggedIn=status;
     }
 
-    signupEvent(){
-
+    signupEvent(status){
+        this.loggedIn=status;
     }
 
     toggleToSignup() {

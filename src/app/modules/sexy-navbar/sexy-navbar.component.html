@@ -11,13 +11,10 @@
             <app-login (onReturn)="toggleToHomeNav('login');" (loginEvent)="loginEvent($event)"></app-login>
         </div>
         <div *ngIf="signupFormView && !loggedIn" [@shrinker]="signupFormViewState" class="col-md-9">
-            <app-signup (onReturn)="toggleToHomeNav('signup');"></app-signup>
+            <app-signup (onReturn)="toggleToHomeNav('signup');" (signupEvent)="signupEvent($event)"></app-signup>
         </div>
         <div [@shrinker]="buttonViewState" class="col-sm-9" *ngIf="loggedIn">
             <user-nav></user-nav>
         </div>
-    </div>
-    <div *ngIf="errorState" class="row basic-padding-md">
-
     </div>
 </form>
