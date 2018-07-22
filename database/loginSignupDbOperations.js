@@ -10,6 +10,10 @@ loginSignupDbOpr.addLoginDetails = function (loginObj){
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName,loginObj);
 }
 
+loginSignupDbOpr.checkEmailExistance=function(emailId){
+    return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName, { email: emailId })
+}
+
 loginSignupDbOpr.validateUserLogin = function (loginObj){
     return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName,loginObj);
 }
