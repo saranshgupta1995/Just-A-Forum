@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
     password='';
     userEmail = '';
     showForm=true;
+    validUsername=false;
     @Output() onReturn = new EventEmitter();
     @Output() signupEvent = new EventEmitter();
     @ViewChild('infoText') infoText;
@@ -22,6 +23,10 @@ export class SignupComponent implements OnInit {
   }
 
     onSignupAttempt() {
+        if(!this.validUsername){
+            this.infoText.showError('Username Already Exists');
+            return
+        }
         this.showForm = false;
         this.infoText.showProcess('Sending Data');
         this.loginSignupService.addNewUser({
@@ -38,6 +43,19 @@ export class SignupComponent implements OnInit {
                     this.signupEvent.emit(res['status']);
                 }
             })
+    }
+
+    validateUsername(){
+        this.validUsername=false;
+        this.loginSignupService.validateUserName({'username':this.userName})
+        .subscribe(res=>{
+            if(res['status']){
+                this.infoText.showError('Username Already Exists');
+            }else{
+                this.validUsername=true;
+                this.infoText.clear();
+            }
+        })
     }
 
     backFromLogin() {

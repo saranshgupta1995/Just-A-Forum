@@ -14,6 +14,10 @@ loginSignupDbOpr.checkEmailExistance=function(emailId){
     return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName, { email: emailId })
 }
 
+loginSignupDbOpr.checkUsernameExistance=function(username){
+    return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName, { userName: username })
+}
+
 loginSignupDbOpr.validateUserLogin = function (loginObj){
     return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName,loginObj);
 }

@@ -29,6 +29,12 @@ router.get('/verify', (req, res) => {
     });
 });
 
+router.post('/validateUsername',(req, res)=>{
+    loginSignupDbOpr.checkUsernameExistance(req.body.username).then((oprRes)=>{
+        res.send({'status':oprRes});
+    })
+})
+
 router.post('/addNewUser',(req, res)=>{
     loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes)=>{
         if(!oprRes){

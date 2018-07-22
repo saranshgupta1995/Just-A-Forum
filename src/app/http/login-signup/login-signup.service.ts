@@ -32,8 +32,13 @@ export class LoginSignupService {
     addNewUser(user: any) {
         return this.http.post(this.httpUrls.addNewUserUrl, user).pipe(catchError(this.handleError));
     }
+    
     validateLoginAttempt(user: any) {
         return this.http.post(this.httpUrls.validateLoginUrl, user).pipe(catchError(this.handleError));
+    }
+    
+    validateUserName(username: any) {
+        return this.http.post(this.httpUrls.validateUsernameUrl, username).pipe(catchError(this.handleError));
     }
 
 }

@@ -8,5 +8,6 @@ export class HttpUrls {
 
     addNewUserUrl =`${environment.serverUrl}/addNewUser`;
     validateLoginUrl = `${environment.serverUrl}/validateUserLogin`;
+    validateUsernameUrl = `${environment.serverUrl}/validateUsername`;
 
 }

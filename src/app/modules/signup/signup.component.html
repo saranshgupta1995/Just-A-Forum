@@ -9,7 +9,7 @@
             </div>
             <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="userName">User Name</label>
-                <input id="userName" pattern="[a-z0-9_-]+" minlength="4" placeholder="User Name" name="userName" class="header-input-box"
+                <input id="userName" (focusout)="validateUsername()"pattern="[a-z0-9_-]+" minlength="4" placeholder="User Name" name="userName" class="header-input-box"
                     required [(ngModel)]="userName" type="text">
             </div>
             <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
