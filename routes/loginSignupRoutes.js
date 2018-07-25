@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var loginSignupDbOpr=require('./../database/loginSignupDbOperations');
+var loginSignupDbOpr = require('./../database/loginSignupDbOperations');
 loginSignupDbOpr.emailer = require('../businessLayer/Emailer.js');
 
 router.use(function (req, res, next) {
@@ -10,41 +10,48 @@ router.get('/', (req, res) => {
     res.send('recieved get');
 });
 
+router.get('/drop', (req, res) => {
+    loginSignupDbOpr.dropColl(req.query.a).then(oprRes => {
+        res.send(oprRes);
+    })
+
+});
+
 router.get('/verify', (req, res) => {
-    loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes)=>{
+    loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes) => {
         if (oprRes.result.n) {
             res.send(`
             <h2>DeSocialize</h2>
             <p>Your account has been verified.</p>
             <a href='/'>Click here to Login</a>`)
-        }else{
+        } else {
             res.send(`
             <h2>DeSocialize</h2>
             <p>Maybe the link is broken?</p>
             <p>Or perhaps this account has already been verified.</p>
             <a href='/'>Click here to Login</a>`)
         }
-    }).catch((err)=>{
-        res.send({'message':'Maybe the link is broken??'})
+    }).catch((err) => {
+        res.send({ 'message': 'Maybe the link is broken??' })
     });
 });
 
-router.post('/validateUsername',(req, res)=>{
-    loginSignupDbOpr.checkUsernameExistance(req.body.username).then((oprRes)=>{
-        res.send({'status':oprRes});
+router.post('/validateUsername', (req, res) => {
+    loginSignupDbOpr.checkUsernameExistance(req.body.username).then((oprRes) => {
+        res.send({ 'status': oprRes });
     })
 })
 
-router.post('/addNewUser',(req, res)=>{
-    loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes)=>{
-        if(!oprRes){
+router.post('/addNewUser', (req, res) => {
+    loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
+        if (!oprRes) {
             loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
                 res.send({
-                    'status':oprRes.insertedCount==1
+                    'status': oprRes.insertedCount == 1
                 });
-                loginSignupDbOpr.emailer.mailOptions.to=req.body.email;
-                loginSignupDbOpr.emailer.mailOptions.subject=`Account Verification ${req.body.userName}`;
-                loginSignupDbOpr.emailer.mailOptions.html=`
+                loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
+                loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.userName}`;
+                loginSignupDbOpr.emailer.mailOptions.html = `
                 <h4>Account Verification Email</h4>
                 <p style="margin:4px;">Hi ${req.body.userName}</p>
                 <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
@@ -56,7 +63,7 @@ router.post('/addNewUser',(req, res)=>{
                 loginSignupDbOpr.emailer.sendMail();
             });
         }
-        else{
+        else {
             res.send({
                 'status': false
             });
@@ -64,12 +71,13 @@ router.post('/addNewUser',(req, res)=>{
     })
 })
 
-router.post('/validateUserLogin',(req, res)=>{
-    loginSignupDbOpr.validateUserLogin(req.body).then((oprRes)=>{
-        res.send({
-            'status':oprRes
+router.post('/validateUserLogin', (req, res) => {
+    loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
+        res.send( {
+            unverified: oprRes.unverified,
+            username: oprRes.userName
         })
-    });
+    })
 })
 
 module.exports = router;

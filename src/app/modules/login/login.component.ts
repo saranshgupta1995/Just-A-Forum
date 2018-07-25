@@ -30,11 +30,12 @@ export class LoginComponent implements OnInit {
         })
         .subscribe(res=>{
             this.showForm=true;
-            if(!res['status'])
+            if(res['username']=='not found')
             this.infoText.showError('Invalid Login Credentials');
-            else{
-                this.infoText.showSuccess('Logged In Successfully');
-                this.loginEvent.emit(res['status']);
+            else if(res['unverified']){
+                this.infoText.showError('Account Pending Email Verification');
+            }else{
+                this.infoText.showSuccess('Logged in Successfully')
             }
         })
         

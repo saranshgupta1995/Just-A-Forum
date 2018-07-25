@@ -2,7 +2,7 @@ let dbOperations = {};
 
 dbOperations.database = require('./db.js');
 
-dbOperations.insertOneOpr = function (collection,dataObj) {
+dbOperations.insertOneOpr = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
             return coll.coll.insertOne(dataObj)
@@ -13,7 +13,7 @@ dbOperations.insertOneOpr = function (collection,dataObj) {
         });
 }
 
-dbOperations.findOpr = function (collection,dataObj) {
+dbOperations.findOpr = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
             return coll.coll.find(dataObj).count().then((oprRes) => {
@@ -23,10 +23,24 @@ dbOperations.findOpr = function (collection,dataObj) {
         });
 }
 
-dbOperations.updateOne = function (collection,findQuery,updateTarget) {
+dbOperations.findDoc = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
-            return coll.coll.updateOne(findQuery,updateTarget).then((oprRes) => {
+            return coll.coll.find(dataObj)
+        });
+}
+
+dbOperations.dropCollOpr = function (coll) {
+    return dbOperations.database.getCollection(coll)
+        .then((coll) => {
+            return coll.coll.drop();
+        });
+}
+
+dbOperations.updateOne = function (collection, findQuery, updateTarget) {
+    return dbOperations.database.getCollection(collection)
+        .then((coll) => {
+            return coll.coll.updateOne(findQuery, updateTarget).then((oprRes) => {
                 coll.client.close();
                 return oprRes
             });
