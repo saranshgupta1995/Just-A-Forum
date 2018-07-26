@@ -39,8 +39,6 @@ export class SignupComponent implements OnInit {
                     this.infoText.showError('An account is already linked with the same email');
                 else {
                     this.infoText.showSuccess('Please verify account through the received email');
-                    this.showForm = true;
-                    this.signupEvent.emit(res['status']);
                 }
             })
     }

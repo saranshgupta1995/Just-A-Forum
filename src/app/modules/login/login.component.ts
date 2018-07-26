@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
             else if(res['unverified']){
                 this.infoText.showError('Account Pending Email Verification');
             }else{
-                this.infoText.showSuccess('Logged in Successfully')
+                this.infoText.showSuccess('Logged in Successfully');
+                this.loginEvent.emit(true);
             }
         })
         
