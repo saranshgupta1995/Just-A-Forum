@@ -26,12 +26,18 @@ dbOperations.findOpr = function (collection, dataObj) {
 dbOperations.findDoc = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
-            return coll.coll.find(dataObj)
+            let data=[];
+            return coll.coll.find(dataObj).forEach(x => {
+                data.push(x);
+            }).then(oprRes=>{
+                coll.client.close();
+                return data
+            })
         });
 }
 
-dbOperations.dropCollOpr = function (coll) {
-    return dbOperations.database.getCollection(coll)
+dbOperations.dropCollOpr = function (collection) {
+    return dbOperations.database.getCollection(collection)
         .then((coll) => {
             return coll.coll.drop();
         });

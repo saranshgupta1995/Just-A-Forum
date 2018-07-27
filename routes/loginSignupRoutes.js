@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var loginSignupDbOpr = require('./../database/loginSignupDbOperations');
+var profileDbOpr = require('./../database/profileDbOperations');
 loginSignupDbOpr.emailer = require('../businessLayer/Emailer.js');
 
 router.use(function (req, res, next) {
@@ -19,7 +20,7 @@ router.get('/verify', (req, res) => {
             res.send(`
             <h2>DeSocialize</h2>
             <p>Your account has been verified.</p>
-            <a href='/'>Click here to Login</a>`)
+            <a href='/'>Click here to Login</a>`);
         } else {
             res.send(`
             <h2>DeSocialize</h2>
@@ -57,6 +58,7 @@ router.post('/addNewUser', (req, res) => {
                 <p style="margin-top:4px;">The DeSocializers</p>
                 `;
                 loginSignupDbOpr.emailer.sendMail();
+                profileDbOpr.addProfile(req.body.userName);
             });
         }
         else {
@@ -69,7 +71,7 @@ router.post('/addNewUser', (req, res) => {
 
 router.post('/validateUserLogin', (req, res) => {
     loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
-        res.send( {
+        res.send({
             unverified: oprRes.unverified,
             username: oprRes.userName
         })

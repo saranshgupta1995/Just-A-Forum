@@ -11,7 +11,7 @@ loginSignupDbOpr.addLoginDetails = function (loginObj) {
 }
 
 loginSignupDbOpr.dropColl = function (coll) {
-    return loginSignupDbOpr.dbOpr.dropCollOpr(loginSignupDbOpr.tableName);
+    return loginSignupDbOpr.dbOpr.dropCollOpr(coll);
 }
 
 loginSignupDbOpr.checkEmailExistance = function (emailId) {
@@ -24,15 +24,11 @@ loginSignupDbOpr.checkUsernameExistance = function (username) {
 
 loginSignupDbOpr.validateUserLogin = function (loginObj) {
     return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.tableName, loginObj).then(oprRes => {
-        return oprRes.hasNext().then(x => {
-            if (!x) {
-                return { 'userName': 'not found' };
-            } else {
-                return oprRes.next().then(y => {
-                    return y
-                })
-            }
-        })
+        if(!oprRes.length){
+            return { 'userName': 'not found' };
+        }else{
+            return oprRes[0]
+        }
     });
 }
 

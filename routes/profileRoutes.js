@@ -1,8 +1,15 @@
 var router = require('express').Router();
-var loginSignupDbOpr = require('./../database/profileDbOperations');
+var profileDbOperations = require('./../database/profileDbOperations');
 
 router.get('/profile', (req, res) => {
-        res.send('pika');
+    let user = req.query.a
+    
+    profileDbOperations.dbOpr.findDoc('UserProfiles', { username: user }).then(oprRes => {
+        oprRes.forEach(x => {
+            res.send(x);
+        })
+    })
+
 });
 
 
