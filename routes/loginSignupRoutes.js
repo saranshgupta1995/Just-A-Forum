@@ -6,10 +6,6 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', (req, res) => {
-    res.send('recieved get');
-});
-
 router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl(req.query.a).then(oprRes => {
         res.send(oprRes);

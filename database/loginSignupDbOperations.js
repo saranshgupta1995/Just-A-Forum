@@ -33,11 +33,6 @@ loginSignupDbOpr.validateUserLogin = function (loginObj) {
                 })
             }
         })
-
-        // oprRes.forEach(doc => {
-        //     returnDoc=doc;
-        // })
-
     });
 }
 
