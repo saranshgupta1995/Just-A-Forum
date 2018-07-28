@@ -14,7 +14,6 @@ export class SignupComponent implements OnInit {
     showForm=true;
     validUsername=false;
     @Output() onReturn = new EventEmitter();
-    @Output() signupEvent = new EventEmitter();
     @ViewChild('infoText') infoText;
     
   constructor(private loginSignupService:LoginSignupService) { }

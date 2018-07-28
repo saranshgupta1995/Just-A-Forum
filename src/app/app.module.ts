@@ -14,9 +14,8 @@ import { MyFixedAlertComponent } from './modules/my-fixed-alert/my-fixed-alert.c
 import { InfoTextComponent } from './modules/info-text/info-text.component'; 
 
 const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent },
+    { path: '', component: HomeComponent },
 ]
 
 @NgModule({
