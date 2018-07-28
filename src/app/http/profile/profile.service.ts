@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { HttpUrls } from './../httpUrls';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-@Injectable({
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpUrls } from '../httpUrls';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
+@Injectable({
     providedIn: 'root'
 })
-export class LoginSignupService {
+export class ProfileService {
 
     constructor(private http: HttpClient, private httpUrls: HttpUrls) { }
 
@@ -27,18 +26,8 @@ export class LoginSignupService {
         return throwError(
             'Something bad happened; please try again later.');
     };
-
-
-    addNewUser(user: any) {
-        return this.http.post(this.httpUrls.addNewUserUrl, user).pipe(catchError(this.handleError));
+    fetchUserProfile(user: any) {
+        return this.http.post(this.httpUrls.fetchProfileDataUrl, user).pipe(catchError(this.handleError));   
     }
-    
-    validateLoginAttempt(user: any) {
-        return this.http.post(this.httpUrls.validateLoginUrl, user).pipe(catchError(this.handleError));
-    }
-    
-    validateUserName(username: any) {
-        return this.http.post(this.httpUrls.validateUsernameUrl, username).pipe(catchError(this.handleError));
-    }
-
 }
+

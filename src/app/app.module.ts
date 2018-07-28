@@ -11,9 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { SexyNavbarComponent } from './modules/sexy-navbar/sexy-navbar.component';
 import { UserNavComponent } from './modules/user-nav/user-nav.component';
 import { MyFixedAlertComponent } from './modules/my-fixed-alert/my-fixed-alert.component';
-import { InfoTextComponent } from './modules/info-text/info-text.component'; 
+import { InfoTextComponent } from './modules/info-text/info-text.component';
+import { MyProfileComponent } from './modules/my-profile/my-profile.component'; 
 
 const appRoutes: Routes = [
+    { path: 'profile/:username', component: MyProfileComponent },
     { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent },
 ]
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
         SexyNavbarComponent,
         UserNavComponent,
         MyFixedAlertComponent,
-        InfoTextComponent
+        InfoTextComponent,
+        MyProfileComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { LoginSignupService } from '../../http/login-signup/login-signup.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     @Output() onReturn=new EventEmitter();
     @Output() loginEvent=new EventEmitter();
 
-    constructor(private loginSignupService: LoginSignupService) { }
+    constructor(private loginSignupService: LoginSignupService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
             }else{
                 this.infoText.showSuccess('Logged in Successfully');
                 this.loginEvent.emit(true);
+                this.router.navigate(['/profile',res['username']]);
             }
         })
         

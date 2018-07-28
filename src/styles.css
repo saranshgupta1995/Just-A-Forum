@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+img{
+    max-width: 100%;
+    height: auto;
+}
+
 .same-line{
     display: inline
 }
@@ -34,8 +39,6 @@
 }
 
 .page{
-    position: absolute;
-    top: 0px;
     height: 100vh;
     width: 100vw;
     background: url("/assets/bg1.png");
@@ -44,11 +47,11 @@
 
 
 @media only screen and (max-width: 576px) {
-    .col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12{
+    /* .col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12{
         display: inline-block;
         width: 100%;
         text-align: center;
-    }
+    } */
 
     .sm-row{
         display:inline-block;
@@ -59,10 +62,10 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
  .col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12{
         display: inline-block;
         width: 100%;
         text-align: center;
     }
-}
+} */
