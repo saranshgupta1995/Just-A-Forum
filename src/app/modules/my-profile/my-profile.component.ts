@@ -10,7 +10,7 @@ import { ProfileService } from '../../http/profile/profile.service';
 export class MyProfileComponent implements OnInit {
 
     username:string;
-    userData={};
+    userData:any={};
 
     constructor(private route: ActivatedRoute, private profileService:ProfileService) {
         this.username = route.snapshot.params['username'];
