@@ -1,7 +1,7 @@
 <div class="row task-note">
     <div *ngFor="let task of tasks; let ind=index" class="col-12">
         <div class="row">
-            <span>{{task}}</span>
+            <span (click)="goToTask(task)">{{task}}</span>
         </div>
         <div class="row">
             <div class="progress my-progress-bar">

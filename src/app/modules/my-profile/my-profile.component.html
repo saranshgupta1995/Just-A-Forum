@@ -7,7 +7,15 @@
             <h4>
                 {{username | nameCase}}
             </h4>
+            <i *ngIf="userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
+            <ng-template #noCatchPhrase>
+                <i>You do not have a catchphrase</i>
+            </ng-template>
         </div>
     </div>
-    <task-note></task-note>
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <task-note (runTask)="goToTask($event)"></task-note>
+        </div>
+    </div>
 </div>

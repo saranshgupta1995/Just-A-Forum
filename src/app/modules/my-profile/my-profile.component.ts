@@ -22,4 +22,8 @@ export class MyProfileComponent implements OnInit {
     ngOnInit() {
     }
 
+    goToTask(e){
+        console.log(e);
+    }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'task-note',
@@ -7,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskNoteComponent implements OnInit {
 
-    progresses:String[]=['10%','20%','20%'];
-    tasks:String[]=['Task A',"Task B","Task C"];
-
+    @Input() progresses:String[]=['10%','20%','20%'];
+    @Input() tasks:String[]=['Task A',"Task B","Task C"];
+    @Output() runTask:EventEmitter<string>=new EventEmitter(); 
+    
     constructor() { }
 
     ngOnInit() {
+    }
+
+    goToTask(task){
+        this.runTask.emit(task);
     }
 
 }
