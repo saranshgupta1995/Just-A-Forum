@@ -11,6 +11,7 @@ profileDbOpr.addProfile = function (username) {
     exp_level:0,
     ques_ids:[],
     lvl_score:0,
+    worth:0,
     comment_ids:[]
     });
 }
