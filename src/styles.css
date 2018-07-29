@@ -43,7 +43,6 @@ img{
     width: 100vw;
     padding: 0 10vw;
     background: url("/assets/bg1.png");
-    z-index: -1;
 }
 
 

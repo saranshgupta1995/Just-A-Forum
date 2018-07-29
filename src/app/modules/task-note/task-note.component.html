@@ -1,0 +1,12 @@
+<div class="row task-note">
+    <div *ngFor="let task of tasks; let ind=index" class="col-12">
+        <div class="row">
+            <span>{{task}}</span>
+        </div>
+        <div class="row">
+            <div class="progress my-progress-bar">
+                <div [ngStyle]="{'width':progresses[ind]}" class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
