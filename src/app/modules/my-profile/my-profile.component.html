@@ -1,10 +1,17 @@
 <div class="page col">
     <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-3 col-sm-4 col-6">
             <img src="/assets/default.png" alt="profile image">
         </div>
-        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-            {{username}}
+        <div class="col-md-9 col-sm-8 col-xs-6">
+            <h4>
+                {{username | nameCase}}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 task-note">
+            Task for the day
         </div>
     </div>
 </div>
