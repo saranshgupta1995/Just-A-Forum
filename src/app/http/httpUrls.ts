@@ -13,4 +13,5 @@ export class HttpUrls {
     
     // profile urls
     fetchProfileDataUrl = `${environment.serverUrl}/profile`;
+    fetchUserLevelDataUrl = `${environment.serverUrl}/findUserLevelData`;
 }

@@ -11,12 +11,19 @@ export class MyProfileComponent implements OnInit {
 
     username:string;
     userData:any={};
+    taskData:any={};
 
     constructor(private route: ActivatedRoute, private profileService:ProfileService) {
         this.username = route.snapshot.params['username'];
         this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
             this.userData=res;
-        })
+            this.profileService.fetchUserLevelData({username:this.username,exp_level:this.userData['exp_level']}).subscribe(res=>{
+                this.taskData=res;
+                if(this.userData['exp_level']=='zero'){
+                    this.taskData.tasks=['Answer your first question']
+                }
+            });
+        });
     }
 
     ngOnInit() {

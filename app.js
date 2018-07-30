@@ -4,6 +4,7 @@ const path = require('path');
 const requestLogger = require('./middlewares/RequestLogger.js');
 const loginSignupRoutes = require('./routes/loginSignupRoutes.js');
 const profileRoutes = require('./routes/profileRoutes.js');
+const levelRoutes = require('./routes/levelRoutes.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(loginSignupRoutes);
 app.use(profileRoutes);
+app.use(levelRoutes);
 const server = http.createServer(app);
 server.listen(port, () => console.log('running'));
 
