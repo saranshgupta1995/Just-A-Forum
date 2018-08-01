@@ -12,6 +12,9 @@ export class HttpUrls {
     validateUsernameUrl = `${environment.serverUrl}/validateUsername`;
     
     // profile urls
-    fetchProfileDataUrl = `${environment.serverUrl}/profile`;
+    fetchProfileDataUrl = `${environment.serverUrl}/getprofile`;
     fetchUserLevelDataUrl = `${environment.serverUrl}/findUserLevelData`;
+
+    //question urls
+    addQuestionUrl = `${environment.serverUrl}/addquestion`;
 }

@@ -33,5 +33,9 @@ export class ProfileService {
     fetchUserLevelData(user: any) {
         return this.http.post(this.httpUrls.fetchUserLevelDataUrl, user).pipe(catchError(this.handleError));   
     }
+
+    addQuestion(question: any) {
+        return this.http.post(this.httpUrls.addQuestionUrl, question).pipe(catchError(this.handleError));   
+    }
 }
 
