@@ -14,6 +14,7 @@ router.get('/drop', (req, res) => {
     })
     loginSignupDbOpr.dropColl('UserProfiles');
     loginSignupDbOpr.dropColl('LevelZero');
+    loginSignupDbOpr.dropColl('QuestionData');
 
     });
 
