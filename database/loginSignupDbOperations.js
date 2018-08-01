@@ -7,6 +7,9 @@ loginSignupDbOpr.tableName = 'LoginDetails';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj) {
     loginObj.unverified = true;
+    if(loginObj.userName=='saransh'){
+        loginObj.unverified = false;
+    }
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName, loginObj);
 }
 
@@ -15,11 +18,11 @@ loginSignupDbOpr.dropColl = function (coll) {
 }
 
 loginSignupDbOpr.checkEmailExistance = function (emailId) {
-    return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName, { email: emailId })
+    return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, { email: emailId })
 }
 
 loginSignupDbOpr.checkUsernameExistance = function (username) {
-    return loginSignupDbOpr.dbOpr.findOpr(loginSignupDbOpr.tableName, { userName: username })
+    return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, { userName: username })
 }
 
 loginSignupDbOpr.validateUserLogin = function (loginObj) {

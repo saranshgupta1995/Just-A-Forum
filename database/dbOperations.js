@@ -13,12 +13,12 @@ dbOperations.insertOneOpr = function (collection, dataObj) {
         });
 }
 
-dbOperations.findOpr = function (collection, dataObj) {
+dbOperations.fetchCount = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
             return coll.coll.find(dataObj).count().then((oprRes) => {
                 coll.client.close();
-                return oprRes > 0
+                return oprRes
             });
         });
 }
