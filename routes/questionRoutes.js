@@ -9,7 +9,7 @@ router.post('/addquestion', (req, res) => {
     })
 });
 
-router.post('/fetchQuestionData', (req, res) => {
+router.post('/fetchquestiondata', (req, res) => {
     quesDbOperations.getQuestionData(req.body).then(oprRes=>{
         res.send(oprRes);
     })
