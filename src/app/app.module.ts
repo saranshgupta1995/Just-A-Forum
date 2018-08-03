@@ -15,10 +15,12 @@ import { InfoTextComponent } from './modules/info-text/info-text.component';
 import { MyProfileComponent } from './modules/my-profile/my-profile.component';
 import { NameCasePipe } from './common/pipes/name-case.pipe';
 import { TaskNoteComponent } from './modules/task-note/task-note.component';
-import { FooterComponent } from './modules/footer/footer.component'; 
+import { FooterComponent } from './modules/footer/footer.component';
+import { QuestionComponent } from './modules/question/question.component'; 
 
 const appRoutes: Routes = [
     { path: 'profile/:username', component: MyProfileComponent },
+    { path: 'question', component: QuestionComponent },
     { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent },
 ]
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
         MyProfileComponent,
         NameCasePipe,
         TaskNoteComponent,
-        FooterComponent
+        FooterComponent,
+        QuestionComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),
