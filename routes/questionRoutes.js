@@ -11,6 +11,12 @@ router.post('/addquestion', (req, res) => {
 
 router.post('/fetchquestiondata', (req, res) => {
     quesDbOperations.getQuestionData(req.body).then(oprRes=>{
+        res.send(oprRes[0]);
+    })
+});
+
+router.post('/addcomment', (req, res) => {
+    quesDbOperations.addComment(req.body.question, req.body.comment).then(oprRes=>{
         res.send(oprRes);
     })
 });

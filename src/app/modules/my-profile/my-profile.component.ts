@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../http/profile/profile.service';
+import { TaskRoutes } from '../../http/taskRoutes';
 
 @Component({
     selector: 'my-profile',
@@ -13,7 +14,7 @@ export class MyProfileComponent implements OnInit {
     userData:any={};
     taskData:any={};
 
-    constructor(private route: ActivatedRoute, private profileService:ProfileService) {
+    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router) {
         this.username = route.snapshot.params['username'];
         this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
             this.userData=res;
@@ -30,7 +31,7 @@ export class MyProfileComponent implements OnInit {
     }
 
     goToTask(e){
-        console.log(e);
+        this.router.navigate(this.taskRoutes[e]);        
     }
 
 }

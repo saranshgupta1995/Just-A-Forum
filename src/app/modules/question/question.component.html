@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>What are you like?</h3>
+            <h3>{{questionData.question}}</h3>
         </div>
     </div>
     <div class="row">
@@ -9,6 +9,6 @@
             <textarea [(ngModel)]="commentText"></textarea>
         </div>
     </div>
-    <button>Submit Answer</button>
+    <button (click)="sendComment();">Submit Answer</button>
 </div>
     

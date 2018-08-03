@@ -20,7 +20,7 @@ import { QuestionComponent } from './modules/question/question.component';
 
 const appRoutes: Routes = [
     { path: 'profile/:username', component: MyProfileComponent },
-    { path: 'question', component: QuestionComponent },
+    { path: 'question/:ques', component: QuestionComponent },
     { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent },
 ]
