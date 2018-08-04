@@ -25,6 +25,10 @@ loginSignupDbOpr.checkUsernameExistance = function (username) {
     return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, { userName: username })
 }
 
+loginSignupDbOpr.fetchProfileCount = function () {
+    return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, {})
+}
+
 loginSignupDbOpr.validateUserLogin = function (loginObj) {
     return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.tableName, loginObj).then(oprRes => {
         if (!oprRes.length) {
