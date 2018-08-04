@@ -4,9 +4,8 @@ quesDbOpr.dbOpr = require('./dbOperations.js');
 quesDbOpr.tableName = 'QuestionData';
 
 quesDbOpr.addQuestion = function (ques_data, ques_id) {
-    ques_data.commentIds = [];
     ques_data.answerId = 0;
-    ques_data.ques_id = ques_id + 1;
+    ques_data.quesId = ques_data.profileId+'.'+(ques_id + 1);
     return quesDbOpr.dbOpr.insertOneOpr(quesDbOpr.tableName, ques_data);
 }
 

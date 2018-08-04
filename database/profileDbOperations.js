@@ -3,14 +3,13 @@ let profileDbOpr = {};
 profileDbOpr.dbOpr = require('./dbOperations.js');
 profileDbOpr.tableName = 'UserProfiles';
 
-profileDbOpr.addProfile = function (username) {
+profileDbOpr.addProfile = function (username, coun) {
     return profileDbOpr.dbOpr.insertOneOpr(profileDbOpr.tableName, {
         username: username,
+        userId:coun+1,
         exp_level: 'zero',
-        ques_ids: [],
         lvl_score: 0,
         worth: 0,
-        comment_ids: []
     });
 }
 
