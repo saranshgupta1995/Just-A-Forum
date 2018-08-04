@@ -17,7 +17,7 @@ profileDbOpr.addProfile = function (username) {
 profileDbOpr.findProfile = function (username) {
     return profileDbOpr.dbOpr.findDoc(profileDbOpr.tableName, {
         username: username,
-    }).then(oprRes=>{
+    }).then(oprRes => {
         if (!oprRes.length) {
             return { 'userName': 'not found' };
         } else {

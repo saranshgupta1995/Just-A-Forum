@@ -17,7 +17,7 @@ levelDbOpr.initLevelZero = function (username) {
     });
 }
 
-levelDbOpr.findLevelData = function (username,exp_level) {
+levelDbOpr.findLevelData = function (username, exp_level) {
     return levelDbOpr.dbOpr.findDoc(levelDbOpr.tableNames[exp_level], { userName: username }).then(oprRes => {
         if (!oprRes.length) {
             return { 'userName': 'not found' };

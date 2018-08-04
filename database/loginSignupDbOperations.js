@@ -7,7 +7,7 @@ loginSignupDbOpr.tableName = 'LoginDetails';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj) {
     loginObj.unverified = true;
-    if(loginObj.userName=='saransh'){
+    if (loginObj.userName == 'saransh') {
         loginObj.unverified = false;
     }
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName, loginObj);
@@ -27,9 +27,9 @@ loginSignupDbOpr.checkUsernameExistance = function (username) {
 
 loginSignupDbOpr.validateUserLogin = function (loginObj) {
     return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.tableName, loginObj).then(oprRes => {
-        if(!oprRes.length){
+        if (!oprRes.length) {
             return { 'userName': 'not found' };
-        }else{
+        } else {
             return oprRes[0]
         }
     });

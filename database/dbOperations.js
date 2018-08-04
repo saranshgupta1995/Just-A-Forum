@@ -26,10 +26,10 @@ dbOperations.fetchCount = function (collection, dataObj) {
 dbOperations.findDoc = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
-            let data=[];
+            let data = [];
             return coll.coll.find(dataObj).forEach(x => {
                 data.push(x);
-            }).then(oprRes=>{
+            }).then(oprRes => {
                 coll.client.close();
                 return data
             })
