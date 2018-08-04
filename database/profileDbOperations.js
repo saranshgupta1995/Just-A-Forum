@@ -9,7 +9,7 @@ profileDbOpr.addProfile = function (username, coun) {
         userId:coun+1,
         exp_level: 'zero',
         lvl_score: 0,
-        worth: 0,
+        worth: 100,
     });
 }
 

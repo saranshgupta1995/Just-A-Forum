@@ -18,4 +18,17 @@
             <task-note [tasks]="taskData['tasks']" [progresses]="taskData['progresses']" (runTask)="goToTask($event)"></task-note>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12" *ngIf="!askingQuestion; else askingQuesBar">
+            <button (click)="initAskQuestion()">Ask a question</button>
+        </div>
+        <ng-template #askingQuesBar>
+            <div class="col-md-10">
+                <input type="text" [(ngModel)]="newQuestion">
+            </div>
+            <div class="col-md-2">
+                <button (click)="askQuestion()">Ask!!</button>
+            </div>
+        </ng-template>
+    </div>
 </div>

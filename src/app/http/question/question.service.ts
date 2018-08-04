@@ -27,6 +27,10 @@ export class QuestionService {
             'Something bad happened; please try again later.');
     };
     
+    addQuestion(ques: any) {
+        return this.http.post(this.httpUrls.addQuestionUrl, ques).pipe(catchError(this.handleError));
+    }
+    
     addComment(data: any) {
         return this.http.post(this.httpUrls.addCommentUrl, data).pipe(catchError(this.handleError));
     }

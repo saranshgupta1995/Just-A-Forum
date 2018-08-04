@@ -31,6 +31,7 @@ export class QuestionComponent implements OnInit {
           question:this.activatedRoute.snapshot.params['ques']
       }).subscribe(res=>{
           this.questionData=res;
+          console.log(res)
       })
   }
 
