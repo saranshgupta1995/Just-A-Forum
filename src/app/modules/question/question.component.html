@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="questionData.question" [@enterAnimation] class="container">
     <div class="row">
         <div class="col-md-12">
             <h3>{{questionData.question}}</h3>
@@ -11,4 +11,7 @@
     </div>
     <button (click)="sendComment();">Submit Answer</button>
 </div>
-    
+<ng-template #loader>
+    <div class="container">
+    </div>
+</ng-template>
