@@ -5,7 +5,7 @@ quesDbOpr.tableName = 'QuestionData';
 
 quesDbOpr.addQuestion = function (ques_data, ques_id) {
     ques_data.answerId = 0;
-    ques_data.quesId = ques_data.profileId+'.'+(ques_id + 1);
+    ques_data.quesId = ques_data.profileId + '.' + (ques_id + 1);
     delete ques_data['profileId'];
     return quesDbOpr.dbOpr.insertOneOpr(quesDbOpr.tableName, ques_data);
 }

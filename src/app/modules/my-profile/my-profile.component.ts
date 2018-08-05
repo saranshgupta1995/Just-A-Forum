@@ -3,11 +3,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../http/profile/profile.service';
 import { TaskRoutes } from '../../http/taskRoutes';
 import { QuestionService } from '../../http/question/question.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
     selector: 'my-profile',
     templateUrl: './my-profile.component.html',
-    styleUrls: ['./my-profile.component.css']
+    styleUrls: ['./my-profile.component.css'],
+    animations: [
+        trigger(
+            'enterAnimation', [
+                transition(':enter', [
+                    style({ opacity: 0 }),
+                    animate('150ms', style({ opacity: 1 }))
+                ]),
+            ]
+        )
+    ],
 })
 export class MyProfileComponent implements OnInit {
 
