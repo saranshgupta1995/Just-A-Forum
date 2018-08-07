@@ -15,10 +15,4 @@ router.post('/fetchquestiondata', (req, res) => {
     })
 });
 
-router.post('/addcomment', (req, res) => {
-    quesDbOperations.addComment(req.body.question, req.body.comment).then(oprRes=>{
-        res.send(oprRes);
-    })
-});
-
 module.exports = router;

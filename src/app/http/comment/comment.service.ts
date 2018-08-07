@@ -5,11 +5,12 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class QuestionService {
+export class CommentService {
 
     constructor(private http: HttpClient, private httpUrls: HttpUrls) { }
+
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -26,12 +27,13 @@ export class QuestionService {
         return throwError(
             'Something bad happened; please try again later.');
     };
-    
-    addQuestion(ques: any) {
-        return this.http.post(this.httpUrls.addQuestionUrl, ques).pipe(catchError(this.handleError));
+
+
+    addComment(data: any) {
+        return this.http.post(this.httpUrls.addCommentUrl, data).pipe(catchError(this.handleError));
     }
 
-    fetchQuestionData(data: any) {
-        return this.http.post(this.httpUrls.fetchQuestionDataUrl, data).pipe(catchError(this.handleError));
+    fetchQuestionComments(data: any) {
+        return this.http.post(this.httpUrls.fetchQuestionCommentsUrl, data).pipe(catchError(this.handleError));
     }
 }

@@ -10,6 +10,9 @@
         </div>
     </div>
     <button (click)="sendComment();">Submit Answer</button>
+    <ul *ngIf="questionData.comments">
+        <li *ngFor="let comment of questionData.comments">{{comment['comment']}}</li>
+    </ul>
 </div>
 <ng-template #loader>
     <div class="container">

@@ -17,68 +17,72 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LevelZero');
     loginSignupDbOpr.dropColl('QuestionData');
     quesDbOpr.addQuestion({
-        question:'What are you like?',
-        worth:100,
-        profileId:0
-    },0)
-    });
+        question: 'What are you like?',
+        worth: 100,
+        profileId: 0
+    }, 0)
+});
 
-    router.get('/expose',(req,res)=>{
-        loginSignupDbOpr.dbOpr.findDoc('LoginDetails').then(loginDetailsData=>{
-            loginSignupDbOpr.dbOpr.findDoc('UserProfiles').then(userProfilesData=>{
-                loginSignupDbOpr.dbOpr.findDoc('LevelZero').then(levelZeroData=>{
-                    loginSignupDbOpr.dbOpr.findDoc('QuestionData').then(questionData=>{
+router.get('/expose', (req, res) => {
+    loginSignupDbOpr.dbOpr.findDoc('LoginDetails').then(loginDetailsData => {
+        loginSignupDbOpr.dbOpr.findDoc('UserProfiles').then(userProfilesData => {
+            loginSignupDbOpr.dbOpr.findDoc('LevelZero').then(levelZeroData => {
+                loginSignupDbOpr.dbOpr.findDoc('QuestionData').then(questionData => {
+                    loginSignupDbOpr.dbOpr.findDoc('Comments').then(comments => {
                         res.json({
-                            loginDetailsData:loginDetailsData,
-                            breaker1:'..........................................................................',
-                            userProfilesData:userProfilesData,
-                            breaker2:'..........................................................................',
-                            levelZeroData:levelZeroData,
-                            breaker3:'..........................................................................',
-                            questionData:questionData
+                            loginDetailsData: loginDetailsData,
+                            breaker1: '..........................................................................',
+                            userProfilesData: userProfilesData,
+                            breaker2: '..........................................................................',
+                            levelZeroData: levelZeroData,
+                            breaker3: '..........................................................................',
+                            questionData: questionData,
+                            breaker4: '..........................................................................',
+                            comments: comments
                         })
                     })
                 })
             })
         })
     })
+})
 
-    router.get('/verify', (req, res) => {
-        loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes) => {
-            if (oprRes.result.n) {
-                res.send(`
+router.get('/verify', (req, res) => {
+    loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes) => {
+        if (oprRes.result.n) {
+            res.send(`
             <h2>DeSocialize</h2>
             <p>Your account has been verified.</p>
             <a href='/'>Click here to Login</a>`);
-            } else {
-                res.send(`
+        } else {
+            res.send(`
             <h2>DeSocialize</h2>
             <p>Maybe the link is broken?</p>
             <p>Or perhaps this account has already been verified.</p>
             <a href='/'>Click here to Login</a>`)
-            }
-        }).catch((err) => {
-            res.send({ 'message': 'Maybe the link is broken??' })
-        });
+        }
+    }).catch((err) => {
+        res.send({ 'message': 'Maybe the link is broken??' })
     });
+});
 
-    router.post('/validateUsername', (req, res) => {
-        loginSignupDbOpr.checkUsernameExistance(req.body.username).then((oprRes) => {
-            res.send({ 'status': oprRes });
-        })
+router.post('/validateUsername', (req, res) => {
+    loginSignupDbOpr.checkUsernameExistance(req.body.username).then((oprRes) => {
+        res.send({ 'status': oprRes });
     })
+})
 
-    router.post('/addNewUser', (req, res) => {
-        loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
-            if (!oprRes) {
-                loginSignupDbOpr.fetchProfileCount().then(coun=>{
-                    loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
-                        res.send({
-                            'status': oprRes.insertedCount == 1
-                        });
-                        loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
-                        loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.userName}`;
-                        loginSignupDbOpr.emailer.mailOptions.html = `
+router.post('/addNewUser', (req, res) => {
+    loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
+        if (!oprRes) {
+            loginSignupDbOpr.fetchProfileCount().then(coun => {
+                loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
+                    res.send({
+                        'status': oprRes.insertedCount == 1
+                    });
+                    loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
+                    loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.userName}`;
+                    loginSignupDbOpr.emailer.mailOptions.html = `
                     <h4>Account Verification Email</h4>
                     <p style="margin:4px;">Hi ${req.body.userName}</p>
                     <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
@@ -87,27 +91,27 @@ router.get('/drop', (req, res) => {
                     <p style="margin-bottom:4px;">Thanks and Regards</p>
                     <p style="margin-top:4px;">The DeSocializers</p>
                     `;
-                        loginSignupDbOpr.emailer.sendMail();
-                        profileDbOpr.addProfile(req.body.userName,coun);
-                        levelDbOpr.initLevelZero(req.body.userName);
-                    });
-                })
-            }
-            else {
-                res.send({
-                    'status': false
+                    loginSignupDbOpr.emailer.sendMail();
+                    profileDbOpr.addProfile(req.body.userName, coun);
+                    levelDbOpr.initLevelZero(req.body.userName);
                 });
-            }
-        })
-    })
-
-    router.post('/validateUserLogin', (req, res) => {
-        loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
-            res.send({
-                unverified: oprRes.unverified,
-                username: oprRes.userName
             })
+        }
+        else {
+            res.send({
+                'status': false
+            });
+        }
+    })
+})
+
+router.post('/validateUserLogin', (req, res) => {
+    loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
+        res.send({
+            unverified: oprRes.unverified,
+            username: oprRes.userName
         })
     })
+})
 
-    module.exports = router;
+module.exports = router;

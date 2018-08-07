@@ -1,34 +1,36 @@
 <div class="page col">
-    <div class="row">
-        <div class="col-md-3 col-sm-4 col-6">
-            <img src="/assets/default.png" alt="profile image">
+    <div *ngIf="taskData.tasks" [@enterAnimation]>
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-6">
+                <img src="/assets/default.png" alt="profile image">
+            </div>
+            <div class="col-md-9 col-sm-8 col-6">
+                <h4>
+                    {{username | nameCase}}
+                </h4>
+                <i *ngIf="userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
+                <ng-template #noCatchPhrase>
+                    <i>You do not have a catchphrase</i>
+                </ng-template>
+            </div>
         </div>
-        <div class="col-md-9 col-sm-8 col-6">
-            <h4>
-                {{username | nameCase}}
-            </h4>
-            <i *ngIf="userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
-            <ng-template #noCatchPhrase>
-                <i>You do not have a catchphrase</i>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <task-note [tasks]="taskData['tasks']" [progresses]="taskData['progresses']" (runTask)="goToTask($event)"></task-note>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" [@enterAnimation] *ngIf="!askingQuestion; else askingQuesBar">
+                <button (click)="initAskQuestion()">Ask a question</button>
+            </div>
+            <ng-template #askingQuesBar>
+                <div [@enterAnimation] class="col-md-10">
+                    <input type="text" [(ngModel)]="newQuestion">
+                </div>
+                <div [@enterAnimation] class="col-md-2">
+                    <button (click)="askQuestion()">Ask!!</button>
+                </div>
             </ng-template>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-6">
-            <task-note [tasks]="taskData['tasks']" [progresses]="taskData['progresses']" (runTask)="goToTask($event)"></task-note>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12" [@enterAnimation] *ngIf="!askingQuestion; else askingQuesBar">
-            <button (click)="initAskQuestion()">Ask a question</button>
-        </div>
-        <ng-template #askingQuesBar>
-            <div [@enterAnimation] class="col-md-10">
-                <input type="text" [(ngModel)]="newQuestion">
-            </div>
-            <div [@enterAnimation] class="col-md-2">
-                <button (click)="askQuestion()">Ask!!</button>
-            </div>
-        </ng-template>
     </div>
 </div>

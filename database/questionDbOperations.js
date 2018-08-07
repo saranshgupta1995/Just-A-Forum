@@ -22,8 +22,4 @@ quesDbOpr.getQuestionData = function (ques_data) {
     return quesDbOpr.dbOpr.findDoc(quesDbOpr.tableName, ques_data);
 }
 
-quesDbOpr.addComment = function (ques_data, comment_data) {
-    return quesDbOpr.dbOpr.updateOne(quesDbOpr.tableName, ques_data, { $set: comment_data });
-}
-
 module.exports = quesDbOpr;
