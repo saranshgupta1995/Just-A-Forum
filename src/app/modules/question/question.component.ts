@@ -37,7 +37,6 @@ export class QuestionComponent implements OnInit {
           }).subscribe(comments=>{
               this.questionData.comments=comments
           })
-          console.log(res)
       })
   }
 
@@ -47,7 +46,13 @@ export class QuestionComponent implements OnInit {
             commentId:0,
             quesId:this.questionData.quesId
         }).subscribe(res=>{
-            console.log(res)
+            if(res['ok']){
+                this.questionData.comments.push({
+                    comment: this.commentText,
+                    commentId: 0,
+                    quesId: this.questionData.quesId
+                })
+            }
         })
     }
 

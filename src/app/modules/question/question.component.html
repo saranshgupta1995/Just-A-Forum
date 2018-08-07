@@ -9,10 +9,20 @@
             <textarea [(ngModel)]="commentText"></textarea>
         </div>
     </div>
-    <button (click)="sendComment();">Submit Answer</button>
-    <ul *ngIf="questionData.comments">
-        <li *ngFor="let comment of questionData.comments">{{comment['comment']}}</li>
-    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            Answers : 
+            <ul *ngIf="questionData.comments">
+                <li *ngFor="let comment of questionData.comments">{{comment['comment']}}</li>
+            </ul>
+        </div>
+    </div>
 </div>
 <ng-template #loader>
     <div class="container">
