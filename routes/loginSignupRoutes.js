@@ -21,14 +21,22 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LevelZero').catch(x => {
         console.log(x)
     });
-    loginSignupDbOpr.dropColl('QuestionData').catch(x => {
+    loginSignupDbOpr.dropColl('Comments').catch(x => {
         console.log(x)
-    }).then(x=>{
+    });
+    loginSignupDbOpr.dropColl('QuestionData').then(x=>{
         quesDbOpr.addQuestion({
             question: 'What are you like?',
             worth: 100,
             profileId: 0
         }, 0)
+    },y=>{
+        
+            quesDbOpr.addQuestion({
+                question: 'What are you like?',
+                worth: 100,
+                profileId: 0
+            }, 0)
     });
 });
 
