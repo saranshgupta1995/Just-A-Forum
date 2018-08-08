@@ -12,15 +12,24 @@ router.use(function (req, res, next) {
 router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LoginDetails').then(oprRes => {
         res.send(oprRes);
+    }).catch(x=>{
+        console.log(x)
     })
-    loginSignupDbOpr.dropColl('UserProfiles');
-    loginSignupDbOpr.dropColl('LevelZero');
-    loginSignupDbOpr.dropColl('QuestionData');
-    quesDbOpr.addQuestion({
-        question: 'What are you like?',
-        worth: 100,
-        profileId: 0
-    }, 0)
+    loginSignupDbOpr.dropColl('UserProfiles').catch(x => {
+        console.log(x)
+    });
+    loginSignupDbOpr.dropColl('LevelZero').catch(x => {
+        console.log(x)
+    });
+    loginSignupDbOpr.dropColl('QuestionData').catch(x => {
+        console.log(x)
+    }).then(x=>{
+        quesDbOpr.addQuestion({
+            question: 'What are you like?',
+            worth: 100,
+            profileId: 0
+        }, 0)
+    });
 });
 
 router.get('/expose', (req, res) => {
