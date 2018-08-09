@@ -43,8 +43,86 @@ img{
     width: 100vw;
     padding: 0 10vw;
     background: url("/assets/bg1.png");
+}   
+.loader{
+    text-align: center;
+    position: relative;
+    min-height: 200px;
 }
 
+@keyframes loadMoveLeft{
+    0% {right: 45%;width: 3px;}
+    50% {right: 55%;width: 5px;}
+    100% {right: 45%;width: 3px;}
+}
+
+@keyframes loadMoveRight{
+    0% {right: 55%;width: 5px;}
+    50% {right: 45%;width: 3px;}
+    100% {right: 55%;width: 5px;}
+}
+
+.loader>div{
+    opacity: 0.6;
+    position: absolute;
+    background-color: black;
+    height: 4px;
+    width: 4px;
+    display: inline-block;
+    border-radius: 50%;
+    animation-name: loadMoveLeft;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-in-out; 
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-play-state: running; 
+}
+
+.loader>.righty{
+    animation-name: loadMoveRight;
+}
+
+.loader>div:nth-child(8n+1){
+    top:8px;
+    animation-delay: 0.1s;
+}
+
+.loader>div:nth-child(8n+2){
+    top:16px;
+    animation-delay: 0.2s;
+}
+
+.loader>div:nth-child(8n+3){
+    top:24px;
+    animation-delay: 0.3s;
+}
+
+.loader>div:nth-child(8n+4){
+    top:32px;
+    animation-delay: 0.4s;
+}
+
+.loader>div:nth-child(8n+5){
+    top:40px;
+    animation-delay: 0.5s;
+}
+
+.loader>div:nth-child(8n+6){
+    top:48px;
+    animation-delay: 0.6s;
+}
+
+.loader>div:nth-child(8n+7){
+    top:56px;
+    animation-delay: 0.7s;
+}
+
+.loader>div:nth-child(8n+8){
+    top:64px;
+    animation-delay: 0.8s;
+}
 
 @media only screen and (max-width: 576px) {
  

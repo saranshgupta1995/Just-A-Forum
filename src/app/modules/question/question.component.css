@@ -2,3 +2,11 @@ textarea{
     height: 100px;
     width: 100%;
 }
+
+.answer-row{
+    max-height: 400px;
+}
+
+.comment-row{
+    margin-bottom: 0px;
+}
