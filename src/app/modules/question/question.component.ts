@@ -25,11 +25,13 @@ export class QuestionComponent implements OnInit {
     commentText:string;
     questionText:string;
     questionData: any = {};
+    showScreen=false;
     @ViewChild('infoText') infoText:InfoTextComponent;
-
-  constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute, private commentService:CommentService) { }
-
-  ngOnInit() {
+    
+    constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute, private commentService:CommentService) { 
+    }
+        
+    ngOnInit() {
       this.questionService.fetchQuestionData({
           question:this.activatedRoute.snapshot.params['ques']
       }).subscribe(res=>{
@@ -38,11 +40,13 @@ export class QuestionComponent implements OnInit {
           this.commentService.fetchQuestionComments({
               quesId:res['quesId']
           }).subscribe(comments=>{
+              this.showScreen=true;
               this.questionData.comments=comments
-          })
-      })
-  }
-
+            })
+        })
+        
+    }
+    
     sendComment(){
         this.infoText.showProcess('Sending Comment')
         this.commentService.addComment({
@@ -60,5 +64,5 @@ export class QuestionComponent implements OnInit {
             }
         })
     }
-
+    
 }

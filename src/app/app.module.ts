@@ -16,7 +16,8 @@ import { MyProfileComponent } from './modules/my-profile/my-profile.component';
 import { NameCasePipe } from './common/pipes/name-case.pipe';
 import { TaskNoteComponent } from './modules/task-note/task-note.component';
 import { FooterComponent } from './modules/footer/footer.component';
-import { QuestionComponent } from './modules/question/question.component'; 
+import { QuestionComponent } from './modules/question/question.component';
+import { LoaderComponent } from './modules/loader/loader.component'; 
 
 const appRoutes: Routes = [
     { path: 'profile/:username', component: MyProfileComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
         NameCasePipe,
         TaskNoteComponent,
         FooterComponent,
-        QuestionComponent
+        QuestionComponent,
+        LoaderComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes,{enableTracing:true}),
