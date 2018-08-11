@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class SessionDataService {
+    userExpLevel: any;
 
     constructor() { }
 
@@ -24,10 +25,10 @@ export class SessionDataService {
     }
 
     decideUserPrivileges() {
-        if (this.userData['exp_level'])
-        {
-            this.privileges.profileImageAccess = this.level_eqs[this.userData['exp_level']] > 2;
-            this.privileges.catchPhraseAccess = this.level_eqs[this.userData['exp_level']] != 0;
+        if (this.userData['exp_level']) {
+            this.userExpLevel = this.level_eqs[this.userData['exp_level']];
+            this.privileges.profileImageAccess = this.userExpLevel > 2;
+            this.privileges.catchPhraseAccess = this.userExpLevel != 0;
         }
     }
 

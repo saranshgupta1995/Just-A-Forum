@@ -20,6 +20,7 @@ import { QuestionComponent } from './modules/question/question.component';
 import { LoaderComponent } from './modules/loader/loader.component';
 import { ProfileQuestionsComponent } from './modules/profile-questions/profile-questions.component';
 import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile-privileges.component';
+import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
 
 const appRoutes: Routes = [
     {
@@ -27,10 +28,13 @@ const appRoutes: Routes = [
         component: MyProfileComponent,
         children: [
             {
-                path: '', redirectTo:'privileges', pathMatch:'full'
+                path: '', redirectTo:'profiledata', pathMatch:'full'
             },
             {
                 path: 'privileges', component: ProfilePrivilegesComponent
+            },
+            {
+                path: 'profiledata', component: ProfileDataComponent
             },
             {
                 path: 'questions', component: ProfileQuestionsComponent
@@ -59,7 +63,8 @@ const appRoutes: Routes = [
         QuestionComponent,
         LoaderComponent,
         ProfileQuestionsComponent,
-        ProfilePrivilegesComponent
+        ProfilePrivilegesComponent,
+        ProfileDataComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes, { enableTracing: true }),
