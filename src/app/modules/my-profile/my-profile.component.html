@@ -19,7 +19,7 @@
                 <task-note [tasks]="taskData['tasks']" [progresses]="taskData['progresses']" (runTask)="goToTask($event)"></task-note>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12" [@enterAnimation] *ngIf="!askingQuestion; else askingQuesBar">
                 <button (click)="initAskQuestion()">Ask a question</button>
             </div>
@@ -31,20 +31,20 @@
                     <button (click)="askQuestion()">Ask!!</button>
                 </div>
             </ng-template>
-        </div>
+        </div> -->
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['profiledata']">Profile Data</a>
+                <a class="nav-link" [routerLink]="['profiledata']" (click)="newTabSelection($event)">Profile Data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['questions']">Questions</a>
+                <a class="nav-link" [routerLink]="['questions']" (click)="newTabSelection($event)">Questions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['privileges']">Privileges</a>
+                <a class="nav-link" [routerLink]="['privileges']" (click)="newTabSelection($event)">Privileges</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['questions']">Questions</a>
+                <a class="nav-link" [routerLink]="['questions']" (click)="newTabSelection($event)">Questions</a>
             </li>
         </ul>
 

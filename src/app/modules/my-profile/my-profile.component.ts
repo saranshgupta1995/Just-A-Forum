@@ -56,6 +56,16 @@ export class MyProfileComponent implements OnInit {
         })
     }
 
+    newTabSelection(e){
+        let nav_links= document.getElementsByClassName('nav-link');
+        for (let i=0;i<nav_links.length;i++){
+            nav_links[i]['style'].transform='scale(1)';
+            nav_links[i]['style'].color='black';
+        }
+        e.target.style.transform='scale(1.05)';
+        e.target.style.color ='#007bff';
+    }
+
     ngOnInit() {
     }
 
