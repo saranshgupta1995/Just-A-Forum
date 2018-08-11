@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { SessionDataService } from '../../session-data.service';
 
 @Component({
     selector: 'profile-privileges',
@@ -9,10 +10,8 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 export class ProfilePrivilegesComponent implements OnInit {
     username: string;
 
-    constructor(private route: ActivatedRoute) {
-        route.parent.params.subscribe(x =>
-             this.username=x['username']
-            );
+    constructor(private sessionData:SessionDataService) {
+        console.log(sessionData);
     }
 
     ngOnInit() {

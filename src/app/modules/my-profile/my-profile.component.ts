@@ -4,6 +4,7 @@ import { ProfileService } from '../../http/profile/profile.service';
 import { TaskRoutes } from '../../http/taskRoutes';
 import { QuestionService } from '../../http/question/question.service';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { SessionDataService } from '../../session-data.service';
 
 @Component({
     selector: 'my-profile',
@@ -28,13 +29,16 @@ export class MyProfileComponent implements OnInit {
     askingQuestion=false;
     newQuestion='';
 
-    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router, private questionService:QuestionService) {
+    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router, private questionService:QuestionService, private sessionData:SessionDataService) {
         this.username = route.snapshot.params['username'];
         this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
             this.userData=res;
+            sessionData.userData=JSON.parse(JSON.stringify(res));
             console.log(this.userData);
             this.profileService.fetchUserLevelData({username:this.username,exp_level:this.userData['exp_level']}).subscribe(res=>{
+                this.sessionData.decideUserPrivileges();
                 this.taskData=res;
+                sessionData.userTasks=res;
                 if(this.userData['exp_level']=='zero'){
                     this.taskData.tasks=['Answer your first question']
                 }
