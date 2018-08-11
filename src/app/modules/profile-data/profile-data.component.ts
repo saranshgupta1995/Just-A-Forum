@@ -8,9 +8,10 @@ import { SessionDataService } from '../../session-data.service';
 })
 export class ProfileDataComponent implements OnInit {
     profileData: any;
+    allSessionData: any;
 
     constructor(private sessionData: SessionDataService) {
-        this.profileData = sessionData.userData;
+        this.allSessionData = sessionData;
     }
 
     ngOnInit() {
