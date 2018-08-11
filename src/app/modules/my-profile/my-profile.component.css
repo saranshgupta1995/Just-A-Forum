@@ -13,9 +13,11 @@
 
 .nav.nav-tabs> .nav-item> .nav-link{
      text-align: center;
-     border: 0px;
-     opacity: 0.75;
-     font-weight: 400;
+    border: 0px;
+    opacity: 0.75;
+    font-weight: 600;
+    color: black;
+    font-size: 90%;
 }
 
 
