@@ -35,8 +35,8 @@ export class MyProfileComponent implements OnInit {
             this.userData=res;
             sessionData.userData=JSON.parse(JSON.stringify(res));
             console.log(this.userData);
+            this.sessionData.decideUserPrivileges();
             this.profileService.fetchUserLevelData({username:this.username,exp_level:this.userData['exp_level']}).subscribe(res=>{
-                this.sessionData.decideUserPrivileges();
                 this.taskData=res;
                 sessionData.userTasks=res;
                 if(this.userData['exp_level']=='zero'){

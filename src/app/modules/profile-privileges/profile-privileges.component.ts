@@ -8,10 +8,10 @@ import { SessionDataService } from '../../session-data.service';
     styleUrls: ['./profile-privileges.component.css']
 })
 export class ProfilePrivilegesComponent implements OnInit {
-    username: string;
+    privileges:any;
 
     constructor(private sessionData:SessionDataService) {
-        console.log(sessionData);
+        this.privileges=sessionData.privileges;
     }
 
     ngOnInit() {
