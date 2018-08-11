@@ -1,5 +1,5 @@
 <div class="page col">
-    <div *ngIf="taskData.tasks" [@enterAnimation]>
+    <div *ngIf="taskData.tasks; else loader" [@enterAnimation]>
         <div class="row">
             <div class="col-md-2 col-4">
                 <img src="/assets/grumpy_male.png" alt="profile image">
@@ -48,7 +48,9 @@
             </li>
         </ul>
 
-        <!-- Tab panes -->
         <router-outlet></router-outlet>
     </div>
+    <ng-template #loader>
+        <app-loader></app-loader>
+    </ng-template>
 </div>
