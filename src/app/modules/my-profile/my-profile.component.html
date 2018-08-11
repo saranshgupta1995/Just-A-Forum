@@ -32,8 +32,23 @@
                 </div>
             </ng-template>
         </div>
-        <a [routerLink]="['privileges']">Priviliges</a>
-        <a [routerLink]="['questions']">Questions</a>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['privileges']">Privileges</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['questions']">Questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['privileges']">Privileges</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['questions']">Questions</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
         <router-outlet></router-outlet>
     </div>
 </div>
