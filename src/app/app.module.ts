@@ -17,10 +17,26 @@ import { NameCasePipe } from './common/pipes/name-case.pipe';
 import { TaskNoteComponent } from './modules/task-note/task-note.component';
 import { FooterComponent } from './modules/footer/footer.component';
 import { QuestionComponent } from './modules/question/question.component';
-import { LoaderComponent } from './modules/loader/loader.component'; 
+import { LoaderComponent } from './modules/loader/loader.component';
+import { ProfileQuestionsComponent } from './modules/profile-questions/profile-questions.component';
+import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile-privileges.component';
 
 const appRoutes: Routes = [
-    { path: 'profile/:username', component: MyProfileComponent },
+    {
+        path: 'profile/:username',
+        component: MyProfileComponent,
+        children: [
+            {
+                path: '', redirectTo:'privileges', pathMatch:'full'
+            },
+            {
+                path: 'privileges', component: ProfilePrivilegesComponent
+            },
+            {
+                path: 'questions', component: ProfileQuestionsComponent
+            },
+        ]
+    },
     { path: 'question/:ques', component: QuestionComponent },
     { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent },
@@ -41,10 +57,12 @@ const appRoutes: Routes = [
         TaskNoteComponent,
         FooterComponent,
         QuestionComponent,
-        LoaderComponent
+        LoaderComponent,
+        ProfileQuestionsComponent,
+        ProfilePrivilegesComponent
     ],
     imports: [
-        RouterModule.forRoot(appRoutes,{enableTracing:true}),
+        RouterModule.forRoot(appRoutes, { enableTracing: true }),
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
