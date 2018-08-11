@@ -19,7 +19,7 @@ export class LoaderComponent implements OnInit {
     ngOnInit() {
         setInterval(() => {
             this.loadertext.showInfo(navigator.onLine ? this.throwBacks[this.timer] : 'Seems like this is the end of the Internet.');
-            this.timer = Math.min(this.timer + (Math.random() > 0.7 ? 1 : 0), 5);
+            this.timer = Math.min(this.timer + (Math.random() > 0.85 ? 1 : 0), 5);
         }, 500);
     }
 
