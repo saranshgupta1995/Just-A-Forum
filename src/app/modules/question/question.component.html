@@ -31,11 +31,22 @@
     <div [@enterAnimation] *ngIf="questionData.comments">
         <div *ngFor="let comment of questionData.comments" class="row">
             <div class="col-md-12">
-                <p class="comment-row">{{comment.comment}}</p>
+                <p class="comment-comment">{{comment.comment}}</p>
+                <div>
+                    <button class="comment-action basic-margin-sm">
+                        Useful Information
+                    </button>
+                    <button class="comment-action basic-margin-sm">
+                        Waste of Bytes
+                    </button>
+                    <button class="comment-action comment-user-action basic-margin-sm">
+                        Visit User
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <ng-template #loader>
-     <app-loader></app-loader>
+    <app-loader></app-loader>
 </ng-template>
