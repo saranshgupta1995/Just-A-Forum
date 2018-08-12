@@ -10,24 +10,6 @@ router.post('/levelZeroUserData', (req, res) => {
     })
 })
 
-router.get('/setUserLevel', (req, res) => {
-    levelDbOpr.setUserLevel('saransh','zero').then(oprRes => {        
-        res.send({
-            unverified: oprRes.unverified,
-            username: oprRes.userName
-        })
-    })
-})
-
-router.get('/deleteUserLevel', (req, res) => {
-    levelDbOpr.deleteUserFromLevel('saransh','zero').then(oprRes => {        
-        res.send({
-            unverified: oprRes.unverified,
-            username: oprRes.userName
-        })
-    })
-})
-
 router.post('/findUserLevelData',(req,res)=>{
     levelDbOpr.findLevelData(req.body.username,req.body.exp_level).then(oprRes=>{
         res.send(oprRes);
