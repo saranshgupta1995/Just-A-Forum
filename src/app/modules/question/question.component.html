@@ -9,7 +9,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
+                    <button [disabled]="!commentText" class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
                 </div>
             </div>
             <div class="row">
