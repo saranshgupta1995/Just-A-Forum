@@ -4,6 +4,8 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { CommentService } from '../../http/comment/comment.service';
 import { InfoTextComponent } from '../info-text/info-text.component';
+import { ProfileService } from '../../http/profile/profile.service';
+import { SessionDataService } from '../../session-data.service';
 
 @Component({
   selector: 'app-question',
@@ -28,7 +30,7 @@ export class QuestionComponent implements OnInit {
     showScreen=false;
     @ViewChild('infoText') infoText:InfoTextComponent;
     
-    constructor(private questionService:QuestionService, private activatedRoute:ActivatedRoute, private commentService:CommentService) { 
+    constructor(private questionService:QuestionService, private sessionData:SessionDataService, private activatedRoute:ActivatedRoute, private commentService:CommentService, private profileService: ProfileService) { 
     }
         
     ngOnInit() {
@@ -51,11 +53,15 @@ export class QuestionComponent implements OnInit {
         this.infoText.showProcess('Sending Comment')
         this.commentService.addComment({
             comment: this.commentText,
-            commentId:0,
+            commentId:this.questionData.comments.length,
             quesId:this.questionData.quesId
         }).subscribe(res=>{
             this.infoText.clear();
             if(res['ok']){
+                this.profileService.addWorth({
+                    username: this.sessionData.userData['username'],
+                    worth: this.questionData.worth + this.sessionData.userData['worth']
+                }).subscribe()
                 this.questionData.comments.push({
                     comment: this.commentText,
                     commentId: 0,

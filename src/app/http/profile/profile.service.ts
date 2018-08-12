@@ -27,15 +27,19 @@ export class ProfileService {
             'Something bad happened; please try again later.');
     };
     fetchUserProfile(user: any) {
-        return this.http.post(this.httpUrls.fetchProfileDataUrl, user).pipe(catchError(this.handleError));   
+        return this.http.post(this.httpUrls.fetchProfileDataUrl, user).pipe(catchError(this.handleError));
     }
 
     fetchUserLevelData(user: any) {
-        return this.http.post(this.httpUrls.fetchUserLevelDataUrl, user).pipe(catchError(this.handleError));   
+        return this.http.post(this.httpUrls.fetchUserLevelDataUrl, user).pipe(catchError(this.handleError));
     }
 
     addQuestion(question: any) {
-        return this.http.post(this.httpUrls.addQuestionUrl, question).pipe(catchError(this.handleError));   
+        return this.http.post(this.httpUrls.addQuestionUrl, question).pipe(catchError(this.handleError));
+    }
+
+    addWorth(data: any) {
+        return this.http.post(this.httpUrls.updateWorthUrl, data).pipe(catchError(this.handleError));
     }
 }
 
