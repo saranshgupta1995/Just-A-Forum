@@ -53,5 +53,15 @@ dbOperations.updateOne = function (collection, findQuery, updateTarget) {
         });
 }
 
+dbOperations.deleteDoc = function (collection, deleteQuery) {
+    return dbOperations.database.getCollection(collection)
+        .then((coll) => {
+            return coll.coll.deleteOne(deleteQuery).then((oprRes) => {
+                coll.client.close();
+                return oprRes
+            });
+        });
+}
+
 module.exports = dbOperations;
 
