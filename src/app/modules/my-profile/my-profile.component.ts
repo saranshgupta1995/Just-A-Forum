@@ -47,12 +47,10 @@ export class MyProfileComponent implements OnInit {
     }
 
     askQuestion(){
-        console.log(this.newQuestion);
         this.questionService.addQuestion({
             question:this.newQuestion,
             profileId:this.userData.userId
         }).subscribe(res=>{
-            console.log(res);
         })
     }
 

@@ -14,7 +14,6 @@ profileDbOpr.addProfile = function (username, coun) {
 }
 
 profileDbOpr.addWorth = function (username, worth) {
-    console.log(username,worth);
     return profileDbOpr.dbOpr.updateOne(profileDbOpr.tableName, {
         username: username
     }, { $set: { worth: worth }});
