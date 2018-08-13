@@ -20,10 +20,14 @@ textarea{
     border-bottom: 1px solid;
     outline: none;
     opacity: 0.9;
-    margin-bottom: 15px;
     margin-top: 0px;
 }
 
 .comment-user-action{
     float: left;
+}
+
+.comment-row{
+    margin-bottom: 15px;
+    padding: 10px;
 }

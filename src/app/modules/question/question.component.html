@@ -29,7 +29,7 @@
         </div>
     </div>
     <div [@enterAnimation] *ngIf="questionData.comments">
-        <div *ngFor="let comment of questionData.comments" class="row">
+        <div *ngFor="let comment of questionData.comments" class="row comment-row">
             <div class="col-md-12">
                 <p class="comment-comment">{{comment.comment}}</p>
                 <div>
