@@ -16,7 +16,15 @@ export class SessionDataService {
         one: 1,
         two: 2,
         three: 3,
-        four: 4,
+        four: 4
+    };
+
+    level_weight = {
+        zero: 1,
+        one: 1.5,
+        two: 3,
+        three: 5,
+        four: 8
     };
 
     privileges = {
