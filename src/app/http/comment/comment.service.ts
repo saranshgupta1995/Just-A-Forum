@@ -3,13 +3,14 @@ import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { HttpUrls } from '../httpUrls';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { SessionDataService } from '../../session-data.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CommentService {
 
-    constructor(private http: HttpClient, private httpUrls: HttpUrls) { }
+    constructor(private http: HttpClient, private httpUrls: HttpUrls, private sessionData: SessionDataService) { }
 
 
     private handleError(error: HttpErrorResponse) {
@@ -30,10 +31,10 @@ export class CommentService {
 
 
     addComment(data: any) {
-        return this.http.post(this.httpUrls.addCommentUrl, data).pipe(catchError(this.handleError));
+        return this.http.post(this.httpUrls.addCommentUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 
     fetchQuestionComments(data: any) {
-        return this.http.post(this.httpUrls.fetchQuestionCommentsUrl, data).pipe(catchError(this.handleError));
+        return this.http.post(this.httpUrls.fetchQuestionCommentsUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 }

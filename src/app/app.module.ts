@@ -67,7 +67,8 @@ const appRoutes: Routes = [
         ProfileDataComponent
     ],
     imports: [
-        RouterModule.forRoot(appRoutes, { enableTracing: true }),
+        // RouterModule.forRoot(appRoutes, { enableTracing: true }),
+        RouterModule.forRoot(appRoutes),
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,

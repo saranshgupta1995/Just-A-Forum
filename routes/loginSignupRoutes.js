@@ -3,6 +3,8 @@ var loginSignupDbOpr = require('./../database/loginSignupDbOperations');
 var profileDbOpr = require('./../database/profileDbOperations');
 var levelDbOpr = require('./../database/levelDbOperations');
 var quesDbOpr = require('./../database/questionDbOperations');
+const validateReq = require('./../middlewares/Validation.js');
+
 loginSignupDbOpr.emailer = require('../businessLayer/Emailer.js');
 
 router.use(function (req, res, next) {
@@ -12,7 +14,7 @@ router.use(function (req, res, next) {
 router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LoginDetails').then(oprRes => {
         res.send(oprRes);
-    }).catch(x=>{
+    }).catch(x => {
         console.log(x)
     })
     loginSignupDbOpr.dropColl('UserProfiles').catch(x => {
@@ -24,19 +26,19 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('Comments').catch(x => {
         console.log(x)
     });
-    loginSignupDbOpr.dropColl('QuestionData').then(x=>{
+    loginSignupDbOpr.dropColl('QuestionData').then(x => {
         quesDbOpr.addQuestion({
             question: 'What are you like?',
             worth: 100,
             profileId: 0
         }, 0)
-    },y=>{
-        
-            quesDbOpr.addQuestion({
-                question: 'What are you like?',
-                worth: 100,
-                profileId: 0
-            }, 0)
+    }, y => {
+
+        quesDbOpr.addQuestion({
+            question: 'What are you like?',
+            worth: 100,
+            profileId: 0
+        }, 0)
     });
 });
 
@@ -122,13 +124,22 @@ router.post('/addNewUser', (req, res) => {
     })
 })
 
-router.post('/validateUserLogin', (req, res) => {
+router.post('/validateUserLogin', validateReq, (req, res) => {
     loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
-        res.send({
+        resObj = {
             unverified: oprRes.unverified,
-            username: oprRes.userName
-        })
+            username: oprRes.userName,
+        }
+        if (resObj['username'] != 'not found') {
+            resObj.token = req.token;
+        }
+        res.send(resObj);
+
     })
+})
+
+router.post('/validatetoken', validateReq, (req, res) => {
+    res.send('WTF happened here')
 })
 
 module.exports = router;

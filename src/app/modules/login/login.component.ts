@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { LoginSignupService } from '../../http/login-signup/login-signup.service';
 import { Router } from '@angular/router';
+import { SessionDataService } from '../../session-data.service';
 
 @Component({
     selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     @Output() onReturn=new EventEmitter();
     @Output() loginEvent=new EventEmitter();
 
-    constructor(private loginSignupService: LoginSignupService, private router: Router) { }
+    constructor(private sessionData:SessionDataService, private loginSignupService: LoginSignupService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -36,7 +37,11 @@ export class LoginComponent implements OnInit {
             else if(res['unverified']){
                 this.infoText.showError('Account Pending Email Verification');
             }else{
+                this.sessionData.userName=this.userName;
+                this.sessionData.fromRegularlogin=true;
                 this.infoText.showSuccess('Logged in Successfully');
+                localStorage.setItem("desocializeAuth",res['token'])
+                this.sessionData.userToken=res['token'];
                 this.loginEvent.emit(true);
                 this.router.navigate(['/profile',res['username']]);
             }

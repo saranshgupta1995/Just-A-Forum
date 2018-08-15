@@ -4,13 +4,14 @@ import { HttpUrls } from './../httpUrls';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SessionDataService } from '../../session-data.service';
 @Injectable({
 
     providedIn: 'root'
 })
 export class LoginSignupService {
 
-    constructor(private http: HttpClient, private httpUrls: HttpUrls) { }
+    constructor(private http: HttpClient, private httpUrls: HttpUrls, private sessionData:SessionDataService) { }
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -32,11 +33,15 @@ export class LoginSignupService {
     addNewUser(user: any) {
         return this.http.post(this.httpUrls.addNewUserUrl, user).pipe(catchError(this.handleError));
     }
-    
+
     validateLoginAttempt(user: any) {
         return this.http.post(this.httpUrls.validateLoginUrl, user).pipe(catchError(this.handleError));
     }
-    
+
+    validateToken(data={token:'my_uniq_token'}) {
+        return this.http.post(this.httpUrls.validateTokenUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+    }
+
     validateUserName(username: any) {
         return this.http.post(this.httpUrls.validateUsernameUrl, username).pipe(catchError(this.handleError));
     }

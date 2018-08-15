@@ -1,14 +1,14 @@
 <div class="page col">
-    <div *ngIf="taskData.tasks; else loader" [@enterAnimation]>
+    <div *ngIf="sessionData.userTasks.taskList; else loader" [@enterAnimation]>
         <div class="row">
             <div class="col-md-2 col-4">
                 <img src="/assets/grumpy_male.png" alt="profile image">
             </div>
             <div class="col-md-10 col-8">
                 <h4>
-                    {{username | nameCase}}
+                    {{sessionData.userData.username | nameCase}}
                 </h4>
-                <i *ngIf="userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
+                <i *ngIf="sessionData.userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
                 <ng-template #noCatchPhrase>
                     <i>You do not have a catchphrase</i>
                 </ng-template>
@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6">
-                <task-note [tasks]="taskData['tasks']" [progresses]="taskData['progresses']" (runTask)="goToTask($event)"></task-note>
+                <task-note [tasks]="sessionData.userTasks.taskList" [progresses]="sessionData.userTasks['progresses']" (runTask)="goToTask($event)"></task-note>
             </div>
         </div>
         <!-- <div class="row">
@@ -35,16 +35,16 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['profiledata']" (click)="newTabSelection($event)">Profile Data</a>
+                <a class="nav-link" routerLinkActive="tabActive" [routerLink]="['profiledata']">Profile Data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['questions']" (click)="newTabSelection($event)">Questions</a>
+                <a class="nav-link" routerLinkActive="tabActive" [routerLink]="['questions']">Questions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['privileges']" (click)="newTabSelection($event)">Privileges</a>
+                <a class="nav-link" routerLinkActive="tabActive" [routerLink]="['privileges']">Privileges</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['questions']" (click)="newTabSelection($event)">Questions</a>
+                <a class="nav-link" routerLinkActive="tabActive" [routerLink]="['questions']">Questions</a>
             </li>
         </ul>
 

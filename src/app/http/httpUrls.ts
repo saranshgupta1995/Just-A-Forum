@@ -10,6 +10,7 @@ export class HttpUrls {
     addNewUserUrl =`${environment.serverUrl}/addNewUser`;
     validateLoginUrl = `${environment.serverUrl}/validateUserLogin`;
     validateUsernameUrl = `${environment.serverUrl}/validateUsername`;
+    validateTokenUrl = `${environment.serverUrl}/validatetoken`;
     
     // profile urls
     fetchProfileDataUrl = `${environment.serverUrl}/getprofile`;

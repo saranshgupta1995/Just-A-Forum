@@ -29,21 +29,25 @@ export class MyProfileComponent implements OnInit {
     askingQuestion=false;
     newQuestion='';
 
-    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router, private questionService:QuestionService, private sessionData:SessionDataService) {
-        this.username = route.snapshot.params['username'];
-        this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
-            this.userData=res;
-            sessionData.userData=JSON.parse(JSON.stringify(res));
-            console.log(this.userData);
-            this.sessionData.decideUserPrivileges();
-            this.profileService.fetchUserLevelData({username:this.username,exp_level:this.userData['exp_level']}).subscribe(res=>{
-                this.taskData=res;
-                sessionData.userTasks=res;
-                if(this.userData['exp_level']=='zero'){
-                    this.taskData.tasks=['Answer your first question']
-                }
+    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router, private questionService:QuestionService, public sessionData:SessionDataService) {
+        
+        this.username = sessionData.userName;
+        if(sessionData.fromRegularlogin){
+            this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
+                // this.userData=res;
+                sessionData.userData=JSON.parse(JSON.stringify(res));
+                // console.log(this.userData);
+                this.sessionData.decideUserPrivileges();
+                this.profileService.fetchUserLevelData({username:this.username,exp_level:res['exp_level']}).subscribe(res=>{
+                    // this.taskData=res;
+                    sessionData.userTasks=res;
+                    if(sessionData.userData['exp_level']=='zero'){
+                        // this.taskData.tasks=['Answer your first question'];
+                        sessionData.userTasks.taskList = ['Answer your first question'];
+                    }
+                });
             });
-        });
+        }
     }
 
     askQuestion(){
@@ -52,16 +56,6 @@ export class MyProfileComponent implements OnInit {
             profileId:this.userData.userId
         }).subscribe(res=>{
         })
-    }
-
-    newTabSelection(e){
-        let nav_links= document.getElementsByClassName('nav-link');
-        for (let i=0;i<nav_links.length;i++){
-            nav_links[i]['style'].transform='scale(1)';
-            nav_links[i]['style'].color='black';
-        }
-        e.target.style.transform='scale(1.05)';
-        e.target.style.color ='#007bff';
     }
 
     ngOnInit() {

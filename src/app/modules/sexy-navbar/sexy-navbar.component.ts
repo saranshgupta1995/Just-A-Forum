@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { transition, animate, state, style, trigger } from '@angular/animations';
+import { SessionDataService } from '../../session-data.service';
+import { ProfileService } from '../../http/profile/profile.service';
+import { LoginSignupService } from '../../http/login-signup/login-signup.service';
 
 @Component({
     selector: 'sexy-navbar',
@@ -29,7 +32,28 @@ export class SexyNavbarComponent implements OnInit {
     animTime=200;
     errorState=false;
     loggedIn=false;
-    constructor() { }
+    constructor(private loginSignupService: LoginSignupService, private profileService: ProfileService, private sessionData: SessionDataService) { 
+        let token = localStorage.getItem('desocializeAuth');
+        if(token && token!=='undefined'){
+            this.loggedIn=true;
+            this.sessionData.fromRegularlogin = false;
+            sessionData.userToken=token;
+            this.loginSignupService.validateToken()
+                .subscribe(res => {
+                    this.profileService.fetchUserProfile({ username: res['user'] }).subscribe(res => {
+                        sessionData.userData = res;
+                        this.sessionData.decideUserPrivileges();
+                        this.profileService.fetchUserLevelData({ username: sessionData.userData.username, exp_level: sessionData.userData['exp_level'] }).subscribe(res => {
+                            sessionData.userTasks = res;
+                            if (sessionData.userData['exp_level'] == 'zero') {
+                                sessionData.userTasks.taskList = ['Answer your first question'];
+                            }
+                            console.log(sessionData)
+                        });
+                    });
+                })
+        }
+    }
 
     ngOnInit() {
     }

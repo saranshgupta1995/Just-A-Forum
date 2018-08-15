@@ -3,13 +3,14 @@ import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { HttpUrls } from '../httpUrls';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { SessionDataService } from '../../session-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
 
-    constructor(private http: HttpClient, private httpUrls: HttpUrls) { }
+    constructor(private http: HttpClient, private httpUrls: HttpUrls, private sessionData:SessionDataService) { }
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -28,10 +29,10 @@ export class QuestionService {
     };
     
     addQuestion(ques: any) {
-        return this.http.post(this.httpUrls.addQuestionUrl, ques).pipe(catchError(this.handleError));
+        return this.http.post(this.httpUrls.addQuestionUrl, ques, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 
     fetchQuestionData(data: any) {
-        return this.http.post(this.httpUrls.fetchQuestionDataUrl, data).pipe(catchError(this.handleError));
+        return this.http.post(this.httpUrls.fetchQuestionDataUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 }

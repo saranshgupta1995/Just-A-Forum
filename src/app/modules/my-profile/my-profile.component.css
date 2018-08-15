@@ -7,7 +7,6 @@
 }
 
 .nav.nav-tabs> .nav-item> .nav-link:hover{
-    color:#007bff;
     opacity: 1;
 }
 
@@ -18,7 +17,13 @@
     font-weight: 600;
     color: black;
     font-size: 90%;
-    transition-duration: 100ms;
+    transition-duration: 150ms;
+}
+
+.nav.nav-tabs> .nav-item> .nav-link.tabActive{
+    transform: scale(1.03);
+    color: #0863c3;
+    opacity: 1;
 }
 
 

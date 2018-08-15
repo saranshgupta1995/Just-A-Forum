@@ -8,8 +8,11 @@ export class SessionDataService {
 
     constructor() { }
 
+    fromRegularlogin=true;
     userData: any = {};
     userTasks: any = {};
+    userToken:string='';
+    userName:string='';
 
     level_eqs = {
         zero: 0,
