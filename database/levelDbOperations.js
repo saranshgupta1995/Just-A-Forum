@@ -17,7 +17,27 @@ levelDbOpr.initLevelZero = function (username) {
     });
 }
 
+levelDbOpr.updateProgress = function (username, progresses, level) {
+    return levelDbOpr.dbOpr.updateOne(levelDbOpr.tableNames[level], {
+        username: username
+    }, { $set: { progresses: progresses } });
+}
+
+levelDbOpr.setUserLevel = function (username, level) {
+    return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames[level], {
+        userName: username,
+        progresses: [0]
+    });
+}
+
+levelDbOpr.deleteUserLevel = function (username, level) {
+    return levelDbOpr.dbOpr.deleteDoc(levelDbOpr.tableNames[level], {
+        userName: username,
+    });
+}
+
 levelDbOpr.findLevelData = function (username, exp_level) {
+    console.log('find user level data',username,exp_level)
     return levelDbOpr.dbOpr.findDoc(levelDbOpr.tableNames[exp_level], { userName: username }).then(oprRes => {
         if (!oprRes.length) {
             return { 'userName': 'not found' };
