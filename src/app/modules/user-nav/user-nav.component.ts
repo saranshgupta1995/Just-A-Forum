@@ -16,7 +16,6 @@ export class UserNavComponent implements OnInit {
     }
 
     logoutUser(){
-        console.log('throwing event')
         this.logoutEvent.emit('')
     }
 

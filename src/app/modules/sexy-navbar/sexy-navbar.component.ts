@@ -3,6 +3,7 @@ import { transition, animate, state, style, trigger } from '@angular/animations'
 import { SessionDataService } from '../../session-data.service';
 import { ProfileService } from '../../http/profile/profile.service';
 import { LoginSignupService } from '../../http/login-signup/login-signup.service';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
     selector: 'sexy-navbar',
@@ -32,7 +33,7 @@ export class SexyNavbarComponent implements OnInit {
     animTime=200;
     errorState=false;
     loggedIn=false;
-    constructor(private loginSignupService: LoginSignupService, private profileService: ProfileService, private sessionData: SessionDataService) { 
+    constructor(private loginSignupService: LoginSignupService, private profileService: ProfileService, private sessionData: SessionDataService, private route:Router) { 
         let token = localStorage.getItem('desocializeAuth');
         if(token && token!=='undefined'){
             this.loggedIn=true;
@@ -48,7 +49,6 @@ export class SexyNavbarComponent implements OnInit {
                             if (sessionData.userData['exp_level'] == 'zero') {
                                 sessionData.userTasks.taskList = ['Answer your first question'];
                             }
-                            console.log(sessionData)
                         });
                     });
                 })
@@ -59,10 +59,10 @@ export class SexyNavbarComponent implements OnInit {
     }
 
     logoutUser(){
-        console.log('calling main func')
         localStorage.clear();
         this.loggedIn=false;
         this.sessionData.reset();
+        this.route.navigate(['']);
     }
     
     loginEvent(status){
