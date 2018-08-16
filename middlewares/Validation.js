@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 module.exports = function (req, res, next) {
 
     if (req.body["userName"] && req.body["password"]) {
-        jwt.sign({ user: req.body.userName, address: (req.connection.remoteAddress || req.socket.remoteAddress) }, 'secretkey', { expiresIn: "10h" }, (err, token) => {
+        jwt.sign({ user: req.body.userName, address: (req.connection.remoteAddress || req.socket.remoteAddress) }, 'secretkey', (err, token) => {
             req.token = token;
             next();
         })
