@@ -43,5 +43,35 @@ export class SessionDataService {
         }
     }
 
+    reset(){
+
+        this.fromRegularlogin = true;
+        this.userData = {};
+        this.userTasks = {};
+        this.userToken = '';
+        this.userName = '';
+
+        this.level_eqs = {
+            zero: 0,
+            one: 1,
+            two: 2,
+            three: 3,
+            four: 4
+        };
+
+        this.level_weight = {
+            zero: 1,
+            one: 1.5,
+            two: 3,
+            three: 5,
+            four: 8
+        };
+
+        this.privileges = {
+            profileImageAccess: false,
+            catchPhraseAccess: false
+        }
+    }
+
 
 }

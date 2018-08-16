@@ -58,6 +58,12 @@ export class SexyNavbarComponent implements OnInit {
     ngOnInit() {
     }
 
+    logoutUser(){
+        console.log('calling main func')
+        localStorage.clear();
+        this.loggedIn=false;
+        this.sessionData.reset();
+    }
     
     loginEvent(status){
         this.loggedIn=status;

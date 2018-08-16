@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginSignupService } from '../../http/login-signup/login-signup.service';
-import { ProfileService } from '../../http/profile/profile.service';
-import { SessionDataService } from '../../session-data.service';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'user-nav',
@@ -10,10 +7,17 @@ import { SessionDataService } from '../../session-data.service';
 })
 export class UserNavComponent implements OnInit {
 
+    @Output() logoutEvent=new EventEmitter();
+
     constructor() {
     }
 
     ngOnInit() {
+    }
+
+    logoutUser(){
+        console.log('throwing event')
+        this.logoutEvent.emit('')
     }
 
 }

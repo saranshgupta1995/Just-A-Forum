@@ -14,7 +14,7 @@
             <app-signup (onReturn)="toggleToHomeNav('signup');"></app-signup>
         </div>
         <div class="col-sm-9" *ngIf="loggedIn">
-            <user-nav></user-nav>
+            <user-nav (logoutEvent)="logoutUser()"></user-nav>
         </div>
     </div>
 </form>
