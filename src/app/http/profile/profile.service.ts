@@ -43,4 +43,3 @@ export class ProfileService {
         return this.http.post(this.httpUrls.updateWorthUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 }
-
