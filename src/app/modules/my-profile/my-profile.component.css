@@ -17,13 +17,12 @@
     font-weight: 600;
     color: black;
     font-size: 90%;
-    transition-duration: 150ms;
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
 }
 
 .nav.nav-tabs> .nav-item> .nav-link.tabActive{
-    transform: scale(1.03);
+    transform: scale(1.01);
     color: #0863c3;
     opacity: 1;
 }
-
-
