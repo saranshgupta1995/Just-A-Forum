@@ -18,6 +18,7 @@ module.exports = function (req, res, next) {
                     
                     if (authData.address != (req.connection.remoteAddress || req.socket.remoteAddress)) {
                         console.log('different ip, 403')
+                        console.log(authData.address, req.connection.remoteAddress || req.socket.remoteAddress)
                         res.sendStatus(403);
                     } else {
                         if(req.body['token']=='my_uniq_token'){
