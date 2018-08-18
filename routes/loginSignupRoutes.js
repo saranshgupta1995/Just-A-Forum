@@ -26,6 +26,9 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('Comments').catch(x => {
         console.log(x)
     });
+    loginSignupDbOpr.dropColl('Devices').catch(x => {
+        console.log(x)
+    });
     loginSignupDbOpr.dropColl('QuestionData').then(x => {
         quesDbOpr.addQuestion({
             question: 'What are you like?',
@@ -48,16 +51,20 @@ router.get('/expose', (req, res) => {
             loginSignupDbOpr.dbOpr.findDoc('LevelZero').then(levelZeroData => {
                 loginSignupDbOpr.dbOpr.findDoc('QuestionData').then(questionData => {
                     loginSignupDbOpr.dbOpr.findDoc('Comments').then(comments => {
-                        res.json({
-                            loginDetailsData: loginDetailsData,
-                            breaker1: '..........................................................................',
-                            userProfilesData: userProfilesData,
-                            breaker2: '..........................................................................',
-                            levelZeroData: levelZeroData,
-                            breaker3: '..........................................................................',
-                            questionData: questionData,
-                            breaker4: '..........................................................................',
-                            comments: comments
+                        loginSignupDbOpr.dbOpr.findDoc('Devices').then(devices => {
+                            res.json({
+                                loginDetailsData: loginDetailsData,
+                                breaker1: '..........................................................................',
+                                userProfilesData: userProfilesData,
+                                breaker2: '..........................................................................',
+                                levelZeroData: levelZeroData,
+                                breaker3: '..........................................................................',
+                                questionData: questionData,
+                                breaker4: '..........................................................................',
+                                comments: comments,
+                                breaker5: '..........................................................................',
+                                devices
+                            })
                         })
                     })
                 })
@@ -132,6 +139,8 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
         }
         if (resObj['username'] != 'not found') {
             resObj.token = req.token;
+            resObj.deviceId = req.deviceId;
+            loginSignupDbOpr.addLoginDevice(resObj.username, resObj.deviceId)
         }
         res.send(resObj);
 
@@ -139,7 +148,15 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
 })
 
 router.post('/validatetoken', validateReq, (req, res) => {
-    res.send('WTF happened here')
+    loginSignupDbOpr.findLoginDevice(req.body.authData.user, req.headers['device']).then(oprRes=>{
+        if(oprRes){
+            res.send(req.body.authData)
+        }else{
+            res.sendStatus(403)
+        }
+    }
+
+    )
 })
 
 module.exports = router;

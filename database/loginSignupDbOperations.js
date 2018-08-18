@@ -4,6 +4,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 loginSignupDbOpr.dbOpr = require('./dbOperations.js');
 loginSignupDbOpr.tableName = 'LoginDetails';
+loginSignupDbOpr.deviceTable = 'Devices';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj) {
     loginObj.unverified = true;
@@ -15,6 +16,26 @@ loginSignupDbOpr.addLoginDetails = function (loginObj) {
 
 loginSignupDbOpr.dropColl = function (coll) {
     return loginSignupDbOpr.dbOpr.dropCollOpr(coll);
+}
+
+loginSignupDbOpr.addLoginDevice = function (userName, deviceId) {
+    return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.deviceTable, {userName,deviceId})
+}
+
+loginSignupDbOpr.removeLoginDevice = function (userName, deviceId) {
+    return loginSignupDbOpr.dbOpr.deleteDoc(loginSignupDbOpr.deviceTable, {userName,deviceId})
+}
+
+loginSignupDbOpr.findLoginDevice = function (userName, deviceId) {    
+    
+    return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.deviceTable, { userName, deviceId }).then(oprRes => {
+        
+        if (!oprRes.length) {
+            return false;
+        } else {
+            return true;
+        }
+    });
 }
 
 loginSignupDbOpr.checkEmailExistance = function (emailId) {

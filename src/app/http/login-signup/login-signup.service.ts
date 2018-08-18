@@ -39,7 +39,7 @@ export class LoginSignupService {
     }
 
     validateToken(data={token:'my_uniq_token'}) {
-        return this.http.post(this.httpUrls.validateTokenUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+        return this.http.post(this.httpUrls.validateTokenUrl, data, { headers: { author: this.sessionData.userToken, device:localStorage.getItem('device') } }).pipe(catchError(this.handleError));
     }
 
     validateUserName(username: any) {

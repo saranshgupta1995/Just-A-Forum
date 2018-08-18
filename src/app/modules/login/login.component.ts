@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
                 this.sessionData.fromRegularlogin=true;
                 this.infoText.showSuccess('Logged in Successfully');
                 localStorage.setItem("desocializeAuth",res['token'])
+                localStorage.setItem("device",res['deviceId'])
                 this.sessionData.userToken=res['token'];
                 this.loginEvent.emit(true);
                 this.router.navigate(['/profile',res['username']]);

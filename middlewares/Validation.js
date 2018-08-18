@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
-
     if (req.body["userName"] && req.body["password"]) {
-        jwt.sign({ user: req.body.userName, address: (req.connection.remoteAddress || req.socket.remoteAddress) }, 'secretkey', (err, token) => {
+        let deviceId = (10000 * Math.random()).toString();
+        jwt.sign({ user: req.body.userName, deviceId }, 'secretkey', (err, token) => {
             req.token = token;
+            req.deviceId=deviceId;
             next();
         })
     } else {
@@ -15,19 +16,10 @@ module.exports = function (req, res, next) {
                     console.log('verification failed, 403')
                     res.sendStatus(403);
                 } else {
-                    
-                    if (authData.address != (req.connection.remoteAddress || req.socket.remoteAddress)) {
-                        console.log('different ip, 403')
-                        console.log(authData.address, req.connection.remoteAddress || req.socket.remoteAddress)
-                        res.sendStatus(403);
-                    } else {
-                        if(req.body['token']=='my_uniq_token'){
-                            res.send(authData)
-                        }else{
-                            next();
-                        }
+                    if (req.body['token'] == 'my_uniq_token') {
+                        req.body.authData=authData;
                     }
-
+                    next();
                 }
             })
         } else {
