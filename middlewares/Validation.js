@@ -12,10 +12,12 @@ module.exports = function (req, res, next) {
         if (authHeader) {
             jwt.verify(authHeader, 'secretkey', (err, authData) => {
                 if (err) {
+                    console.log('verification failed, 403')
                     res.sendStatus(403);
                 } else {
                     
                     if (authData.address != (req.connection.remoteAddress || req.socket.remoteAddress)) {
+                        console.log('different ip, 403')
                         res.sendStatus(403);
                     } else {
                         if(req.body['token']=='my_uniq_token'){
@@ -28,6 +30,7 @@ module.exports = function (req, res, next) {
                 }
             })
         } else {
+            console.log('no auth header found, 403')
             res.sendStatus(403);
         }
     }
