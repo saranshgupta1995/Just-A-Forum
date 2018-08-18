@@ -7,7 +7,7 @@ import { createElement } from '../../../../node_modules/@angular/core/src/view/e
     styleUrls: ['./tag-box.component.css']
 })
 export class TagBoxComponent implements OnInit {
-    tagBoxes = [['',true]];
+    tagBoxes = [['']];
 
     constructor() {
     }
@@ -21,8 +21,10 @@ export class TagBoxComponent implements OnInit {
 
     lastBoxValueChange(e) {
         if (e === ' ') {
-            this.tagBoxes[this.tagBoxes.length-1][1]=false;
-            this.tagBoxes.push(['', true]);
+            this.tagBoxes.push(['']);
+            setTimeout(()=>{
+                document.getElementsByTagName('input')[0].focus();
+            },100)
         }
     }
 

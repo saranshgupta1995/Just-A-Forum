@@ -1,13 +1,26 @@
 .tag-box-div{
-    border:1px solid black;
     width: 100%;
 }
 
 .tag-box{
-    border-radius: 10%;
+    padding: .1em .5em;
+    border-radius: 3px;
     font-size: 12px;
     color: #39739d;
     background-color: #E1ECF4;
     border-color: #E1ECF4;
     width: 100px;
 }
+
+.tag{
+    padding: .1em .5em;
+    font-size: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    transition: all .15s ease-in-out;
+    color: #39739d;
+    background-color: #E1ECF4;
+    border-color: #E1ECF4;
+}
+

@@ -10,6 +10,10 @@ img{
     display: inline
 }
 
+.basic-padding-xs{
+    padding: 2px;
+}
+
 .basic-padding-sm{
     padding: 4px;
 }
@@ -32,6 +36,10 @@ img{
 
 .basic-margin-lg{
     margin: 12px;
+}
+
+.sm-label{
+    font-size: 14px;
 }
 
 .no-bg{
