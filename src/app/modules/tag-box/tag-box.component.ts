@@ -17,14 +17,19 @@ export class TagBoxComponent implements OnInit {
 
     removeTag(box){
         this.tagBoxes=this.tagBoxes.filter(x=>x[0]!==box[0])
+        this.fetchTagFocus();
+    }
+
+    fetchTagFocus(){
+        setTimeout(() => {
+            document.getElementsByTagName('input')[0].focus();
+        }, 100);
     }
 
     lastBoxValueChange(e) {
         if (e === ' ') {
             this.tagBoxes.push(['']);
-            setTimeout(()=>{
-                document.getElementsByTagName('input')[0].focus();
-            },100)
+            this.fetchTagFocus();
         }
     }
 
