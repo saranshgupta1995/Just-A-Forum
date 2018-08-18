@@ -31,5 +31,8 @@ app.use(profileRoutes);
 app.use(levelRoutes);
 app.use(quesRoutes);
 app.use(commentRoutes);
+app.get('*',(req,res)=>{
+    res.redirect('/');
+})
 const server = http.createServer(app);
 server.listen(port, () => console.log('server is now listening'));

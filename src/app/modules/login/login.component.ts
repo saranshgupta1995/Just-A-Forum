@@ -12,46 +12,46 @@ export class LoginComponent implements OnInit {
 
     userName = '';
     password = '';
-    showForm=true;
+    showForm = true;
     @ViewChild('infoText') infoText;
-    @Output() onReturn=new EventEmitter();
-    @Output() loginEvent=new EventEmitter();
+    @Output() onReturn = new EventEmitter();
+    @Output() loginEvent = new EventEmitter();
 
-    constructor(private sessionData:SessionDataService, private loginSignupService: LoginSignupService, private router: Router) { }
+    constructor(private sessionData: SessionDataService, private loginSignupService: LoginSignupService, private router: Router) { }
 
     ngOnInit() {
     }
 
 
     onLoginAttempt() {
-        this.showForm=false;
+        this.showForm = false;
         this.infoText.showProcess('Sending Data');
         this.loginSignupService.validateLoginAttempt({
             "userName": this.userName,
             "password": this.password
         })
-        .subscribe(res=>{
-            this.showForm=true;
-            if(res['username']=='not found')
-            this.infoText.showError('Invalid Login Credentials');
-            else if(res['unverified']){
-                this.infoText.showError('Account Pending Email Verification');
-            }else{
-                this.sessionData.userName=this.userName;
-                this.sessionData.fromRegularlogin=true;
-                this.infoText.showSuccess('Logged in Successfully');
-                localStorage.setItem("desocializeAuth",res['token'])
-                localStorage.setItem("device",res['deviceId'])
-                this.sessionData.userToken=res['token'];
-                this.sessionData.userDevice=res['deviceId'];
-                this.loginEvent.emit(true);
-                this.router.navigate(['/profile',res['username']]);
-            }
-        })
-        
+            .subscribe(res => {
+                this.showForm = true;
+                if (res['username'] == 'not found')
+                    this.infoText.showError('Invalid Login Credentials');
+                else if (res['unverified']) {
+                    this.infoText.showError('Account Pending Email Verification');
+                } else {
+                    this.sessionData.userName = this.userName;
+                    this.sessionData.fromRegularlogin = true;
+                    this.infoText.showSuccess('Logged in Successfully');
+                    localStorage.setItem("desocializeAuth", res['token'])
+                    localStorage.setItem("device", res['deviceId'])
+                    this.sessionData.userToken = res['token'];
+                    this.sessionData.userDevice = res['deviceId'];
+                    this.loginEvent.emit(true);
+                    this.router.navigate(['/profile', res['username']]);
+                }
+            })
+
     }
 
-    backFromLogin(){
+    backFromLogin() {
         this.onReturn.emit('');
     }
 
