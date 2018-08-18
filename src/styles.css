@@ -52,7 +52,12 @@ img{
     width: 100vw;
     padding: 0 10vw;
     /* background: url("/assets/bg1.png"); */
-}   
+}
+
+.no-border{
+    border: 0px;
+    outline: none;
+}
 
 @media only screen and (max-width: 576px) {
  

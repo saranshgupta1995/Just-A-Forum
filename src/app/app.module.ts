@@ -20,6 +20,7 @@ import { LoaderComponent } from './modules/loader/loader.component';
 import { ProfileQuestionsComponent } from './modules/profile-questions/profile-questions.component';
 import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile-privileges.component';
 import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
+import { TagBoxComponent } from './modules/tag-box/tag-box.component';
 
 const appRoutes: Routes = [
     {
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
         LoaderComponent,
         ProfileQuestionsComponent,
         ProfilePrivilegesComponent,
-        ProfileDataComponent
+        ProfileDataComponent,
+        TagBoxComponent
     ],
     imports: [
         // RouterModule.forRoot(appRoutes, { enableTracing: true }),

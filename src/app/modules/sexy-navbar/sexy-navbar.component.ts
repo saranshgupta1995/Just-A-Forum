@@ -11,8 +11,6 @@ import { Router } from '../../../../node_modules/@angular/router';
     styleUrls: ['./sexy-navbar.component.css'],
     animations: [
         trigger('shrinker', [
-            // state('inactive', style({ right:-800 })),
-            // state('active', style({ right:0 })),
             transition('active => inactive', [
                 style({ right:0 }),
                 animate(200, style({ right:-800 }),)]),

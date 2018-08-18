@@ -1,0 +1,13 @@
+.tag-box-div{
+    border:1px solid black;
+    width: 100%;
+}
+
+.tag-box{
+    border-radius: 10%;
+    font-size: 12px;
+    color: #39739d;
+    background-color: #E1ECF4;
+    border-color: #E1ECF4;
+    width: 100px;
+}
