@@ -159,4 +159,9 @@ router.post('/validatetoken', validateReq, (req, res) => {
     )
 })
 
+router.post('/logoutuser', validateReq, (req, res) => {
+    loginSignupDbOpr.removeLoginDevice(req.body.username, req.headers['device']);
+    res.end();
+})
+
 module.exports = router;

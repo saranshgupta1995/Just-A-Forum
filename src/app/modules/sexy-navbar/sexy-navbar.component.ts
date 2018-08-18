@@ -37,6 +37,7 @@ export class SexyNavbarComponent implements OnInit {
             this.loggedIn=true;
             this.sessionData.fromRegularlogin = false;
             sessionData.userToken=token;
+            sessionData.userDevice=localStorage.getItem('device');
             this.loginSignupService.validateToken()
                 .subscribe(res => {
                     this.profileService.fetchUserProfile({ username: res['user'] }).subscribe(res => {
@@ -57,6 +58,7 @@ export class SexyNavbarComponent implements OnInit {
     }
 
     logoutUser(){
+        this.loginSignupService.logoutUser(this.sessionData.userData['username']).subscribe()
         localStorage.clear();
         this.loggedIn=false;
         this.sessionData.reset();

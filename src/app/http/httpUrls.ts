@@ -11,6 +11,7 @@ export class HttpUrls {
     validateLoginUrl = `${environment.serverUrl}/validateUserLogin`;
     validateUsernameUrl = `${environment.serverUrl}/validateUsername`;
     validateTokenUrl = `${environment.serverUrl}/validatetoken`;
+    logoutUserUrl = `${environment.serverUrl}/logoutuser`;
     
     // profile urls
     fetchProfileDataUrl = `${environment.serverUrl}/getprofile`;
