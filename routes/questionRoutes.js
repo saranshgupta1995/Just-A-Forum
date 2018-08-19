@@ -16,4 +16,10 @@ router.post('/fetchquestiondata', validateReq, (req, res) => {
     })
 });
 
+router.post('/fetchquestiontags', validateReq, (req, res) => {
+    quesDbOperations.getQuestionTags(req.body.quesId).then(oprRes=>{
+        res.send(oprRes);
+    })
+});
+
 module.exports = router;
