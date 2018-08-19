@@ -29,20 +29,23 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('Devices').catch(x => {
         console.log(x)
     });
-    loginSignupDbOpr.dropColl('QuestionData').then(x => {
-        quesDbOpr.addQuestion({
-            question: 'What are you like?',
-            worth: 100,
-            profileId: 0
-        }, 0)
-    }, y => {
+});
+loginSignupDbOpr.dropColl('Tags').catch(x => {
+    console.log(x)
+});
+loginSignupDbOpr.dropColl('QuestionData').then(x => {
+    quesDbOpr.addQuestion({
+        question: 'What are you like?',
+        worth: 100,
+        profileId: 0
+    }, 0)
+}, y => {
 
-        quesDbOpr.addQuestion({
-            question: 'What are you like?',
-            worth: 100,
-            profileId: 0
-        }, 0)
-    });
+    quesDbOpr.addQuestion({
+        question: 'What are you like?',
+        worth: 100,
+        profileId: 0
+    }, 0)
 });
 
 router.get('/expose', (req, res) => {
@@ -52,18 +55,22 @@ router.get('/expose', (req, res) => {
                 loginSignupDbOpr.dbOpr.findDoc('QuestionData').then(questionData => {
                     loginSignupDbOpr.dbOpr.findDoc('Comments').then(comments => {
                         loginSignupDbOpr.dbOpr.findDoc('Devices').then(devices => {
-                            res.json({
-                                loginDetailsData: loginDetailsData,
-                                breaker1: '..........................................................................',
-                                userProfilesData: userProfilesData,
-                                breaker2: '..........................................................................',
-                                levelZeroData: levelZeroData,
-                                breaker3: '..........................................................................',
-                                questionData: questionData,
-                                breaker4: '..........................................................................',
-                                comments: comments,
-                                breaker5: '..........................................................................',
-                                devices
+                            loginSignupDbOpr.dbOpr.findDoc('Tags').then(tags => {
+                                res.json({
+                                    loginDetailsData,
+                                    breaker1: '..........................................................................',
+                                    userProfilesData,
+                                    breaker2: '..........................................................................',
+                                    levelZeroData,
+                                    breaker3: '..........................................................................',
+                                    questionData,
+                                    breaker4: '..........................................................................',
+                                    tags,
+                                    breaker5: '..........................................................................',
+                                    comments,
+                                    breaker6: '..........................................................................',
+                                    devices
+                                })
                             })
                         })
                     })
@@ -148,10 +155,10 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
 })
 
 router.post('/validatetoken', validateReq, (req, res) => {
-    loginSignupDbOpr.findLoginDevice(req.body.authData.user, req.headers['device']).then(oprRes=>{
-        if(oprRes){
+    loginSignupDbOpr.findLoginDevice(req.body.authData.user, req.headers['device']).then(oprRes => {
+        if (oprRes) {
             res.send(req.body.authData)
-        }else{
+        } else {
             res.sendStatus(403)
         }
     }
