@@ -26,9 +26,14 @@ export class TagBoxComponent implements OnInit {
         }, 100);
     }
 
+    addNewTag(){
+        this.tagBoxes = this.tagBoxes.filter(x => x[0].split(' ').join('').length)
+        this.tagBoxes.push(['']);
+    }
+
     lastBoxValueChange(e) {
         if (e === ' ') {
-            this.tagBoxes.push(['']);
+            this.addNewTag();
             this.fetchTagFocus();
         }
     }
