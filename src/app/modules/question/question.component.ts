@@ -8,15 +8,15 @@ import { ProfileService } from '../../http/profile/profile.service';
 import { SessionDataService } from '../../session-data.service';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css'],
+    selector: 'app-question',
+    templateUrl: './question.component.html',
+    styleUrls: ['./question.component.css'],
     animations: [
         trigger(
             'enterAnimation', [
                 transition(':enter', [
-                    style({opacity: 0 }),
-                    animate('150ms', style({opacity: 1 }))
+                    style({ opacity: 0 }),
+                    animate('150ms', style({ opacity: 1 }))
                 ]),
             ]
         )
@@ -24,40 +24,49 @@ import { SessionDataService } from '../../session-data.service';
 })
 export class QuestionComponent implements OnInit {
 
-    commentText:string;
-    questionText:string;
+    commentText: string;
+    questionText: string;
     questionData: any = {};
-    showScreen=false;
-    @ViewChild('infoText') infoText:InfoTextComponent;
-    
-    constructor(private questionService:QuestionService, private sessionData:SessionDataService, private activatedRoute:ActivatedRoute, private commentService:CommentService, private profileService: ProfileService) { 
+    showScreen = false;
+    @ViewChild('infoText') infoText: InfoTextComponent;
+    quesTags:any=[];
+
+    constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService) {
     }
-        
+
     ngOnInit() {
-      this.questionService.fetchQuestionData({
-          question:this.activatedRoute.snapshot.params['ques']
-      }).subscribe(res=>{
-          console.log(res)
-          this.questionData=res;
-          this.commentService.fetchQuestionComments({
-              quesId:res['quesId']
-          }).subscribe(comments=>{
-              this.showScreen=true;
-              this.questionData.comments=comments
+        this.questionService.fetchQuestionData({
+            question: this.activatedRoute.snapshot.params['ques']
+        }).subscribe(res => {
+            this.questionData = res;
+            this.getTags();
+            this.commentService.fetchQuestionComments({
+                quesId: res['quesId']
+            }).subscribe(comments => {
+                this.showScreen = true;
+                this.questionData.comments = comments
             })
         })
-        
+
     }
-    
-    sendComment(){
+
+    getTags(){
+        this.questionService.fetchQuestionTags({
+            quesId:this.questionData['quesId']
+        }).subscribe(tags=>{
+            this.quesTags=tags['map'](x=>x.tag);
+        })
+    }
+
+    sendComment() {
         this.infoText.showProcess('Sending Comment')
         this.commentService.addComment({
             comment: this.commentText,
-            commentId:this.questionData.comments.length,
-            quesId:this.questionData.quesId
-        }).subscribe(res=>{
+            commentId: this.questionData.comments.length,
+            quesId: this.questionData.quesId
+        }).subscribe(res => {
             this.infoText.clear();
-            if(res['ok']){
+            if (res['ok']) {
                 this.profileService.addWorth({
                     username: this.sessionData.userData['username'],
                     worth: this.questionData.worth + this.sessionData.userData['worth']
@@ -70,5 +79,5 @@ export class QuestionComponent implements OnInit {
             }
         })
     }
-    
+
 }

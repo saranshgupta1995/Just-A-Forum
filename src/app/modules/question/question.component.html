@@ -7,7 +7,7 @@
                     <textarea [(ngModel)]="commentText"></textarea>
                 </div>
             </div>
-            <tag-box></tag-box>
+            <tag-box [taggedWith]="quesTags"></tag-box>
             <div class="row">
                 <div class="col-md-12">
                     <button [disabled]="!commentText" class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
