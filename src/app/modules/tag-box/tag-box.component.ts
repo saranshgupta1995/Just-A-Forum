@@ -22,7 +22,7 @@ export class TagBoxComponent implements OnInit {
 
     fetchTagFocus(){
         setTimeout(() => {
-            document.getElementsByTagName('input')[0].focus();
+            document.getElementsByClassName('tag-box')[0]['focus']();
         }, 100);
     }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { QuestionService } from '../../http/question/question.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -29,32 +29,36 @@ export class QuestionComponent implements OnInit {
     questionData: any = {};
     showScreen = false;
     @ViewChild('infoText') infoText: InfoTextComponent;
-    quesTags:any=[];
+    quesTags: any = [];
+    @Input() new = false;
 
     constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService) {
     }
 
     ngOnInit() {
-        this.questionService.fetchQuestionData({
-            question: this.activatedRoute.snapshot.params['ques']
-        }).subscribe(res => {
-            this.questionData = res;
-            this.getTags();
-            this.commentService.fetchQuestionComments({
-                quesId: res['quesId']
-            }).subscribe(comments => {
-                this.showScreen = true;
-                this.questionData.comments = comments
+        if (!this.new) {
+            this.questionService.fetchQuestionData({
+                question: this.activatedRoute.snapshot.params['ques']
+            }).subscribe(res => {
+                this.questionData = res;
+                this.getTags();
+                this.commentService.fetchQuestionComments({
+                    quesId: res['quesId']
+                }).subscribe(comments => {
+                    this.showScreen = true;
+                    this.questionData.comments = comments
+                })
             })
-        })
-
+        }else{
+            this.showScreen=true;
+        }
     }
 
-    getTags(){
+    getTags() {
         this.questionService.fetchQuestionTags({
-            quesId:this.questionData['quesId']
-        }).subscribe(tags=>{
-            this.quesTags=tags['map'](x=>x.tag);
+            quesId: this.questionData['quesId']
+        }).subscribe(tags => {
+            this.quesTags = tags['map'](x => x.tag);
         })
     }
 

@@ -1,52 +1,67 @@
 <div *ngIf="showScreen; else loader" [@enterAnimation] class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>{{questionData.question}}</h3>
-                    <textarea [(ngModel)]="commentText"></textarea>
-                </div>
-            </div>
-            <tag-box [taggedWith]="quesTags"></tag-box>
-            <div class="row">
-                <div class="col-md-12">
-                    <button [disabled]="!commentText" class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center">
-                    <info-text #infoText></info-text>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div [@enterAnimation] *ngIf="questionData.answerId">
-        <div class="row answer-row">
+    <div *ngIf="!new; else newQuestionScreen">
+        <div class="row">
             <div class="col-md-12">
-                Current Answer :
-                <p>{{questionData.answerId}}</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{questionData.question}}</h3>
+                        <textarea [(ngModel)]="commentText"></textarea>
+                    </div>
+                </div>
+                <tag-box [taggedWith]="quesTags"></tag-box>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button [disabled]="!commentText" class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <info-text #infoText></info-text>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div [@enterAnimation] *ngIf="questionData.comments">
-        <div *ngFor="let comment of questionData.comments" class="row comment-row">
-            <div class="col-md-12">
-                <p class="comment-comment">{{comment.comment}}</p>
-                <div>
-                    <button class="comment-action basic-margin-sm">
-                        Useful Information
-                    </button>
-                    <button class="comment-action basic-margin-sm">
-                        Waste of Bytes
-                    </button>
-                    <button class="comment-action comment-user-action basic-margin-sm">
-                        Visit User
-                    </button>
+        <hr>
+        <div [@enterAnimation] *ngIf="questionData.answerId">
+            <div class="row answer-row">
+                <div class="col-md-12">
+                    Current Answer :
+                    <p>{{questionData.answerId}}</p>
+                </div>
+            </div>
+        </div>
+        <div [@enterAnimation] *ngIf="questionData.comments">
+            <div *ngFor="let comment of questionData.comments" class="row comment-row">
+                <div class="col-md-12">
+                    <p class="comment-comment">{{comment.comment}}</p>
+                    <div>
+                        <button class="comment-action basic-margin-sm">
+                            Useful Information
+                        </button>
+                        <button class="comment-action basic-margin-sm">
+                            Waste of Bytes
+                        </button>
+                        <button class="comment-action comment-user-action basic-margin-sm">
+                            Visit User
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <ng-template #newQuestionScreen>
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>Ask a new question</h5>
+                <input type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <tag-box></tag-box>
+            </div>
+        </div>
+    </ng-template>
 </div>
 <ng-template #loader>
     <app-loader></app-loader>
