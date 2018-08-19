@@ -13,6 +13,17 @@ dbOperations.insertOneOpr = function (collection, dataObj) {
         });
 }
 
+dbOperations.insertManyOpr = function (collection, dataObj) {
+    return dbOperations.database.getCollection(collection)
+        .then((coll) => {
+            return coll.coll.insertMany(dataObj)
+                .then((oprRes) => {
+                    coll.client.close();
+                    return oprRes
+                })
+        });
+}
+
 dbOperations.fetchCount = function (collection, dataObj) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
