@@ -21,6 +21,7 @@ import { ProfileQuestionsComponent } from './modules/profile-questions/profile-q
 import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile-privileges.component';
 import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
 import { TagBoxComponent } from './modules/tag-box/tag-box.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
     {
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     imports: [
         // RouterModule.forRoot(appRoutes, { enableTracing: true }),
         RouterModule.forRoot(appRoutes),
+        NgbModule.forRoot(),
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
