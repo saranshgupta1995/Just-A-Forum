@@ -16,9 +16,16 @@ router.post('/fetchquestiondata', validateReq, (req, res) => {
     })
 });
 
+// currently sending tags+question ids -- possible security breach -- bad UX
 router.post('/fetchquestiontags', validateReq, (req, res) => {
     quesDbOperations.getQuestionTags(req.body.quesId).then(oprRes=>{
         res.send(oprRes);
+    })
+});
+
+router.post('/fetchalltags', validateReq, (req, res) => {
+    quesDbOperations.getAllTags().then(oprRes=>{        
+        res.send(oprRes.map(x => x.tag));
     })
 });
 

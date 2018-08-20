@@ -67,6 +67,17 @@ img{
     outline: none;
 }
 
+#tag-box-div>div>ngb-tooltip-window>.tooltip-inner{
+    background: #E1ECF4;
+    color: #39739d;    
+    padding: 0px;
+    min-width: 200px;
+}
+
+#tag-box-div>div>ngb-tooltip-window>.arrow::before{
+    border-bottom-color: #E1ECF4;
+}
+
 @media only screen and (max-width: 576px) {
  
     .sm-row{

@@ -39,4 +39,8 @@ export class QuestionService {
     fetchQuestionTags(data: any) {
         return this.http.post(this.httpUrls.fetchQuestionTags, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
+
+    fetchAllTags() {
+        return this.http.post(this.httpUrls.fetchAllTags,{}, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+    }
 }

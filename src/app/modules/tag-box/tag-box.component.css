@@ -24,3 +24,21 @@
     border-color: #E1ECF4;
 }
 
+.autocomplete-list{
+    list-style: none;
+    padding: 0px;
+    margin:0px;
+}
+
+.autocomplete-list-data{
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 2px;
+    border: 1px solid;
+    border-top: none;
+}
+
+.autocomplete-list-data:hover{
+    background-color: #589bca;
+    color: #E1ECF4;
+}
