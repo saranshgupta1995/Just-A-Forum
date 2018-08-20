@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { QuestionService } from '../../http/question/question.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class TagBoxComponent implements OnInit {
     @Input() taggedWith: string[] = [];
     existingTags: any = [];
     filteredExistingTags: any = [];
+    @ViewChild('t') autoCompleteData;
 
     constructor(private questionService: QuestionService) {
         if (!this.taggedWith.length) {
@@ -43,17 +44,24 @@ export class TagBoxComponent implements OnInit {
         this.tagBoxes.push(['']);
     }
 
-    stripTextOf(x){
-        return x.toLowerCase().split('').filter(c=>'abcdefghijklmnopqrstuvwxyz1234567890'.includes(c)).join('')
+    stripTextOf(x) {
+        return x.toLowerCase().split('').filter(c => 'abcdefghijklmnopqrstuvwxyz1234567890'.includes(c)).join('')
     }
 
     lastBoxValueChange(e) {
+        let val=this.tagBoxes[this.tagBoxes.length - 1][0];
         if (e === ' ') {
             this.addNewTag();
             this.fetchTagFocus();
-        }else{
-            this.filteredExistingTags = this.existingTags.filter(x => this.stripTextOf(x).includes(this.stripTextOf(this.tagBoxes[this.tagBoxes.length - 1][0])))
+        } else {
+            this.filteredExistingTags = this.existingTags.filter(x => this.stripTextOf(x).includes(this.stripTextOf(val)))
+            this.autoCompleteData[(this.filteredExistingTags.length && val) ? 'open' : 'close']();
         }
+    }
+
+    selectTag(tag){
+        this.tagBoxes[this.tagBoxes.length - 1][0]=tag;
+        this.addNewTag();
     }
 
 }
