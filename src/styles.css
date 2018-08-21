@@ -67,6 +67,12 @@ img{
     outline: none;
 }
 
+.font-button{
+    cursor: pointer;
+    margin-left: 5px;
+    /* scale: 1.1; */
+}
+
 #tag-box-div>div>ngb-tooltip-window>.tooltip-inner{
     background: #E1ECF4;
     color: #39739d;    
