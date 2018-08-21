@@ -12,6 +12,7 @@ export class TagBoxComponent implements OnInit {
     existingTags: any = [];
     filteredExistingTags: any = [];
     @ViewChild('t') autoCompleteData;
+    @ViewChild('newTagToolTip') newTagToolTip;
 
     constructor(private questionService: QuestionService) {
         if (!this.taggedWith.length) {
@@ -59,9 +60,14 @@ export class TagBoxComponent implements OnInit {
         }
     }
 
+    newTagPossibility(){
+        this.newTagToolTip.open();
+    }
+
     selectTag(tag){
         this.tagBoxes[this.tagBoxes.length - 1][0]=tag;
         this.addNewTag();
+        this.fetchTagFocus();
     }
 
 }

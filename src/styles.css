@@ -59,7 +59,6 @@ img{
     height: 100vh;
     width: 100vw;
     padding: 0 10vw;
-    /* background: url("/assets/bg1.png"); */
 }
 
 .no-border{
@@ -70,17 +69,22 @@ img{
 .font-button{
     cursor: pointer;
     margin-left: 5px;
-    /* scale: 1.1; */
 }
 
-#tag-box-div>div>ngb-tooltip-window>.tooltip-inner{
+.button-sm-full-width{
+    font-size: 12px;
+    padding: 2px;
+    width:100%;
+}
+
+#tag-box-div>div>div>ngb-tooltip-window>.tooltip-inner{
     background: #E1ECF4;
     color: #39739d;    
     padding: 0px;
     min-width: 200px;
 }
 
-#tag-box-div>div>ngb-tooltip-window>.arrow::before{
+#tag-box-div>div>div>ngb-tooltip-window>.arrow::before{
     border-bottom-color: #E1ECF4;
 }
 

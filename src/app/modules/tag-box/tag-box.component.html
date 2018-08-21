@@ -3,10 +3,13 @@
         <span class="sm-label">Tagged In : </span>
         <ng-container *ngIf="!taggedWith.length; else viewTag">
             <div class="same-line" *ngFor="let box of tagBoxes; last as isLast">
-                <!-- (focusout)="addNewTag()" -->
-                <input (focusout)="addNewTag()" type="text" *ngIf="isLast" [(ngModel)]="box[0]" class="tag-box basic-margin-sm no-border" (input)="lastBoxValueChange($event.data);"
-                    [ngbTooltip]="autoCompleteData" [autoClose]="false" triggers="manual" #t="ngbTooltip" placement="bottom">
-                <!-- <button class="new-tag-button">Add</button> -->
+                <div *ngIf="isLast" class="same-line tag basic-margin-sm">
+                    <input type="text" *ngIf="isLast" [(ngModel)]="box[0]" class="tag-box basic-margin-sm no-border" (input)="lastBoxValueChange($event.data);"
+                        [ngbTooltip]="autoCompleteData" [autoClose]="false" triggers="manual" #t="ngbTooltip" placement="bottom">
+                    <i *ngIf="isLast && box[0].length && !filteredExistingTags.length" class="font-button fa fa-plus new-tag-button"
+                     [ngbTooltip]="aboutNewTagToolTip" [autoClose]="false" triggers="manual" #newTagToolTip="ngbTooltip" placement="bottom"
+                     (click)="newTagPossibility()"></i>
+                </div>
                 <div class="same-line tag basic-margin-sm" *ngIf="!isLast">
                     {{box[0]}}
                     <i (click)="removeTag(box)" class="font-button fa fa-times"></i>
@@ -16,6 +19,14 @@
                 <ul class="autocomplete-list">
                     <li class="autocomplete-list-data" (click)="selectTag(tag)" *ngFor="let tag of filteredExistingTags">{{tag}}</li>
                 </ul>
+            </ng-template>
+            <ng-template #aboutNewTagToolTip>
+                <div class="new-tag-info-div">
+                    <p class="new-tag-info-head">What is this?</p>
+                    <p class="tag-info-len">Summary of the tag</p>
+                    <textarea class="new-tag-info"></textarea>
+                    <button class="btn no-bg button-sm-full-width">Save Tag</button>
+                </div>
             </ng-template>
 
         </ng-container>

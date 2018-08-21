@@ -3,17 +3,17 @@
 }
 
 .tag-box{
-    padding: .1em .5em;
+    margin: 0px;
     border-radius: 3px;
     font-size: 12px;
     color: #39739d;
     background-color: #E1ECF4;
     border-color: #E1ECF4;
-    width: 100px;
+    max-width: 100px;
 }
 
 .tag{
-    padding: .1em .5em;
+    padding: .2em .5em;
     font-size: 12px;
     border-width: 1px;
     border-style: solid;
@@ -36,6 +36,28 @@
     padding-bottom: 2px;
     border: 1px solid;
     border-top: none;
+}
+
+.new-tag-info-div{
+    height: 120px;
+    text-align: center;
+}
+
+.new-tag-info-div>.new-tag-info-head{
+    font-weight: 600;
+    margin: 0px;
+}
+
+.new-tag-info-div>.tag-info-len{
+    font-weight: lighter;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.new-tag-info-div>.new-tag-info{
+    width: 80%;
+    font-size: 10px;
+    outline: none;
 }
 
 .autocomplete-list-data:hover{
