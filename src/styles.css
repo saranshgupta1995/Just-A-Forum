@@ -81,7 +81,7 @@ img{
     background: #E1ECF4;
     color: #39739d;    
     padding: 0px;
-    min-width: 200px;
+    min-width: 300px;
 }
 
 #tag-box-div>div>div>ngb-tooltip-window>.arrow::before{

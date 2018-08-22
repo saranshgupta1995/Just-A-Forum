@@ -10,6 +10,7 @@ export class TagBoxComponent implements OnInit {
     tagBoxes = [['']];
     @Input() taggedWith: string[] = [];
     existingTags: any = [];
+    isATagPossibilty = false;
     filteredExistingTags: any = [];
     @ViewChild('t') autoCompleteData;
     @ViewChild('newTagToolTip') newTagToolTip;
@@ -41,33 +42,37 @@ export class TagBoxComponent implements OnInit {
     }
 
     addNewTag() {
-        this.tagBoxes = this.tagBoxes.filter(x => x[0].split(' ').join('').length)
+        this.isATagPossibilty = false;
+        this.tagBoxes = this.tagBoxes.filter(x => x[0].split('-').join('').length)
         this.tagBoxes.push(['']);
+        this.fetchTagFocus();
     }
 
     stripTextOf(x) {
-        return x.toLowerCase().split('').filter(c => 'abcdefghijklmnopqrstuvwxyz1234567890'.includes(c)).join('')
+        return x.replace(/[^A-Za-z0-9-]/g, '-').replace(/(-)(?=\1)/gi, '').toLowerCase()
     }
 
     lastBoxValueChange(e) {
-        let val=this.tagBoxes[this.tagBoxes.length - 1][0];
-        if (e === ' ') {
-            this.addNewTag();
-            this.fetchTagFocus();
-        } else {
-            this.filteredExistingTags = this.existingTags.filter(x => this.stripTextOf(x).includes(this.stripTextOf(val)))
-            this.autoCompleteData[(this.filteredExistingTags.length && val) ? 'open' : 'close']();
-        }
+        let val = this.stripTextOf(this.tagBoxes[this.tagBoxes.length - 1][0]);
+        this.filteredExistingTags = this.existingTags.filter(x => x.includes(val))
+        this.autoCompleteData[(this.filteredExistingTags.length && val) ? 'open' : 'close']();
     }
 
-    newTagPossibility(){
+    cancelThisTagPossibility() {
+        this.isATagPossibilty = false;
+        this.newTagToolTip.close();
+        this.fetchTagFocus();
+    }
+
+    newTagPossibility() {
+        this.isATagPossibilty = true;
+        this.tagBoxes[this.tagBoxes.length - 1][0] = this.stripTextOf(this.tagBoxes[this.tagBoxes.length - 1][0])
         this.newTagToolTip.open();
     }
 
-    selectTag(tag){
-        this.tagBoxes[this.tagBoxes.length - 1][0]=tag;
+    selectTag(tag) {
+        this.tagBoxes[this.tagBoxes.length - 1][0] = tag;
         this.addNewTag();
-        this.fetchTagFocus();
     }
 
 }
