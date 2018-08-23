@@ -6,6 +6,7 @@ import { CommentService } from '../../http/comment/comment.service';
 import { InfoTextComponent } from '../info-text/info-text.component';
 import { ProfileService } from '../../http/profile/profile.service';
 import { SessionDataService } from '../../session-data.service';
+import { TagBoxComponent } from '../tag-box/tag-box.component';
 
 @Component({
     selector: 'app-question',
@@ -29,8 +30,10 @@ export class QuestionComponent implements OnInit {
     questionData: any = {};
     showScreen = false;
     @ViewChild('infoText') infoText: InfoTextComponent;
+    @ViewChild('newQuestionTagBox') newQuestionTagBox: TagBoxComponent;
     quesTags: any = [];
     @Input() new = false;
+    newQuestion='';
 
     constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService) {
     }
@@ -59,6 +62,13 @@ export class QuestionComponent implements OnInit {
             quesId: this.questionData['quesId']
         }).subscribe(tags => {
             this.quesTags = tags['map'](x => x.tag);
+        })
+    }
+
+    addQuestion(){
+        console.log({
+            question:this.newQuestion,
+            tags:this.newQuestionTagBox.tagBoxes
         })
     }
 

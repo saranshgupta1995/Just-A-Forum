@@ -27,7 +27,7 @@
                 <div class="new-tag-info-div">
                     <p class="new-tag-info-head">{{tagBoxes[tagBoxes.length - 1][0]}}</p>
                     <p class="tag-info-len">Summary of the tag</p>
-                    <textarea class="new-tag-info"></textarea>
+                    <textarea [(ngModel)]="tagBoxes[tagBoxes.length - 1][1]" class="new-tag-info"></textarea>
                     <span (click)="addNewTag()" class="button-sm-full-width text-button">Save Tag</span>
                     <span (click)="cancelThisTagPossibility()" class="button-sm-full-width text-button">Cancel</span>
                 </div>

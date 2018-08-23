@@ -51,16 +51,17 @@
     </div>
     <ng-template #newQuestionScreen>
         <div class="row">
-            <div class="col-sm-12">
-                <h5>Ask a new question</h5>
-                <input type="text">
+            <div class="col-sm-12 space-efficient-textbox">
+                <textarea class="newQuestionArea" placeholder="   " [(ngModel)]="newQuestion" type="text"></textarea>
+                <label>Ask a new question</label>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <tag-box></tag-box>
+                <tag-box #newQuestionTagBox></tag-box>
             </div>
         </div>
+        <button [disabled]="false" class="btn btn-block btn-outline-secondary" (click)="addQuestion();">Ask Away</button>
     </ng-template>
 </div>
 <ng-template #loader>

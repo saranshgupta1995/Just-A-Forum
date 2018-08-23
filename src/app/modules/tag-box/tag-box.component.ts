@@ -7,7 +7,7 @@ import { QuestionService } from '../../http/question/question.service';
     styleUrls: ['./tag-box.component.css'],
 })
 export class TagBoxComponent implements OnInit {
-    tagBoxes = [['']];
+    tagBoxes = [['','']];
     @Input() taggedWith: string[] = [];
     existingTags: any = [];
     isATagPossibilty = false;
@@ -44,7 +44,7 @@ export class TagBoxComponent implements OnInit {
     addNewTag() {
         this.isATagPossibilty = false;
         this.tagBoxes = this.tagBoxes.filter(x => x[0].split('-').join('').length)
-        this.tagBoxes.push(['']);
+        this.tagBoxes.push(['','']);
         this.fetchTagFocus();
     }
 

@@ -23,6 +23,16 @@ textarea{
     margin-top: 0px;
 }
 
+.newQuestionArea{
+    width: 100%;
+    outline: none;
+    font-size: 30px;
+    font-weight: 400;
+    padding: 10px;
+    animation-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
 .comment-user-action{
     float: left;
 }

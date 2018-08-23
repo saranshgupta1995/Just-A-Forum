@@ -97,6 +97,44 @@ img{
     border-bottom-color: #E1ECF4;
 }
 
+.space-efficient-textbox{
+    position: relative;
+}
+
+.space-efficient-textbox>textarea{
+    transition-duration: 0.3s;
+}
+
+.space-efficient-textbox>label{
+    transition-duration: 0.3s;
+    position: absolute;
+    top:5px;
+    left:30px;
+    font-size: 25px;
+    color: #545454;
+}
+
+.space-efficient-textbox>textarea:hover,.space-efficient-textbox>textarea:focus,
+.space-efficient-textbox>textarea:not(:placeholder-shown)
+{
+    border: transparent;
+    border-bottom: 1px solid rgb(112, 107, 107);
+}
+
+.space-efficient-textbox>textarea:hover+label,.space-efficient-textbox>textarea:focus+label,
+.space-efficient-textbox>textarea:not(:placeholder-shown)+label
+{
+    top:-10px;
+    left:15px;
+    font-size: 15px;
+    color: black;
+}
+
+.space-efficient-textbox>textarea:not(:focus):not(:placeholder-shown)+label{
+    opacity: 0.5;
+}
+
+
 @media only screen and (max-width: 576px) {
  
     .sm-row{
