@@ -29,23 +29,25 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('Devices').catch(x => {
         console.log(x)
     });
-});
-loginSignupDbOpr.dropColl('Tags').catch(x => {
-    console.log(x)
-});
-loginSignupDbOpr.dropColl('QuestionData').then(x => {
-    quesDbOpr.addQuestion({
-        question: 'What are you like?',
-        worth: 100,
-        profileId: 0
-    }, 0)
-}, y => {
+    loginSignupDbOpr.dropColl('Tags').catch(x => {
+        console.log(x)
+    });
+    loginSignupDbOpr.dropColl('QuestionData').then(x => {
+        quesDbOpr.addQuestion({
+            question: 'What are you like?',
+            worth: 100,
+            profileId: 0,
+            tags: [['dev-tasks', 'Developer Tasks'], ['real-world-questions', 'Couldnt think of a clever tag']]
+        }, 0)
+    }, y => {
+        quesDbOpr.addQuestion({
+            question: 'What are you like?',
+            worth: 100,
+            profileId: 0,
+            tags: [['dev-tasks', 'Developer Tasks'], ['real-world-questions', 'Couldnt think of a clever tag']]
 
-    quesDbOpr.addQuestion({
-        question: 'What are you like?',
-        worth: 100,
-        profileId: 0
-    }, 0)
+        }, 0)
+    });
 });
 
 router.get('/expose', (req, res) => {
