@@ -131,7 +131,7 @@ img{
 }
 
 .space-efficient-textbox>textarea:not(:focus):not(:placeholder-shown)+label{
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 

@@ -66,9 +66,11 @@ export class QuestionComponent implements OnInit {
     }
 
     addQuestion(){
-        console.log({
-            question:this.newQuestion,
+        this.questionService.addQuestion({
+            question: this.newQuestion,
+            profileId: this.sessionData.userData['userId'],
             tags:this.newQuestionTagBox.tagBoxes
+        }).subscribe(res => {
         })
     }
 
