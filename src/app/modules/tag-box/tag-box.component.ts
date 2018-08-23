@@ -48,7 +48,18 @@ export class TagBoxComponent implements OnInit {
         this.fetchTagFocus();
     }
 
+    highlightSubstr(str, substr = this.stripTextOf(this.tagBoxes[this.tagBoxes.length - 1][0])) {
+        let start = str.indexOf(substr)
+        let end = str.indexOf(substr) + substr.length
+        return str.substr(0, start) +
+            '<span class="query-match">' +
+            str.substr(start, end - start) +
+            '</span>' +
+            str.substr(end);
+    }
+
     stripTextOf(x) {
+
         return x.replace(/[^A-Za-z0-9-]/g, '-').replace(/(-)(?=\1)/gi, '').toLowerCase()
     }
 
