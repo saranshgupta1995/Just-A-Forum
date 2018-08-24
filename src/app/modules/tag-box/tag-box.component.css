@@ -38,6 +38,10 @@
     border-top: none;
 }
 
+.autocomplete-list-data>p{
+    margin: 0px;
+}
+
 .new-tag-info-div{
     height: 140px;
     text-align: center;
