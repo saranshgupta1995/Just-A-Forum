@@ -42,4 +42,8 @@ export class ProfileService {
     addWorth(data: any) {
         return this.http.post(this.httpUrls.updateWorthUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
+
+    fetchUserQuestions() {
+        return this.http.post(this.httpUrls.fetchUserQuestionsUrl, {userId:this.sessionData.userData['userId']}, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+    }
 }
