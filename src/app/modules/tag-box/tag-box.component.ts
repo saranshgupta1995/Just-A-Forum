@@ -59,7 +59,6 @@ export class TagBoxComponent implements OnInit {
     }
 
     stripTextOf(x) {
-
         return x.replace(/[^A-Za-z0-9-]/g, '-').replace(/(-)(?=\1)/gi, '').toLowerCase()
     }
 
