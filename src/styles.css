@@ -66,6 +66,10 @@ img{
     padding: 0 10vw;
 }
 
+.uneditable{
+    cursor: default;
+}
+
 .no-border{
     border: 0px;
     outline: none;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionDataService } from '../../session-data.service';
 
 @Component({
   selector: 'my-home',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+    username='';
+
+  constructor(public sessionData:SessionDataService) {
+   }
 
   ngOnInit() {
   }

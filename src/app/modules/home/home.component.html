@@ -1,5 +1,5 @@
 <div class="page">
-    <div class="row">
+    <div *ngIf="sessionData.userData.username" class="row">
         <div class="col-sm-12">
             <app-question [new]="true"></app-question>
         </div>

@@ -11,11 +11,11 @@
 }
 
 @keyframes loadGrow{
-    0% {right: 48%;width: 4%;opacity: 0.6;}
-    25% {right: 50%;width: 0;opacity: 0.6;}
-    50% {right: 48%;width: 4%;opacity: 0.6;}
-    75% {right: 50%;width: 0;opacity: 0.6;}
-    100% {right: 48%;width: 4%;opacity: 0.6;}
+    0% {right: 48%;width: 4%;opacity: 0.3;}
+    25% {right: 50%;width: 0;opacity: 0.3;}
+    50% {right: 48%;width: 4%;opacity: 0.3;}
+    75% {right: 50%;width: 0;opacity: 0.3;}
+    100% {right: 48%;width: 4%;opacity: 0.3;}
 }
 
 @keyframes loadingBar{
@@ -53,7 +53,6 @@
 .loader>.midGuy{
     right:50%;
     height: 2px;
-    opacity: 0.3;
     animation-name: loadGrow;
 }
 
