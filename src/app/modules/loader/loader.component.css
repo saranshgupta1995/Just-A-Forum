@@ -5,37 +5,36 @@
 }
 
 @keyframes loadMoveLeft{
-    0% {right: 47%;width: 3px;}
-    50% {right: 53%;width: 5px;}
-    100% {right: 47%;width: 3px;}
+    0% {right: 47%;width: 3px;opacity: 0.6;}
+    50% {right: 53%;width: 5px;opacity: 0.6;}
+    100% {right: 47%;width: 3px;opacity: 0.6;}
 }
 
 @keyframes loadGrow{
-    0% {right: 48%;width: 4%;}
-    25% {right: 50%;width: 0;}
-    50% {right: 48%;width: 4%;}
-    75% {right: 50%;width: 0;}
-    100% {right: 48%;width: 4%;}
+    0% {right: 48%;width: 4%;opacity: 0.6;}
+    25% {right: 50%;width: 0;opacity: 0.6;}
+    50% {right: 48%;width: 4%;opacity: 0.6;}
+    75% {right: 50%;width: 0;opacity: 0.6;}
+    100% {right: 48%;width: 4%;opacity: 0.6;}
 }
 
 @keyframes loadingBar{
-    0% {width: 0px;}
-    100% {width: 10%;}
+    0% {width: 0px;opacity: 0.6;}
+    100% {width: 10%;opacity: 0.6;}
 }
 
 @keyframes loadMoveRight{
-    0% {right: 53%;width: 5px;}
-    50% {right: 47%;width: 3px;}
-    100% {right: 53%;width: 5px;}
+    0% {right: 53%;width: 5px;opacity: 0.6;}
+    50% {right: 47%;width: 3px;opacity: 0.6;}
+    100% {right: 53%;width: 5px;opacity: 0.6;}
 }
 
 .loader>div{
-    opacity: 0.6;
+    opacity: 0;
     position: absolute;
     background-color: black;
     height: 4px;
     width: 4px;
-    /* display: inline-block; */
     border-radius: 50%;
     animation-name: loadMoveLeft;
     animation-duration: 1.5s; 
@@ -52,6 +51,7 @@
 }
 
 .loader>.midGuy{
+    right:50%;
     height: 2px;
     opacity: 0.3;
     animation-name: loadGrow;

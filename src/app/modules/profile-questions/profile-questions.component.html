@@ -1,7 +1,11 @@
-<div class="question-container row">
+<div *ngIf="userQuestions?.length; else loader" class="question-container row">
     <div class="col-sm-12">
         <p *ngFor="let ques of userQuestions" class="profile-question">
             {{ques.question}}
         </p>
     </div>
 </div>
+<ng-template #loader>
+    <br>
+    <app-loader></app-loader>
+</ng-template>

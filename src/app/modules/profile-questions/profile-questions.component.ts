@@ -12,7 +12,6 @@ export class ProfileQuestionsComponent implements OnInit {
 
     constructor(private profileService: ProfileService) {
         profileService.fetchUserQuestions().subscribe(res => {
-            console.log(res)
             this.userQuestions = res;
             this.userQuestions.sort((a,b)=>{
                 return ~~a.quesId.split('.')[1] - ~~b.quesId.split('.')[1]
