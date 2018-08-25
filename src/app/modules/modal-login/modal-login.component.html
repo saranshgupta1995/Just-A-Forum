@@ -1,0 +1,36 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color: #ffffe5;">
+        <h4 class="modal-title">LOGIN</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="main">
+            <br>
+            <div class="row">
+                <div class="google" (click)="socialSignIn('google')">
+                    <h5><i class="fa fa-google" style="color:#db3236"></i>&nbsp;&nbsp;Google</h5>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="facebook" (click)="socialSignIn('facebook')">
+                    <h5><i class="fa fa-facebook-f" style="color: #3b5998;"></i>&nbsp;&nbsp;Facebook</h5>
+                </div>
+            </div>
+            <br>
+            <div>
+                <hr>
+                <h3>OR</h3>
+                <hr>
+            </div>
+            <br>
+            <form>
+                <input type="text" name="username" placeholder="USERNAME">
+                <input type="password" name="psw" placeholder="PASSWORD">
+                <br><br>
+                <button class="btn btnn">LOGIN</button>
+            </form>
+        </div>
+    </div>
+</ng-template>
