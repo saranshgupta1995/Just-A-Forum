@@ -1,5 +1,7 @@
-<div *ngFor="let ques of userQuestions"class="row">
+<div class="question-container row">
     <div class="col-sm-12">
-        {{ques.question}}
+        <p *ngFor="let ques of userQuestions" class="profile-question">
+            {{ques.question}}
+        </p>
     </div>
 </div>

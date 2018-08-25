@@ -53,7 +53,7 @@
 
 .loader>.midGuy{
     height: 2px;
-    opacity: 0.2;
+    opacity: 0.3;
     animation-name: loadGrow;
 }
 
