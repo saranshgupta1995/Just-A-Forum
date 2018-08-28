@@ -9,6 +9,13 @@ levelDbOpr.tableNames = {
     three: 'LevelThree',
     four: 'LevelFour',
 };
+levelDbOpr.tableIndexes = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+};
 
 levelDbOpr.initLevelZero = function (username) {
     return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames['zero'], {

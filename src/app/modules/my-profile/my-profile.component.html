@@ -19,19 +19,6 @@
                 <task-note [tasks]="sessionData.userTasks.taskList" [progresses]="sessionData.userTasks['progresses']" (runTask)="goToTask($event)"></task-note>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-md-12" [@enterAnimation] *ngIf="!askingQuestion; else askingQuesBar">
-                <button (click)="initAskQuestion()">Ask a question</button>
-            </div>
-            <ng-template #askingQuesBar>
-                <div [@enterAnimation] class="col-md-10">
-                    <input type="text" [(ngModel)]="newQuestion">
-                </div>
-                <div [@enterAnimation] class="col-md-2">
-                    <button (click)="askQuestion()">Ask!!</button>
-                </div>
-            </ng-template>
-        </div> -->
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="nav-item">

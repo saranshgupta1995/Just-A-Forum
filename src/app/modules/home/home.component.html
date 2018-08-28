@@ -5,5 +5,34 @@
         </div>
     </div>
     <hr>
+    <div *ngIf="sessionData.userData.username==='saransh'">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="task" [(ngModel)]="newDevTask.task">
+                </td>
+                <td>
+                    <input type="text" placeholder="summary" [(ngModel)]="newDevTask.summary">
+                </td>
+                <td>
+                    <input type="text" placeholder="dev" [(ngModel)]="newDevTask.dev">
+                </td>
+                <td>
+                    <button (click)="addDevStuff()">Dev Add Task</button>
+                </td>
+            </tr>
+        </table>
+        <button (click)="getDevStuff()">Dev Read Mode</button>
+        <table>
+            <tr *ngFor="let task of pendingTasks">
+                <ng-container *ngIf="task.task">
+                    <td>{{task.task}}</td>
+                    <td>{{task.summary}}</td>
+                    <td>{{task.dev}}</td>
+                    <td><button (click)="removeDevTask(task)">Remove Task</button></td>
+                </ng-container>
+            </tr>
+        </table>
+    </div>
 
 </div>

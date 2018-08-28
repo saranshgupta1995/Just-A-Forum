@@ -39,6 +39,9 @@ dbOperations.findDoc = function (collection, dataObj) {
         .then((coll) => {
             let data = [];
             return coll.coll.find(dataObj).forEach(x => {
+                if(x._id){
+                    delete x._id;
+                }
                 data.push(x);
             }).then(oprRes => {
                 coll.client.close();

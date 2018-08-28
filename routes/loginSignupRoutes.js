@@ -107,6 +107,25 @@ router.post('/validateUsername', (req, res) => {
     })
 })
 
+router.post('/showDevTasks', (req, res) => {
+    loginSignupDbOpr.getDevTasks().then((oprRes) => {
+        res.send(oprRes);
+    })
+})
+
+router.post('/deleteDevTask', (req, res) => {
+    console.log(req.body);
+    loginSignupDbOpr.removeDevTask(req.body).then((oprRes) => {
+        res.send(oprRes);
+    })
+})
+
+router.post('/addDevTasks', (req, res) => {    
+    loginSignupDbOpr.addDevTask(req.body).then((oprRes) => {
+        res.send(oprRes);
+    })
+})
+
 router.post('/addNewUser', (req, res) => {
     loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
         if (!oprRes) {

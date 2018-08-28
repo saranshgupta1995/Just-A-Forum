@@ -24,7 +24,7 @@ export class HttpUrls {
     fetchQuestionDataUrl = `${environment.serverUrl}/fetchquestiondata`;
     fetchQuestionTags = `${environment.serverUrl}/fetchquestiontags`;
     fetchAllTags = `${environment.serverUrl}/fetchalltags`;
-    
+
     //comment urls
     addCommentUrl = `${environment.serverUrl}/addcomment`;
     fetchQuestionCommentsUrl = `${environment.serverUrl}/fetchquestioncomments`;

@@ -60,6 +60,24 @@ loginSignupDbOpr.validateUserLogin = function (loginObj) {
     });
 }
 
+loginSignupDbOpr.getDevTasks = function () {
+    return loginSignupDbOpr.dbOpr.findDoc('DevTasks',{}).then(oprRes => {
+        if (!oprRes.length) {
+            return {tasks:[{ 'task': 'no tasks pending' }]};
+        } else {
+            return {tasks:oprRes}
+        }
+    });
+}
+
+loginSignupDbOpr.addDevTask = function (task) {
+    return loginSignupDbOpr.dbOpr.insertOneOpr('DevTasks',task)
+}
+
+loginSignupDbOpr.removeDevTask = function (task) {
+    return loginSignupDbOpr.dbOpr.deleteDoc('DevTasks',task)
+}
+
 loginSignupDbOpr.verifyAccount = function (primaryId) {
     return loginSignupDbOpr.dbOpr.updateOne(loginSignupDbOpr.tableName, { _id: ObjectId(primaryId), unverified: true }, { $set: { unverified: false } });
 }
