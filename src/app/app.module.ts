@@ -22,6 +22,7 @@ import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile
 import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
 import { TagBoxComponent } from './modules/tag-box/tag-box.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalLoginComponent } from 'src/app/modules/modal-login/modal-login.component';
 
 const appRoutes: Routes = [
     {
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
         LoginComponent,
         HomeComponent,
         SignupComponent,
+        ModalLoginComponent,
         SexyNavbarComponent,
         UserNavComponent,
         InfoTextComponent,
