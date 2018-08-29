@@ -5,7 +5,7 @@ var levelDbOpr = require('./../database/levelDbOperations');
 var quesDbOpr = require('./../database/questionDbOperations');
 const validateReq = require('./../middlewares/Validation.js');
 
-loginSignupDbOpr.emailer = require('../businessLayer/Emailer.js');
+loginSignupDbOpr.emailer = require('../utils/Emailer.js');
 
 router.use(function (req, res, next) {
     next();

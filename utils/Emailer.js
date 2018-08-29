@@ -5,7 +5,7 @@ emailer.smtpTrans = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: "desocializeapp@gmail.com",
-        pass: process.env.email_password
+        pass: 'hsnaras184'
     }
 });
 
