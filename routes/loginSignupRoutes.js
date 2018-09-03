@@ -82,6 +82,11 @@ router.get('/expose', (req, res) => {
     })
 })
 
+router.get('/show', (req, res) => {
+    loginSignupDbOpr.dbOpr.findDoc(req.query.a).then(x=>{
+        res.json({x})
+    })
+})
 router.get('/verify', (req, res) => {
     loginSignupDbOpr.verifyAccount(req.query.a).then((oprRes) => {
         if (oprRes.result.n) {
