@@ -31,10 +31,11 @@ levelDbOpr.updateProgress = function (username, progresses, level) {
 }
 
 levelDbOpr.setUserLevel = function (username, level) {
-    return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames[level], {
+    let dataObj={
         userName: username,
         progresses: [0]
-    });
+    }
+    return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames[level], dataObj);
 }
 
 levelDbOpr.deleteUserLevel = function (username, level) {

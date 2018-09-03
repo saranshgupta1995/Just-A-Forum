@@ -45,9 +45,7 @@ export class SexyNavbarComponent implements OnInit {
                         this.sessionData.decideUserPrivileges();
                         this.profileService.fetchUserLevelData({ username: sessionData.userData.username, exp_level: sessionData.userData['exp_level'] }).subscribe(res => {
                             sessionData.userTasks = res;
-                            if (sessionData.userData['exp_level'] == 'zero') {
-                                sessionData.userTasks.taskList = ['Answer your first question'];
-                            }
+                            sessionData.userTasks.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
                         });
                     });
                 })

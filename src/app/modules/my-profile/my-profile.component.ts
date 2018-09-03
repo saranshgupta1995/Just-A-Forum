@@ -23,42 +23,40 @@ import { SessionDataService } from '../../session-data.service';
 })
 export class MyProfileComponent implements OnInit {
 
-    username:string;
-    userData:any={};
-    taskData:any={};
-    askingQuestion=false;
-    newQuestion='';
+    username: string;
+    userData: any = {};
+    taskData: any = {};
+    askingQuestion = false;
+    newQuestion = '';
 
-    constructor(private route: ActivatedRoute, private profileService:ProfileService,private taskRoutes:TaskRoutes, private router:Router, private questionService:QuestionService, public sessionData:SessionDataService) {
-        
+    constructor(private route: ActivatedRoute, private profileService: ProfileService, private taskRoutes: TaskRoutes, private router: Router, private questionService: QuestionService, public sessionData: SessionDataService) {
+
         this.username = sessionData.userName;
-        if(sessionData.fromRegularlogin){
-            this.profileService.fetchUserProfile({username:this.username}).subscribe(res=>{
+        if (sessionData.fromRegularlogin) {
+            this.profileService.fetchUserProfile({ username: this.username }).subscribe(res => {
                 // this.userData=res;
-                sessionData.userData=JSON.parse(JSON.stringify(res));
-                // console.log(this.userData);
+                sessionData.userData = JSON.parse(JSON.stringify(res));
+                console.log(res);
                 this.sessionData.decideUserPrivileges();
-                this.profileService.fetchUserLevelData({username:this.username,exp_level:res['exp_level']}).subscribe(res=>{
+                this.profileService.fetchUserLevelData({ username: this.username, exp_level: res['exp_level'] }).subscribe(res => {
                     // this.taskData=res;
-                    sessionData.userTasks=res;
-                    if(sessionData.userData['exp_level']=='zero'){
-                        // this.taskData.tasks=['Answer your first question'];
-                        sessionData.userTasks.taskList = ['Answer your first question'];
-                    }
+                    sessionData.userTasks = res;
+                    console.log(sessionData.userData['exp_level'],sessionData.levelTasks[sessionData.userData['exp_level']]);
+                    
+                    sessionData.userTasks.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
                 });
             });
         }
     }
-
     ngOnInit() {
     }
 
-    initAskQuestion(){
-        this.askingQuestion=true;
+    initAskQuestion() {
+        this.askingQuestion = true;
     }
 
-    goToTask(e){
-        this.router.navigate(this.taskRoutes[e]);        
+    goToTask(e) {
+        this.router.navigate(this.taskRoutes[e]);
     }
 
 }
