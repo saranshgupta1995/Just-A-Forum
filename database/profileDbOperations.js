@@ -19,6 +19,12 @@ profileDbOpr.addWorth = function (username, worth) {
     }, { $set: { worth: worth }});
 }
 
+profileDbOpr.updateLevel = function (username, level) {
+    return profileDbOpr.dbOpr.updateOne(profileDbOpr.tableName, {
+        username: username
+    }, { $set: { exp_level: level }});
+}
+
 profileDbOpr.findProfile = function (username) {
     return profileDbOpr.dbOpr.findDoc(profileDbOpr.tableName, {
         username: username,
