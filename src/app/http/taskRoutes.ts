@@ -8,4 +8,7 @@ export class TaskRoutes {
 
     // Task Level 0
     'Answer your first question' = ['question','What are you like?'];
+    'Be a total worth of 300'=[''];
+    'Be a total worth of 800'=[''];
+    'Ask 2 new valued questions'=[''];
 }

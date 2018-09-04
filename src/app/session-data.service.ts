@@ -46,7 +46,8 @@ export class SessionDataService {
 
     levelTasks={
         zero: ['Answer your first question'],
-        one:['Be a total worth of 300']
+        one:['Be a total worth of 300'],
+        two:['Be a total worth of 800','Ask 2 new valued questions'],
     }
 
     reset(){
