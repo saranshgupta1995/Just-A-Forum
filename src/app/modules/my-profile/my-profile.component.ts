@@ -40,10 +40,10 @@ export class MyProfileComponent implements OnInit {
                 this.sessionData.decideUserPrivileges();
                 this.profileService.fetchUserLevelData({ username: this.username, exp_level: res['exp_level'] }).subscribe(res => {
                     // this.taskData=res;
-                    sessionData.userTasks = res;
+                    sessionData.levelData = res;
                     console.log(sessionData.userData['exp_level'],sessionData.levelTasks[sessionData.userData['exp_level']]);
-                    
-                    sessionData.userTasks.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
+    
+                    sessionData.levelData.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
                 });
             });
         }
@@ -57,6 +57,10 @@ export class MyProfileComponent implements OnInit {
 
     goToTask(e) {
         this.router.navigate(this.taskRoutes[e]);
+    }
+
+    catchCatchPhrase(e){
+        console.log(e);
     }
 
 }

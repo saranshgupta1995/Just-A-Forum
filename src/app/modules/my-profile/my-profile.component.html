@@ -1,5 +1,5 @@
 <div class="page col">
-    <div *ngIf="sessionData.userTasks.taskList; else loader" [@enterAnimation]>
+    <div *ngIf="sessionData.levelData.taskList; else loader" [@enterAnimation]>
         <div class="row">
             <div class="col-md-2 col-4">
                 <img src="/assets/grumpy_male.png" alt="profile image">
@@ -8,7 +8,8 @@
                 <h4>
                     {{sessionData.userData.username | nameCase}}
                 </h4>
-                <i *ngIf="sessionData.userData.catchPhrase;else noCatchPhrase">{{userData.catchPhrase}}</i>
+                <dsclz-easy-editor *ngIf="sessionData.privileges.catchPhraseAccess;else noCatchPhrase" [(val)]="sessionData.userData.catchPhrase" [emptyDataMsg]="'You do not have a catchphrase'"
+                (valEvent)="catchCatchPhrase($event);"></dsclz-easy-editor>
                 <ng-template #noCatchPhrase>
                     <i>You do not have a catchphrase</i>
                 </ng-template>
@@ -16,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6">
-                <task-note [tasks]="sessionData.userTasks.taskList" [progresses]="sessionData.userTasks['progresses']" (runTask)="goToTask($event)"></task-note>
+                <task-note [tasks]="sessionData.levelData.taskList" [progresses]="sessionData.levelData['progresses']" (runTask)="goToTask($event)"></task-note>
             </div>
         </div>
         <!-- Nav tabs -->

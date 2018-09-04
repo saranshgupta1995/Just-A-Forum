@@ -10,7 +10,7 @@ export class SessionDataService {
 
     fromRegularlogin=true;
     userData: any = {};
-    userTasks: any = {};
+    levelData: any = {};
     userToken:string='';
     userDevice:string='';
     userName:string='';
@@ -54,7 +54,7 @@ export class SessionDataService {
 
         this.fromRegularlogin = true;
         this.userData = {};
-        this.userTasks = {};
+        this.levelData = {};
         this.userToken = '';
         this.userDevice='';
         this.userName = '';
