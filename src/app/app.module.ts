@@ -23,6 +23,7 @@ import { ProfileDataComponent } from './modules/profile-data/profile-data.compon
 import { TagBoxComponent } from './modules/tag-box/tag-box.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalLoginComponent } from 'src/app/modules/modal-login/modal-login.component';
+import { EasyEditorComponent } from './modules/easy-editor/easy-editor.component';
 
 const appRoutes: Routes = [
     {
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
         ProfileQuestionsComponent,
         ProfilePrivilegesComponent,
         ProfileDataComponent,
-        TagBoxComponent
+        TagBoxComponent,
+        EasyEditorComponent
     ],
     imports: [
         // RouterModule.forRoot(appRoutes, { enableTracing: true }),

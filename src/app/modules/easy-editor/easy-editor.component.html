@@ -1,0 +1,14 @@
+<div class="switchable-input" *ngIf="editMode else readOnly">
+    <i (click)="switchModes('ignore')" class="font-button fa fa-times"></i>
+    <input [(ngModel)]="tempVal"id="realInput" type="text">
+    <i (click)="switchModes()" class="font-button fa fa-times close-add"></i>
+</div>
+<ng-template #readOnly>
+    <i *ngIf="val; else noData">{{val}}</i>
+    <i class="fa fa-edit font-button" (click)="switchModes();"></i>
+    <ng-template #noData>
+        <i>
+            {{emptyDataMsg}}
+        </i>
+    </ng-template>
+</ng-template>

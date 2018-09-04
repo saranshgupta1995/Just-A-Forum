@@ -1,0 +1,18 @@
+.switchable-input{
+    position: relative;
+    border-bottom: 1px solid;
+    border-bottom-color: rgb(102, 100, 100);
+    padding-right: 10px;
+    width: max-content;
+}
+
+.switchable-input>input{
+    border: none;
+    outline: none;
+    padding: 2px 0px 2px 10px;
+}
+
+.close-add{
+    transform: rotate(45deg);
+    transition-duration: 200ms;
+}
