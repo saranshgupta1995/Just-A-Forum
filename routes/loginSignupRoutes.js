@@ -140,10 +140,10 @@ router.post('/addNewUser', (req, res) => {
                         'status': oprRes.insertedCount == 1
                     });
                     loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
-                    loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.userName}`;
+                    loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.username}`;
                     loginSignupDbOpr.emailer.mailOptions.html = `
                     <h4>Account Verification Email</h4>
-                    <p style="margin:4px;">Hi ${req.body.userName}</p>
+                    <p style="margin:4px;">Hi ${req.body.username}</p>
                     <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
                     <p style="margin:4px;">You must follow this link to activate your account</p>
                     <p>http://obscure-sea-69570.herokuapp.com/verify?a=${oprRes.insertedId}</p>
@@ -151,8 +151,8 @@ router.post('/addNewUser', (req, res) => {
                     <p style="margin-top:4px;">The DeSocializers</p>
                     `;
                     loginSignupDbOpr.emailer.sendMail();
-                    profileDbOpr.addProfile(req.body.userName, coun);
-                    levelDbOpr.initLevelZero(req.body.userName);
+                    profileDbOpr.addProfile(req.body.username, coun);
+                    levelDbOpr.initLevelZero(req.body.username);
                 });
             })
         }
@@ -168,7 +168,7 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
     loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
         resObj = {
             unverified: oprRes.unverified,
-            username: oprRes.userName,
+            username: oprRes.username,
         }
         if (resObj['username'] != 'not found') {
             resObj.token = req.token;

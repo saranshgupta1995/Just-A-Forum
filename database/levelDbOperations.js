@@ -19,7 +19,7 @@ levelDbOpr.tableIndexes = {
 
 levelDbOpr.initLevelZero = function (username) {
     return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames['zero'], {
-        userName: username,
+        username: username,
         progresses: [0]
     });
 }
@@ -30,9 +30,15 @@ levelDbOpr.updateProgress = function (username, progresses, level) {
     }, { $set: { progresses: progresses } });
 }
 
+levelDbOpr.setCatchPhrase = function (username, catchPhrase, level) {
+    return levelDbOpr.dbOpr.updateOne(levelDbOpr.tableNames[level], {
+        username: username
+    }, { $set: { catchPhrase } });
+}
+
 levelDbOpr.setUserLevel = function (username, level) {
     let dataObj={
-        userName: username,
+        username: username,
         progresses: [0]
     }
     return levelDbOpr.dbOpr.insertOneOpr(levelDbOpr.tableNames[level], dataObj);
@@ -40,14 +46,15 @@ levelDbOpr.setUserLevel = function (username, level) {
 
 levelDbOpr.deleteUserLevel = function (username, level) {
     return levelDbOpr.dbOpr.deleteDoc(levelDbOpr.tableNames[level], {
-        userName: username,
+        username: username,
     });
 }
 
 levelDbOpr.findLevelData = function (username, exp_level) {
-    return levelDbOpr.dbOpr.findDoc(levelDbOpr.tableNames[exp_level], { userName: username }).then(oprRes => {
+    console.log(username,exp_level);
+    return levelDbOpr.dbOpr.findDoc(levelDbOpr.tableNames[exp_level], { username: username }).then(oprRes => {
         if (!oprRes.length) {
-            return { 'userName': 'not found' };
+            return { 'username': 'not found' };
         } else {
             return oprRes[0]
         }

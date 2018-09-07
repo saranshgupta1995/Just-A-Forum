@@ -5,7 +5,7 @@
 </div>
 <ng-template #readOnly>
     <i *ngIf="val; else noData">{{val}}</i>
-    <i class="fa fa-edit font-button" (click)="switchModes();"></i>
+    <i class="fa fa-edit font-button" (click)="switchModes('ignore');"></i>
     <ng-template #noData>
         <i>
             {{emptyDataMsg}}

@@ -4,9 +4,9 @@
         <form (ngSubmit)="onLoginAttempt()" class="sm-row" #loginForm="ngForm" style="float: right;">
             <info-text #infoText></info-text>
             <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
-                <label class="sr-only" for="userName">User Name</label>
-                <input class="header-input-box" id="userName" placeholder="Username" pattern="[A-Za-z0-9_-]+" minlength="4" name="userName"
-                    required [(ngModel)]="userName" type="text">
+                <label class="sr-only" for="username">User Name</label>
+                <input class="header-input-box" id="username" placeholder="Username" pattern="[A-Za-z0-9_-]+" minlength="4" name="username"
+                    required [(ngModel)]="username" type="text">
             </div>
             <div *ngIf="showForm" class="same-line basic-margin-md sm-row">
                 <label class="sr-only" for="password">Password</label>

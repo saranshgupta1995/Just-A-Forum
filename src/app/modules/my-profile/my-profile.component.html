@@ -8,7 +8,7 @@
                 <h4>
                     {{sessionData.userData.username | nameCase}}
                 </h4>
-                <dsclz-easy-editor *ngIf="sessionData.privileges.catchPhraseAccess;else noCatchPhrase" [(val)]="sessionData.userData.catchPhrase" [emptyDataMsg]="'You do not have a catchphrase'"
+                <dsclz-easy-editor *ngIf="sessionData.privileges.catchPhraseAccess;else noCatchPhrase" [val]="sessionData.levelData.catchPhrase" [emptyDataMsg]="'You do not have a catchphrase'"
                 (valEvent)="catchCatchPhrase($event);"></dsclz-easy-editor>
                 <ng-template #noCatchPhrase>
                     <i>You do not have a catchphrase</i>

@@ -46,4 +46,8 @@ export class ProfileService {
     fetchUserQuestions() {
         return this.http.post(this.httpUrls.fetchUserQuestionsUrl, {userId:this.sessionData.userData['userId']}, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
+
+    updateCatchPhrase(data) {
+        return this.http.post(this.httpUrls.updateCatchPhraseUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+    }
 }

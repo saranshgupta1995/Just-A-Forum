@@ -8,7 +8,7 @@ loginSignupDbOpr.deviceTable = 'Devices';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj) {
     loginObj.unverified = true;
-    if (loginObj.userName == 'saransh') {
+    if (loginObj.username == 'saransh') {
         loginObj.unverified = false;
     }
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName, loginObj);
@@ -18,17 +18,17 @@ loginSignupDbOpr.dropColl = function (coll) {
     return loginSignupDbOpr.dbOpr.dropCollOpr(coll);
 }
 
-loginSignupDbOpr.addLoginDevice = function (userName, deviceId) {
-    return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.deviceTable, {userName,deviceId})
+loginSignupDbOpr.addLoginDevice = function (username, deviceId) {
+    return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.deviceTable, {username,deviceId})
 }
 
-loginSignupDbOpr.removeLoginDevice = function (userName, deviceId) {
-    return loginSignupDbOpr.dbOpr.deleteDoc(loginSignupDbOpr.deviceTable, {userName,deviceId})
+loginSignupDbOpr.removeLoginDevice = function (username, deviceId) {
+    return loginSignupDbOpr.dbOpr.deleteDoc(loginSignupDbOpr.deviceTable, {username,deviceId})
 }
 
-loginSignupDbOpr.findLoginDevice = function (userName, deviceId) {    
+loginSignupDbOpr.findLoginDevice = function (username, deviceId) {    
     
-    return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.deviceTable, { userName, deviceId }).then(oprRes => {
+    return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.deviceTable, { username, deviceId }).then(oprRes => {
         
         if (!oprRes.length) {
             return false;
@@ -43,7 +43,7 @@ loginSignupDbOpr.checkEmailExistance = function (emailId) {
 }
 
 loginSignupDbOpr.checkUsernameExistance = function (username) {
-    return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, { userName: username })
+    return loginSignupDbOpr.dbOpr.fetchCount(loginSignupDbOpr.tableName, { username: username })
 }
 
 loginSignupDbOpr.fetchProfileCount = function () {
@@ -53,7 +53,7 @@ loginSignupDbOpr.fetchProfileCount = function () {
 loginSignupDbOpr.validateUserLogin = function (loginObj) {
     return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.tableName, loginObj).then(oprRes => {
         if (!oprRes.length) {
-            return { 'userName': 'not found' };
+            return { 'username': 'not found' };
         } else {
             return oprRes[0]
         }

@@ -10,7 +10,7 @@ import { SessionDataService } from '../../session-data.service';
 })
 export class LoginComponent implements OnInit {
 
-    userName = '';
+    username = '';
     password = '';
     showForm = true;
     @ViewChild('infoText') infoText;
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.showForm = false;
         this.infoText.showProcess('Sending Data');
         this.loginSignupService.validateLoginAttempt({
-            "userName": this.userName,
+            "username": this.username,
             "password": this.password
         })
             .subscribe(res => {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
                 else if (res['unverified']) {
                     this.infoText.showError('Account Pending Email Verification');
                 } else {
-                    this.sessionData.userName = this.userName;
+                    this.sessionData.username = this.username;
                     this.sessionData.fromRegularlogin = true;
                     this.infoText.showSuccess('Logged in Successfully');
                     localStorage.setItem("desocializeAuth", res['token'])

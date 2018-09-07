@@ -30,7 +30,7 @@ profileDbOpr.findProfile = function (username) {
         username: username,
     }).then(oprRes => {
         if (!oprRes.length) {
-            return { 'userName': 'not found' };
+            return { 'username': 'not found' };
         } else {
             return oprRes[0]
         }

@@ -18,6 +18,7 @@ export class HttpUrls {
     fetchUserLevelDataUrl = `${environment.serverUrl}/findUserLevelData`;
     fetchUserQuestionsUrl = `${environment.serverUrl}/fetchuserquestions`;
     updateWorthUrl = `${environment.serverUrl}/addWorth`;
+    updateCatchPhraseUrl = `${environment.serverUrl}/updateCatchPhrase`;
 
     //question urls
     addQuestionUrl = `${environment.serverUrl}/addquestion`;

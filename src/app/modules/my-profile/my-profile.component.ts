@@ -28,10 +28,11 @@ export class MyProfileComponent implements OnInit {
     taskData: any = {};
     askingQuestion = false;
     newQuestion = '';
+    catchPhrase='';
 
     constructor(private route: ActivatedRoute, private profileService: ProfileService, private taskRoutes: TaskRoutes, private router: Router, private questionService: QuestionService, public sessionData: SessionDataService) {
 
-        this.username = sessionData.userName;
+        this.username = sessionData.username;
         if (sessionData.fromRegularlogin) {
             this.profileService.fetchUserProfile({ username: this.username }).subscribe(res => {
                 // this.userData=res;
@@ -60,7 +61,13 @@ export class MyProfileComponent implements OnInit {
     }
 
     catchCatchPhrase(e){
-        console.log(e);
+        this.sessionData.levelData['catchPhrase']=e;
+        this.profileService.updateCatchPhrase({
+            username:this.sessionData.userData['username'],
+            catchPhrase: this.sessionData.levelData['catchPhrase'],
+            // 'catchPhrase': this.catchPhrase,
+            exp_level:this.sessionData.userData['exp_level']
+        }).subscribe()
     }
 
 }

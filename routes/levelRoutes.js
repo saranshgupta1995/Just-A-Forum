@@ -6,13 +6,19 @@ router.post('/levelZeroUserData', validateReq, (req, res) => {
     levelDbOpr.initLevelZero(req.body.username).then(oprRes => {
         res.send({
             unverified: oprRes.unverified,
-            username: oprRes.userName
+            username: oprRes.username
         })
     })
 })
 
 router.post('/findUserLevelData', validateReq, (req, res) => {
     levelDbOpr.findLevelData(req.body.username, req.body.exp_level).then(oprRes => {
+        res.send(oprRes);
+    })
+})
+
+router.post('/updateCatchPhrase', validateReq, (req, res) => {
+    levelDbOpr.setCatchPhrase(req.body.username,req.body.catchPhrase, req.body.exp_level).then(oprRes => {
         res.send(oprRes);
     })
 })

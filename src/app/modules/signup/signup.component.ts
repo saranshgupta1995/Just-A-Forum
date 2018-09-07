@@ -8,7 +8,7 @@ import { LoginSignupService } from '../../http/login-signup/login-signup.service
 })
 export class SignupComponent implements OnInit {
 
-    userName='';
+    username='';
     password='';
     userEmail = '';
     showForm=true;
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
         this.showForm = false;
         this.infoText.showProcess('Sending Data');
         this.loginSignupService.addNewUser({
-            "userName":this.userName,
+            "username":this.username,
             "password":this.password,
             "email":this.userEmail
         })
@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
 
     validateUsername(){
         this.validUsername=false;
-        this.loginSignupService.validateUserName({'username':this.userName})
+        this.loginSignupService.validateUserName({'username':this.username})
         .subscribe(res=>{
             if(res['status']){
                 this.infoText.showError('Username Already Exists');

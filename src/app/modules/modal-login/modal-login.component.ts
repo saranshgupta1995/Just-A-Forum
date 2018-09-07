@@ -17,7 +17,7 @@ import { Router } from '../../../../node_modules/@angular/router';
 
 })
 export class ModalLoginComponent implements OnInit {
-  userName: string = "";
+  username: string = "";
   password: string = "";
   private user: SocialUser;
   public authorized: boolean = false;
@@ -31,7 +31,6 @@ export class ModalLoginComponent implements OnInit {
   constructor(private router: Router, private sessionData: SessionDataService, private modalService: NgbModal, private socialAuthService: AuthService, private loginSignupService: LoginSignupService) {
   }
   open(content = this.content) {
-    console.log(content);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
   }
 
@@ -47,14 +46,13 @@ export class ModalLoginComponent implements OnInit {
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
         // Now sign-in with userData        
         if (userData != null) {
           this.authorized = true;
           this.user = userData;
           // login via facebook / login
           this.loginSignupService.validateLoginAttempt({
-            "userName": this.userName,
+            "username": this.username,
             "password": this.password
           })
             .subscribe(res => {
@@ -63,7 +61,7 @@ export class ModalLoginComponent implements OnInit {
               else if (res['unverified']) {
                 // this.infoText.showError('Account Pending Email Verification');
               } else {
-                this.sessionData.userName = this.userName;
+                this.sessionData.username = this.username;
                 this.sessionData.fromRegularlogin = true;
                 // this.infoText.showSuccess('Logged in Successfully');
                 localStorage.setItem("desocializeAuth", res['token'])

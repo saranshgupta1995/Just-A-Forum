@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
-    if (req.body["userName"] && req.body["password"]) {
+    if (req.body["username"] && req.body["password"]) {
         let deviceId = (10000 * Math.random()).toString();
-        jwt.sign({ user: req.body.userName, deviceId }, 'secretkey', (err, token) => {
+        jwt.sign({ user: req.body.username, deviceId }, 'secretkey', (err, token) => {
             req.token = token;
             req.deviceId=deviceId;
             next();

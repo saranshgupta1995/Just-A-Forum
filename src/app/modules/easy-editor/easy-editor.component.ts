@@ -7,10 +7,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class EasyEditorComponent implements OnInit {
 
-    @Input() val='';
+    @Input() val;
     tempVal='';
     @Input() emptyDataMsg='';
     @Output() valEvent=new EventEmitter();
+    @Output() valChange=new EventEmitter();
 
     editMode=false;
 
@@ -34,8 +35,9 @@ export class EasyEditorComponent implements OnInit {
     }
 
     throwVal(){
+        this.tempVal=this.tempVal.split(' ').filter((x)=> x).join(' ')
         this.val = this.tempVal ? this.tempVal : '';
-        this.valEvent.emit();
+        this.valEvent.emit(this.val);
     }
 
 }

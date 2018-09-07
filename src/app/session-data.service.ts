@@ -13,7 +13,7 @@ export class SessionDataService {
     levelData: any = {};
     userToken:string='';
     userDevice:string='';
-    userName:string='';
+    username:string='';
 
     level_eqs = {
         zero: 0,
@@ -57,7 +57,7 @@ export class SessionDataService {
         this.levelData = {};
         this.userToken = '';
         this.userDevice='';
-        this.userName = '';
+        this.username = '';
 
         this.level_eqs = {
             zero: 0,
