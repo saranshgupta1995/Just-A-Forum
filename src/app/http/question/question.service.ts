@@ -36,6 +36,10 @@ export class QuestionService {
         return this.http.post(this.httpUrls.fetchQuestionDataUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }
 
+    fetchLatestQuestions() {
+        return this.http.post(this.httpUrls.fetchLatestQuestionsUrl, {hhhjsydisk:'jhyut'}, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
+    }
+
     fetchQuestionTags(data: any) {
         return this.http.post(this.httpUrls.fetchQuestionTags, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.handleError));
     }

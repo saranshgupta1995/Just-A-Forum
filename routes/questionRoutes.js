@@ -16,6 +16,12 @@ router.post('/fetchquestiondata', validateReq, (req, res) => {
     })
 });
 
+router.post('/fetchlatestquestions', validateReq, (req, res) => {
+    quesDbOperations.getlatestQuestions().then(oprRes=>{
+        res.send(oprRes);
+    })
+});
+
 
 router.post('/fetchuserquestions', validateReq, (req, res) => {
     quesDbOperations.getQuestionData(`${req.body.userId}.`).then(oprRes => {

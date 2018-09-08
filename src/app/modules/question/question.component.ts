@@ -85,7 +85,8 @@ export class QuestionComponent implements OnInit {
             if (res['ok']) {
                 this.profileService.addWorth({
                     username: this.sessionData.userData['username'],
-                    worth: this.questionData.worth + this.sessionData.userData['worth']
+                    worth: this.questionData.worth + this.sessionData.userData['worth'],
+                    oldWorth: this.sessionData.userData['worth']
                 }).subscribe(res=>{
                     this.sessionData.userData['worth']+=this.questionData.worth;
                 })
