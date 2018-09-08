@@ -7,9 +7,14 @@ loginSignupDbOpr.tableName = 'LoginDetails';
 loginSignupDbOpr.deviceTable = 'Devices';
 
 loginSignupDbOpr.addLoginDetails = function (loginObj) {
-    loginObj.unverified = true;
-    if (loginObj.username == 'saransh') {
+    if (loginObj.social) {
         loginObj.unverified = false;
+        delete loginObj.social
+    } else {
+        loginObj.unverified = true;
+        if (loginObj.username == 'saransh') {
+            loginObj.unverified = false;
+        }
     }
     return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.tableName, loginObj);
 }
@@ -19,17 +24,17 @@ loginSignupDbOpr.dropColl = function (coll) {
 }
 
 loginSignupDbOpr.addLoginDevice = function (username, deviceId) {
-    return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.deviceTable, {username,deviceId})
+    return loginSignupDbOpr.dbOpr.insertOneOpr(loginSignupDbOpr.deviceTable, { username, deviceId })
 }
 
 loginSignupDbOpr.removeLoginDevice = function (username, deviceId) {
-    return loginSignupDbOpr.dbOpr.deleteDoc(loginSignupDbOpr.deviceTable, {username,deviceId})
+    return loginSignupDbOpr.dbOpr.deleteDoc(loginSignupDbOpr.deviceTable, { username, deviceId })
 }
 
-loginSignupDbOpr.findLoginDevice = function (username, deviceId) {    
-    
+loginSignupDbOpr.findLoginDevice = function (username, deviceId) {
+
     return loginSignupDbOpr.dbOpr.findDoc(loginSignupDbOpr.deviceTable, { username, deviceId }).then(oprRes => {
-        
+
         if (!oprRes.length) {
             return false;
         } else {
@@ -61,21 +66,21 @@ loginSignupDbOpr.validateUserLogin = function (loginObj) {
 }
 
 loginSignupDbOpr.getDevTasks = function () {
-    return loginSignupDbOpr.dbOpr.findDoc('DevTasks',{}).then(oprRes => {
+    return loginSignupDbOpr.dbOpr.findDoc('DevTasks', {}).then(oprRes => {
         if (!oprRes.length) {
-            return {tasks:[{ 'task': 'no tasks pending' }]};
+            return { tasks: [{ 'task': 'no tasks pending' }] };
         } else {
-            return {tasks:oprRes}
+            return { tasks: oprRes }
         }
     });
 }
 
 loginSignupDbOpr.addDevTask = function (task) {
-    return loginSignupDbOpr.dbOpr.insertOneOpr('DevTasks',task)
+    return loginSignupDbOpr.dbOpr.insertOneOpr('DevTasks', task)
 }
 
 loginSignupDbOpr.removeDevTask = function (task) {
-    return loginSignupDbOpr.dbOpr.deleteDoc('DevTasks',task)
+    return loginSignupDbOpr.dbOpr.deleteDoc('DevTasks', task)
 }
 
 loginSignupDbOpr.verifyAccount = function (primaryId) {

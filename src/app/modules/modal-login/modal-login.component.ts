@@ -32,11 +32,14 @@ export class ModalLoginComponent implements OnInit {
     @ViewChild('content') content;
     @ViewChild('verified') verified: ElementRef;
     @ViewChild('username_verified') username_verified: ElementRef;
+  
     modalReference: any;
     modalReference1: any;
 
     setUserName: string = '';
     setPassword: string = '';
+    error = "";
+    validUsername = false;
     ngOnInit() {
     }
     closeResult: string;
@@ -60,11 +63,11 @@ export class ModalLoginComponent implements OnInit {
 
         this.socialAuthService.signIn(socialPlatformProvider).then(
             (userData) => {
-                console.log(socialPlatform + " sign in data : ", userData);
+                
                 if (userData != null) {
                     this.authorized = true;
                     this.user = userData;
-                    console.log(this.verified);
+                    
                     this.open2(this.verified)
                     this.email = this.user.email
                     this.username = this.user.name
@@ -83,7 +86,7 @@ export class ModalLoginComponent implements OnInit {
             this.trigger.emit('x')
             this.checkSocialName = false
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            console.log("11111111");
+            
 
             this.trigger.emit('x');
             this.checkSocialName = false
@@ -111,7 +114,7 @@ export class ModalLoginComponent implements OnInit {
     }
     login() {
         this.loginSignupService.validateLoginAttempt({
-            "userName": this.loginUserName,
+            "username": this.loginUserName,
             "password": this.loginPassword
         })
             .subscribe(res => {
@@ -139,24 +142,30 @@ export class ModalLoginComponent implements OnInit {
     login1() {
         //call register
         this.loginSignupService.addNewUser({
-            "userName": this.setUserName,
+            "username": this.setUserName,
             "password": this.setPassword,
             "email": this.email,
             "social": true
         })
             .subscribe(res => {
+                
+                if (res['status']) {
+                    
+                    this.login3()
+                }
+
             })
 
-        this.login2()
+
     }
     //login2 is used for social login
     login2() {
         this.loginSignupService.validateLoginAttempt({
-            "userName": this.setUserName,
+            "username": this.setUserName,
             "password": this.setPassword
         })
             .subscribe(res => {
-                console.warn("username", res['username']);
+                
 
                 this.modalReference.close();
                 this.modalReference1.close();
@@ -170,5 +179,62 @@ export class ModalLoginComponent implements OnInit {
                 this.loginEvent.emit(true);
                 this.router.navigate(['/profile', res['username']]);
             })
+    }
+
+    validateUsername() {
+        this.validUsername = false;
+        this.loginSignupService.validateUserName({ 'username': this.setUserName })
+            .subscribe(res => {
+                
+
+                if (res['status']) {
+                    
+
+                    // this.infoText.showError('Username Already Exists');
+                    this.error = "Username Already Exists";
+                } else {
+                    
+
+                    this.validUsername = true;
+                    // this.infoText.clear();
+                    this.error = "";
+                }
+            })
+    }
+
+    login3() {
+        this.loginSignupService.validateLoginAttempt({
+            "username": this.setUserName,
+            "password": this.setPassword
+        })
+            .subscribe(res => {
+                console.warn("Reeeee",res);
+                
+                if (res['username'] == 'not found') { }
+                // this.infoText.showError('Invalid Login Credentials');
+                else if (res['unverified']) {
+                    // this.infoText.showError('Account Pending Email Verification');
+                }
+                else {
+                    // this.loginTrigger.emit("trigger")
+                    this.modalReference.close();
+                    this.modalReference1.close();
+                    this.sessionData.username = this.setUserName;
+                    
+                    this.sessionData.fromRegularlogin = true;
+                    // this.infoText.showSuccess('Logged in Successfully');
+                    localStorage.setItem("desocializeAuth", res['token'])
+                    localStorage.setItem("device", res['deviceId'])
+                    this.sessionData.userToken = res['token'];
+                    this.sessionData.userDevice = res['deviceId'];
+                    console.warn("fghj",this.sessionData);
+                    this.loginEvent.emit(true);
+                    this.router.navigate(['/profile', res['username']]);                   
+                    
+                }
+            })
+    }
+    openSmallModal(){
+        this.checkSocialName?'':this.open3(this.username_verified)
     }
 }

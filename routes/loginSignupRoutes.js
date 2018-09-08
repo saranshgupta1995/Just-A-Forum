@@ -15,22 +15,22 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LoginDetails').then(oprRes => {
         res.send(oprRes);
     }).catch(x => {
-        console.log(x)
+
     })
     loginSignupDbOpr.dropColl('UserProfiles').catch(x => {
-        console.log(x)
+
     });
     loginSignupDbOpr.dropColl('LevelZero').catch(x => {
-        console.log(x)
+
     });
     loginSignupDbOpr.dropColl('Comments').catch(x => {
-        console.log(x)
+
     });
     loginSignupDbOpr.dropColl('Devices').catch(x => {
-        console.log(x)
+
     });
     loginSignupDbOpr.dropColl('Tags').catch(x => {
-        console.log(x)
+
     });
     loginSignupDbOpr.dropColl('QuestionData').then(x => {
         quesDbOpr.addQuestion({
@@ -83,8 +83,8 @@ router.get('/expose', (req, res) => {
 })
 
 router.get('/show', (req, res) => {
-    loginSignupDbOpr.dbOpr.findDoc(req.query.a).then(x=>{
-        res.json({x})
+    loginSignupDbOpr.dbOpr.findDoc(req.query.a).then(x => {
+        res.json({ x })
     })
 })
 router.get('/verify', (req, res) => {
@@ -119,29 +119,67 @@ router.post('/showDevTasks', (req, res) => {
 })
 
 router.post('/deleteDevTask', (req, res) => {
-    console.log(req.body);
+
     loginSignupDbOpr.removeDevTask(req.body).then((oprRes) => {
         res.send(oprRes);
     })
 })
 
-router.post('/addDevTasks', (req, res) => {    
+router.post('/addDevTasks', (req, res) => {
     loginSignupDbOpr.addDevTask(req.body).then((oprRes) => {
         res.send(oprRes);
     })
 })
 
 router.post('/addNewUser', (req, res) => {
-    loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
-        if (!oprRes) {
-            loginSignupDbOpr.fetchProfileCount().then(coun => {
-                loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
-                    res.send({
-                        'status': oprRes.insertedCount == 1
-                    });
-                    loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
-                    loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.username}`;
-                    loginSignupDbOpr.emailer.mailOptions.html = `
+    if (req.body.social) {
+        loginSignupDbOpr.fetchProfileCount().then(coun => {
+            loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
+                res.send({
+                    'status': oprRes.insertedCount == 1
+                });
+                loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
+                loginSignupDbOpr.emailer.mailOptions.subject = `Account Login Alert, ${req.body.username}.`;
+                loginSignupDbOpr.emailer.mailOptions.html = `
+                <h4>Account Login Successful</h4>
+                <p style="margin:4px;">Hi ${req.body.username}</p>
+                <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
+                <p style="margin:4px;">Stay tuned for more updates.</p>
+                <p style="margin-bottom:4px;">Thanks and Regards,</p>
+                <p style="margin-top:4px;">The DeSocializers</p>
+                `;
+                loginSignupDbOpr.emailer.sendMail();
+                profileDbOpr.addProfile(req.body.username, coun);
+                levelDbOpr.initLevelZero(req.body.username);
+            });
+        });
+        
+    } else {
+        loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
+
+
+            if (!oprRes) {
+                loginSignupDbOpr.fetchProfileCount().then(coun => {
+                    loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
+                        res.send({
+                            'status': oprRes.insertedCount == 1
+                        });
+                        loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
+                        if (req.body['social']) {
+                            loginSignupDbOpr.emailer.mailOptions.subject = `Account Login Alert, ${req.body.username}.`;
+                            loginSignupDbOpr.emailer.mailOptions.html = `
+                            <h4>Account Login Successful</h4>
+                            <p style="margin:4px;">Hi ${req.body.username}</p>
+                            <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
+                            <p style="margin:4px;">Stay tuned for more updates.</p>
+                            <p style="margin-bottom:4px;">Thanks and Regards,</p>
+                            <p style="margin-top:4px;">The DeSocializers</p>
+                            `;
+
+                        } else {
+                            loginSignupDbOpr.emailer.mailOptions.subject = `Account Verification ${req.body.username}`;
+
+                            loginSignupDbOpr.emailer.mailOptions.html = `
                     <h4>Account Verification Email</h4>
                     <p style="margin:4px;">Hi ${req.body.username}</p>
                     <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
@@ -150,22 +188,26 @@ router.post('/addNewUser', (req, res) => {
                     <p style="margin-bottom:4px;">Thanks and Regards</p>
                     <p style="margin-top:4px;">The DeSocializers</p>
                     `;
-                    loginSignupDbOpr.emailer.sendMail();
-                    profileDbOpr.addProfile(req.body.username, coun);
-                    levelDbOpr.initLevelZero(req.body.username);
+                        }
+                        loginSignupDbOpr.emailer.sendMail();
+                        profileDbOpr.addProfile(req.body.username, coun);
+                        levelDbOpr.initLevelZero(req.body.username);
+                    });
+                })
+            }
+            else {
+                res.send({
+                    'status': false
                 });
-            })
-        }
-        else {
-            res.send({
-                'status': false
-            });
-        }
-    })
+            }
+        })
+    }
 })
 
 router.post('/validateUserLogin', validateReq, (req, res) => {
     loginSignupDbOpr.validateUserLogin(req.body).then(oprRes => {
+
+
         resObj = {
             unverified: oprRes.unverified,
             username: oprRes.username,
@@ -173,6 +215,7 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
         if (resObj['username'] != 'not found') {
             resObj.token = req.token;
             resObj.deviceId = req.deviceId;
+
             loginSignupDbOpr.addLoginDevice(resObj.username, resObj.deviceId)
         }
         res.send(resObj);

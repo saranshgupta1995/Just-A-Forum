@@ -43,11 +43,12 @@
     </div>
     <div class="modal-body">
         <div class="main">
-            <form>
+            <form (ngSubmit)="login1()"  #signupForm="ngForm">
+                {{error}}
                 <input name="username" [disabled]="true" value="{{email}}">
-                <input type="text" name="username" placeholder="USERNAME" [(ngModel)]="setUserName" (click)="checkSocialName?'':open3(username_verified)">
+                <input type="text" (focusout)="validateUsername()" pattern="[a-z0-9_-]+" minlength="4" name="username" placeholder="USERNAME" required [(ngModel)]="setUserName" (click)="openSmallModal()">
                 <input type="password" name="psw" placeholder="PASSWORD" [(ngModel)]="setPassword"><br><br>
-                <button class="btn btnn" (click)="login1()">LOGIN</button>
+                <button class="btn btnn" type="submit"  [disabled]="signupForm.invalid" >LOGIN</button>
             </form>
         </div>
     </div>

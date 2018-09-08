@@ -1,8 +1,12 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
+    console.log(req.body, 'not in validations');
+    
     if (req.body["username"] && req.body["password"]) {
+
         let deviceId = (10000 * Math.random()).toString();
+        console.log(deviceId);
         jwt.sign({ user: req.body.username, deviceId }, 'secretkey', (err, token) => {
             req.token = token;
             req.deviceId=deviceId;

@@ -23,7 +23,7 @@ export class BigLoginComponent implements OnInit {
 
 
     onLoginAttempt() {
-        console.warn("Q");
+        
         
         this.showForm = false;
         // this.infoText.showProcess('Sending Data');
@@ -33,14 +33,14 @@ export class BigLoginComponent implements OnInit {
         })
             .subscribe(res => {
                 this.showForm = true;
-                if (res['username'] == 'not found')
-                    this.infoText.showError('Invalid Login Credentials');
+                if (res['username'] == 'not found'){}
+                    // this.infoText.showError('Invalid Login Credentials');
                 else if (res['unverified']) {
-                    this.infoText.showError('Account Pending Email Verification');
+                    // this.infoText.showError('Account Pending Email Verification');
                 } else {
                     this.sessionData.username = this.username;
                     this.sessionData.fromRegularlogin = true;
-                    this.infoText.showSuccess('Logged in Successfully');
+                    // this.infoText.showSuccess('Logged in Successfully');
                     localStorage.setItem("desocializeAuth", res['token'])
                     localStorage.setItem("device", res['deviceId'])
                     this.sessionData.userToken = res['token'];

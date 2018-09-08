@@ -37,12 +37,12 @@ export class MyProfileComponent implements OnInit {
             this.profileService.fetchUserProfile({ username: this.username }).subscribe(res => {
                 // this.userData=res;
                 sessionData.userData = JSON.parse(JSON.stringify(res));
-                console.log(res);
+                
                 this.sessionData.decideUserPrivileges();
                 this.profileService.fetchUserLevelData({ username: this.username, exp_level: res['exp_level'] }).subscribe(res => {
                     // this.taskData=res;
                     sessionData.levelData = res;
-                    console.log(sessionData.userData['exp_level'],sessionData.levelTasks[sessionData.userData['exp_level']]);
+                    
     
                     sessionData.levelData.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
                 });

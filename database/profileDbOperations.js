@@ -4,6 +4,7 @@ profileDbOpr.dbOpr = require('./dbOperations.js');
 profileDbOpr.tableName = 'UserProfiles';
 
 profileDbOpr.addProfile = function (username, coun) {
+    console.log('pikachu')
     return profileDbOpr.dbOpr.insertOneOpr(profileDbOpr.tableName, {
         username: username,
         userId:coun+1,

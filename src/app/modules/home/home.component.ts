@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
     getLatestQuestions(){
         this.questionService.fetchLatestQuestions().subscribe(res=>{
-            console.log(res)
+            
             this.latestQuestions=res;
         })
     }
