@@ -1,5 +1,5 @@
 let commentDbOperations = {};
-//iukyjghfvd
+
 commentDbOperations.dbOpr = require('./dbOperations.js');
 commentDbOperations.tableName = 'Comments';
 

@@ -1,0 +1,81 @@
+.main{
+    width: 100%;
+    height: 400px;
+    background-color: #0b1914;
+   /* //#0b1914 #10190b 33260d*/
+}
+.input1{
+    width: 130px;
+    height: 60px;
+    border: 1px 0 0 0;
+    outline: 0;
+    font-size: 28px;
+    font-family: 'Boogaloo', cursive;
+    background-color: #dfdfdf;
+}
+.input2{
+    border-radius: 0;
+    width: 256px;
+    height: 60px;
+    border: 0 0 1px 0;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif bold;
+    font-size: 25px;
+}
+.login_btn{
+    width: 386px;
+    height: 60px;
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+    font-family: 'Francois One', sans-serif;
+    font-size: 42px;
+    background-color: #ffd88e;
+}
+.social_btn{
+    width: 302px;
+    height: 60px;
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 35px;
+}
+h1{
+    font-family: 'Amatic SC', cursive;
+    font-size: 165px;
+    color: #cbffb1;
+}
+h4{
+    color: #e9f5f5;
+    font-size: 50px;
+}
+button.social_btn:hover,button.login_btn:enabled:hover{
+    cursor: pointer;
+}
+::-webkit-input-placeholder {
+   /* Chrome/Opera/Safari */
+    font-family: 'Rajdhani', sans-serif;
+}
+::-moz-placeholder {
+   /* Firefox 19+ */
+    font-family: 'Rajdhani', sans-serif;
+}
+:-ms-input-placeholder {
+   /* IE 10+ */
+    font-family: 'Rajdhani', sans-serif;
+}
+:-moz-placeholder {
+   /* Firefox 18- */
+    font-family: 'Rajdhani', sans-serif;
+}
+/* font-family: 'Open Sans Condensed', sans-serif;
+*/
+/* font-family: 'Quicksand', sans-serif;
+*/
+/* font-family: 'Amatic SC', cursive;
+*/
+/* font-family: 'Rajdhani', sans-serif;
+*/
+/* font-family: 'Poiret One', cursive;
+*/

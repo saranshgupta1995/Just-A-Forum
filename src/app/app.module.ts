@@ -22,16 +22,15 @@ import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile
 import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
 import { TagBoxComponent } from './modules/tag-box/tag-box.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalLoginComponent } from 'src/app/modules/modal-login/modal-login.component';
-import { EasyEditorComponent } from './modules/easy-editor/easy-editor.component';
-
+import { ModalLoginComponent } from './modules/modal-login/modal-login.component';
+import { HttpClient } from '@angular/common/http';{}
 const appRoutes: Routes = [
     {
         path: 'profile/:username',
         component: MyProfileComponent,
         children: [
             {
-                path: '', redirectTo:'profiledata', pathMatch:'full'
+                path: '', redirectTo: 'profiledata', pathMatch: 'full'
             },
             {
                 path: 'privileges', component: ProfilePrivilegesComponent
@@ -46,16 +45,39 @@ const appRoutes: Routes = [
     },
     { path: 'question/:ques', component: QuestionComponent },
     { path: 'home', component: HomeComponent },
-    { path: '', component: HomeComponent },
+    { path: '', component: ModalLoginComponent },//ModalLoginComponentHomeComponent
 ]
-
+import {
+    SocialLoginModule,
+    AuthServiceConfig,
+    GoogleLoginProvider,
+    FacebookLoginProvider,
+} from "angular5-social-login";
+import { HomepageTagsComponent } from './modules/homepage-tags/homepage-tags.component';
+import { BigLoginComponent } from './modules/big-login/big-login.component';
+import { EasyEditorComponent } from './modules/easy-editor/easy-editor.component';
+// Configs 
+export function getAuthServiceConfigs() {
+    let config = new AuthServiceConfig(
+        [
+            {
+                id: FacebookLoginProvider.PROVIDER_ID,
+                provider: new FacebookLoginProvider("477334162742685")
+            },
+            {
+                id: GoogleLoginProvider.PROVIDER_ID,
+                provider: new GoogleLoginProvider("634654569325-afch5upblogobff334hgf9uvvvk6b4ej.apps.googleusercontent.com")
+            },
+        ]
+    );
+    return config;
+}
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         HomeComponent,
         SignupComponent,
-        ModalLoginComponent,
         SexyNavbarComponent,
         UserNavComponent,
         InfoTextComponent,
@@ -65,11 +87,14 @@ const appRoutes: Routes = [
         FooterComponent,
         QuestionComponent,
         LoaderComponent,
+        EasyEditorComponent,
         ProfileQuestionsComponent,
         ProfilePrivilegesComponent,
         ProfileDataComponent,
         TagBoxComponent,
-        EasyEditorComponent
+        ModalLoginComponent,
+        HomepageTagsComponent,
+        BigLoginComponent
     ],
     imports: [
         // RouterModule.forRoot(appRoutes, { enableTracing: true }),
@@ -79,8 +104,12 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
+        SocialLoginModule
     ],
-    providers: [],
+    providers: [{
+        provide: AuthServiceConfig,
+        useFactory: getAuthServiceConfigs
+    },],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,39 @@
+<div class="fluid-container main">
+    <br>
+    <div class="row">
+        <div class="col-md-7">
+            <h1>DeSocialize</h1>
+        </div>
+        <div class="col-md-5">
+            <form  (ngSubmit)="onLoginAttempt()"  #loginForm="ngForm">
+                <div>
+                    <input class="input1" type="text" value="USERNAME" [disabled]="true">
+                    <input class="input2" type="text" placeholder="Type...." required [(ngModel)]="username" name="username">
+                </div>
+                <br>
+                <div>
+                    <input class="input1" type="text" value="PASSWORD" [disabled]="true">
+                    <input class="input2" type="password" placeholder="Type...." required [(ngModel)]="password" name="password">
+                </div>
+                <br>
+                <div>
+                    <button class="login_btn" type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+                </div>
+            </form>
+            <br><br>
+            <div>
+                <!-- <div class="row">
+                    <div class="col-md-1"> -->
+                <h4>OR
+                    <!-- </div> -->
+                    <!-- <div class="col-md-11"> -->
+                    <button class="social_btn">FACEBOOK/GOOGLE</button></h4>
+                <!-- </div> -->
+
+                <!-- </div> -->
+            </div>
+
+        </div>
+    </div>
+
+</div>

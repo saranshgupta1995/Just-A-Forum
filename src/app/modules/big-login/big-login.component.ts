@@ -1,14 +1,13 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit ,ViewChild,Output,EventEmitter} from '@angular/core';
 import { LoginSignupService } from '../../http/login-signup/login-signup.service';
 import { Router } from '@angular/router';
 import { SessionDataService } from '../../session-data.service';
-
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-big-login',
+  templateUrl: './big-login.component.html',
+  styleUrls: ['./big-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class BigLoginComponent implements OnInit {
 
     username = '';
     password = '';
@@ -24,8 +23,10 @@ export class LoginComponent implements OnInit {
 
 
     onLoginAttempt() {
+        console.warn("Q");
+        
         this.showForm = false;
-        this.infoText.showProcess('Sending Data');
+        // this.infoText.showProcess('Sending Data');
         this.loginSignupService.validateLoginAttempt({
             "username": this.username,
             "password": this.password
@@ -46,7 +47,6 @@ export class LoginComponent implements OnInit {
                     this.sessionData.userDevice = res['deviceId'];
                     this.loginEvent.emit(true);
                     this.router.navigate(['/profile', res['username']]);
-                    
                 }
             })
 
@@ -55,5 +55,6 @@ export class LoginComponent implements OnInit {
     backFromLogin() {
         this.onReturn.emit('');
     }
+
 
 }

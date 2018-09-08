@@ -1,0 +1,15 @@
+.tag-box{
+    margin: 0px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #39739d;
+    background-color: #666666;
+    border-color: #666666;
+    max-width: 100px;
+    border:0;
+    outline:0;
+}
+
+.font-button{
+    cursor: default ;
+}
