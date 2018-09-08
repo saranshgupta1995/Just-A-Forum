@@ -16,7 +16,7 @@ router.post('/fetchquestiondata', validateReq, (req, res) => {
     })
 });
 
-router.post('/fetchlatestquestions', validateReq, (req, res) => {
+router.post('/fetchlatestquestions', (req, res) => {
     quesDbOperations.getlatestQuestions().then(oprRes=>{
         res.send(oprRes);
     })
