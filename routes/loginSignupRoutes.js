@@ -133,14 +133,17 @@ router.post('/addDevTasks', (req, res) => {
 
 router.post('/addNewUser', (req, res) => {
     if (req.body.social) {
-        loginSignupDbOpr.fetchProfileCount().then(coun => {
-            loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
-                res.send({
-                    'status': oprRes.insertedCount == 1
-                });
-                loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
-                loginSignupDbOpr.emailer.mailOptions.subject = `Account Login Alert, ${req.body.username}.`;
-                loginSignupDbOpr.emailer.mailOptions.html = `
+        //add here
+        loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
+            if (oprRes == 0) {
+                loginSignupDbOpr.fetchProfileCount().then(coun => {
+                    loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {
+                        res.send({
+                            'status': oprRes.insertedCount == 1
+                        });
+                        loginSignupDbOpr.emailer.mailOptions.to = req.body.email;
+                        loginSignupDbOpr.emailer.mailOptions.subject = `Account Login Alert, ${req.body.username}.`;
+                        loginSignupDbOpr.emailer.mailOptions.html = `
                 <h4>Account Login Successful</h4>
                 <p style="margin:4px;">Hi ${req.body.username}</p>
                 <p style="margin:4px;">Thanks for Signing Up with DeSocialize.</p>
@@ -148,12 +151,17 @@ router.post('/addNewUser', (req, res) => {
                 <p style="margin-bottom:4px;">Thanks and Regards,</p>
                 <p style="margin-top:4px;">The DeSocializers</p>
                 `;
-                loginSignupDbOpr.emailer.sendMail();
-                profileDbOpr.addProfile(req.body.username, coun);
-                levelDbOpr.initLevelZero(req.body.username);
-            });
-        });
-        
+                        loginSignupDbOpr.emailer.sendMail();
+                        profileDbOpr.addProfile(req.body.username, coun);
+                        levelDbOpr.initLevelZero(req.body.username);
+                    });
+                });
+            } else {
+                res.send({
+                    'status':false
+                });
+            }
+        })
     } else {
         loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
 
@@ -218,6 +226,7 @@ router.post('/validateUserLogin', validateReq, (req, res) => {
 
             loginSignupDbOpr.addLoginDevice(resObj.username, resObj.deviceId)
         }
+        
         res.send(resObj);
 
     })
