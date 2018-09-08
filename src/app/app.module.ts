@@ -17,6 +17,7 @@ import { TaskNoteComponent } from './modules/task-note/task-note.component';
 import { FooterComponent } from './modules/footer/footer.component';
 import { QuestionComponent } from './modules/question/question.component';
 import { LoaderComponent } from './modules/loader/loader.component';
+import { ErrorComponent } from './modules/error/error.component';
 import { ProfileQuestionsComponent } from './modules/profile-questions/profile-questions.component';
 import { ProfilePrivilegesComponent } from './modules/profile-privileges/profile-privileges.component';
 import { ProfileDataComponent } from './modules/profile-data/profile-data.component';
@@ -87,6 +88,7 @@ export function getAuthServiceConfigs() {
         FooterComponent,
         QuestionComponent,
         LoaderComponent,
+        ErrorComponent,
         EasyEditorComponent,
         ProfileQuestionsComponent,
         ProfilePrivilegesComponent,
