@@ -26,13 +26,14 @@ import { TagBoxComponent } from '../tag-box/tag-box.component';
 export class QuestionComponent implements OnInit {
 
     commentText: string;
-    questionText: string;
+    @Input() questionText: string;
     questionData: any = {};
     showScreen = false;
     @ViewChild('infoText') infoText: InfoTextComponent;
     @ViewChild('newQuestionTagBox') newQuestionTagBox: TagBoxComponent;
     quesTags: any = [];
     @Input() new = false;
+    @Input() srcHome = false;
     newQuestion='';
 
     constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService) {
@@ -41,7 +42,7 @@ export class QuestionComponent implements OnInit {
     ngOnInit() {
         if (!this.new) {
             this.questionService.fetchQuestionData({
-                question: this.activatedRoute.snapshot.params['ques']
+                question: !this.srcHome?this.activatedRoute.snapshot.params['ques']:this.questionText
             }).subscribe(res => {
                 this.questionData = res;
                 this.getTags();
@@ -69,7 +70,7 @@ export class QuestionComponent implements OnInit {
         this.questionService.addQuestion({
             question: this.newQuestion,
             profileId: this.sessionData.userData['userId'],
-            tags:this.newQuestionTagBox.tagBoxes
+            tags: this.newQuestionTagBox.tagBoxes.splice(0, this.newQuestionTagBox.tagBoxes.length-1)
         }).subscribe(res => {
         })
     }

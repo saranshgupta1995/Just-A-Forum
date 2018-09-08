@@ -10,6 +10,7 @@ import { QuestionService } from '../../http/question/question.service';
 })
 export class HomeComponent implements OnInit {
     pendingTasks;
+    latestQuestions:any=[];
     newDevTask = {
         task: '',
         dev: '',
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit {
 
     getLatestQuestions(){
         this.questionService.fetchLatestQuestions().subscribe(res=>{
-            console.log(res);
+            console.log(res)
+            this.latestQuestions=res;
         })
     }
 
