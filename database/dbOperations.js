@@ -34,12 +34,12 @@ dbOperations.fetchCount = function (collection, dataObj) {
         });
 }
 
-dbOperations.findDoc = function (collection, dataObj) {
+dbOperations.findDoc = function (collection, dataObj, sortKey, dataLimit = 0) {
     return dbOperations.database.getCollection(collection)
         .then((coll) => {
             let data = [];
-            return coll.coll.find(dataObj).forEach(x => {
-                if(x._id){
+            return coll.coll.find(dataObj).sort(sortKey).limit(dataLimit).forEach(x => {
+                if (x._id) {
                     delete x._id;
                 }
                 data.push(x);
