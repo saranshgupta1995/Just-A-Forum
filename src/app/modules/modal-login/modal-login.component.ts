@@ -148,11 +148,12 @@ export class ModalLoginComponent implements OnInit {
             "social": true
         })
             .subscribe(res => {
+                console.warn("reqqqqqq",res);
                 
-                if (res['status']) {
+                // if (res['status']) {
                     
                     this.login3()
-                }
+                // }
 
             })
 
