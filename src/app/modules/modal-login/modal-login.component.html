@@ -48,7 +48,7 @@
                 <input name="username" [disabled]="true" value="{{email}}">
                 <input type="text" (focusout)="validateUsername()" pattern="[a-z0-9_-]+" minlength="4" name="username" placeholder="USERNAME" required [(ngModel)]="setUserName" (click)="openSmallModal()">
                 <input type="password" name="psw" placeholder="PASSWORD" [(ngModel)]="setPassword"><br><br>
-                <button class="btn btnn" type="submit"  [disabled]="signupForm.invalid" >LOGIN</button>
+                <button class="btn btnn" type="submit"  [disabled]="signupForm.invalid || error" >LOGIN</button>
             </form>
         </div>
     </div>
