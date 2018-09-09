@@ -131,9 +131,7 @@ router.post('/addDevTasks', (req, res) => {
 })
  
 router.post('/addnewuser', (req, res) => {
-    console.log(req.body);
     if (req.body.social) {
-        //add here
         loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
             if (oprRes == 0) {
                 loginSignupDbOpr.fetchProfileCount().then(coun => {

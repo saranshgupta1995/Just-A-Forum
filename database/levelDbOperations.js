@@ -37,7 +37,7 @@ levelDbOpr.setCatchPhrase = function (username, catchPhrase, level) {
 }
 
 levelDbOpr.setUserLevel = function (username, level) {
-    let dataObj={
+    let dataObj = {
         username: username,
         progresses: [0]
     }
@@ -51,7 +51,6 @@ levelDbOpr.deleteUserLevel = function (username, level) {
 }
 
 levelDbOpr.findLevelData = function (username, exp_level) {
-    console.log(username,exp_level);
     return levelDbOpr.dbOpr.findDoc(levelDbOpr.tableNames[exp_level], { username: username }).then(oprRes => {
         if (!oprRes.length) {
             return { 'username': 'not found' };

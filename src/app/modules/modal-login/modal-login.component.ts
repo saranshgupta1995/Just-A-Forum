@@ -141,7 +141,7 @@ export class ModalLoginComponent implements OnInit {
     //login1 is used for social login
     login1() {
         //call register
-        this.loginSignupService.addNewUser({
+        this.loginSignupService.addnewuser({
             "username": this.setUserName,
             "password": this.setPassword,
             "email": this.email,
