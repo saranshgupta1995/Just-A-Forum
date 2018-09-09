@@ -1,0 +1,29 @@
+{
+    "addnewuser": [
+        {
+            "username": "saransh",
+            "password": "saransh",
+            "email": "saranshgupta1995@gmail.com"
+        }
+    ],
+    "validateUserLogin": [
+        {
+            "username": "saransh",
+            "password": "saransh"
+        }
+    ],
+    "addcomment": [
+        {
+            "comment": "The Provost",
+            "commentId": 0,
+            "quesId": "0.1"
+        }
+    ],
+    "addWorth": [
+        {
+            "username": "saransh",
+            "worth": 200,
+            "oldWorth": 100
+        }
+    ]
+}

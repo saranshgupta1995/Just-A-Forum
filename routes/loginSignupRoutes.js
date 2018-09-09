@@ -13,7 +13,6 @@ router.use(function (req, res, next) {
 
 router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LoginDetails').then(oprRes => {
-        res.send(oprRes);
     }).catch(x => {
 
     })
@@ -30,8 +29,8 @@ router.get('/drop', (req, res) => {
 
     });
     loginSignupDbOpr.dropColl('Tags').catch(x => {
-
     });
+    res.send('Dropped');
     loginSignupDbOpr.dropColl('QuestionData').then(x => {
         quesDbOpr.addQuestion({
             question: 'What are you like?',
@@ -130,8 +129,9 @@ router.post('/addDevTasks', (req, res) => {
         res.send(oprRes);
     })
 })
-
-router.post('/addNewUser', (req, res) => {
+ 
+router.post('/addnewuser', (req, res) => {
+    console.log(req.body);
     if (req.body.social) {
         //add here
         loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
@@ -164,8 +164,6 @@ router.post('/addNewUser', (req, res) => {
         })
     } else {
         loginSignupDbOpr.checkEmailExistance(req.body.email).then((oprRes) => {
-
-
             if (!oprRes) {
                 loginSignupDbOpr.fetchProfileCount().then(coun => {
                     loginSignupDbOpr.addLoginDetails(req.body).then((oprRes) => {

@@ -4,12 +4,12 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>{{questionData.question}}</h3>
-                        <textarea [(ngModel)]="commentText"></textarea>
+                        <h3 (click)="navigateToQuestion()">{{questionData.question}}</h3>
+                        <textarea *ngIf="!srcHome" [(ngModel)]="commentText"></textarea>
                     </div>
                 </div>
                 <tag-box [taggedWith]="quesTags"></tag-box>
-                <div class="row">
+                <div *ngIf="!srcHome" class="row">
                     <div class="col-md-12">
                         <button [disabled]="!commentText" class="btn btn-block btn-outline-secondary" (click)="sendComment();">Submit Answer</button>
                     </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div [@enterAnimation] *ngIf="questionData.comments">
+        <div [@enterAnimation] *ngIf="questionData.comments.length; else noComments">
             <div *ngFor="let comment of questionData.comments" class="row comment-row">
                 <div class="col-md-12">
                     <p class="comment-comment">{{comment.comment}}</p>
@@ -48,6 +48,13 @@
                 </div>
             </div>
         </div>
+        <ng-template #noComments>
+            <div class="row comment-row">
+                <div class="col-md-12">
+                    <p class="comment-comment">Be the first one to answer this question</p>
+                </div>
+            </div>
+        </ng-template>
     </div>
     <ng-template #newQuestionScreen>
         <div class="row">

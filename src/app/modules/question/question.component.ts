@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { QuestionService } from '../../http/question/question.service';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { CommentService } from '../../http/comment/comment.service';
 import { InfoTextComponent } from '../info-text/info-text.component';
@@ -36,7 +36,7 @@ export class QuestionComponent implements OnInit {
     @Input() srcHome = false;
     newQuestion='';
 
-    constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService) {
+    constructor(private questionService: QuestionService, private sessionData: SessionDataService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private profileService: ProfileService, private router: Router) {
     }
 
     ngOnInit() {
@@ -73,6 +73,11 @@ export class QuestionComponent implements OnInit {
             tags: this.newQuestionTagBox.tagBoxes.splice(0, this.newQuestionTagBox.tagBoxes.length-1)
         }).subscribe(res => {
         })
+    }
+
+    navigateToQuestion(){
+        if(this.srcHome)
+            this.router.navigate(['question', this.questionData['question']]);
     }
 
     sendComment() {

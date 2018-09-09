@@ -30,7 +30,7 @@ export class LoginSignupService {
     };
 
 
-    addNewUser(user: any) {
+    addnewuser(user: any) {
         return this.http.post(this.httpUrls.addNewUserUrl, user).pipe(catchError(this.handleError));
     }
 

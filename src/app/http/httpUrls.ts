@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 export class HttpUrls {
 
     // login-signups urls
-    addNewUserUrl =`${environment.serverUrl}/addNewUser`;
+    addNewUserUrl =`${environment.serverUrl}/addnewuser`;
     validateLoginUrl = `${environment.serverUrl}/validateUserLogin`;
     validateUsernameUrl = `${environment.serverUrl}/validateUsername`;
     validateTokenUrl = `${environment.serverUrl}/validatetoken`;

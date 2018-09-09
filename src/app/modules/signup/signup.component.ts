@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
         }
         this.showForm = false;
         this.infoText.showProcess('Sending Data');
-        this.loginSignupService.addNewUser({
+        this.loginSignupService.addnewuser({
             "username":this.username,
             "password":this.password,
             "email":this.userEmail
