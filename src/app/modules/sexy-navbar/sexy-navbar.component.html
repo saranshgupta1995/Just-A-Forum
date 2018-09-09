@@ -27,7 +27,7 @@
 </form>
 <div *ngIf="!loggedIn"> 
     <div>
-        <app-big-login (onReturn)="toggleToHomeNav('login');" (loginEvent)="loginEvent($event)"></app-big-login>
+        <app-big-login (socialLoginEvent)=socialLoginEvent(true) (onReturn)="toggleToHomeNav('login');" (loginEvent)="loginEvent($event)"></app-big-login>
 
     </div>
     <br><br>

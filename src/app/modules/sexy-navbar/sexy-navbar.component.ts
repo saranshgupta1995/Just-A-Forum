@@ -112,12 +112,16 @@ export class SexyNavbarComponent implements OnInit {
                 that.signupFormView = !that.signupFormView;
             that.buttonViewState = that.buttonViewState === 'active' ? 'inactive' : 'active';
         }, that.animTime);
-        
+
     }
     trigger_toggle(event) {
         if (event) {
             this.socialFormView = !this.socialFormView;
         }
+    }
+    socialLoginEvent(x) {
+        this.toggleToSocial()
+
     }
 
 }

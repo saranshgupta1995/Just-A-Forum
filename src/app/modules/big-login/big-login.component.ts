@@ -15,6 +15,7 @@ export class BigLoginComponent implements OnInit {
     @ViewChild('infoText') infoText;
     @Output() onReturn = new EventEmitter();
     @Output() loginEvent = new EventEmitter();
+    @Output() socialLoginEvent = new EventEmitter();
 
     constructor(private sessionData: SessionDataService, private loginSignupService: LoginSignupService, private router: Router) { }
 
@@ -49,6 +50,14 @@ export class BigLoginComponent implements OnInit {
                     this.router.navigate(['/profile', res['username']]);
                 }
             })
+
+    }
+    loginSocial(){
+        this.socialLoginEvent.emit(true)
+
+
+
+
 
     }
 
