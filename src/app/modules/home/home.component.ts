@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
     };
 
     constructor(private http: HttpClient, public sessionData: SessionDataService, private questionService:QuestionService) {
-    
         this.getLatestQuestions()
     }
 
@@ -35,7 +34,6 @@ export class HomeComponent implements OnInit {
 
     getLatestQuestions(){
         this.questionService.fetchLatestQuestions().subscribe(res=>{
-            
             this.latestQuestions=res;
         })
     }
