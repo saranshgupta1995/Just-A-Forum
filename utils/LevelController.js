@@ -23,7 +23,7 @@ levelController.runData = (data) => {
         if (!found)
             break
     }
-    return levelDict[func]
+    return levelDict[Math.max(0,func-1)]
 }
 
 levelController.getLevel=(username, changeObj={
