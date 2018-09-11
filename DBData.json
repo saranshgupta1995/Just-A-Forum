@@ -35,5 +35,16 @@
             "worth": 300,
             "oldWorth": 200
         }
+    ],
+    "addquestion": [
+        {
+            "question": "Sab sach mein Moh Maya hai kya?",
+            "profileId": 1,
+            "tags": [
+                ["zindagi-pikachu-hai","My Name is Rufus and that's the Trufus"],
+                ["real-world-questions",""],
+                ["no-idea-bro",""]
+            ]
+        }
     ]
 }

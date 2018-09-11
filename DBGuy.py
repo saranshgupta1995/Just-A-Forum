@@ -28,15 +28,8 @@ class Dsclz_Db_Guy:
         self.db_guy=DataBaseGuy()
         self.target_data=json.loads(open('DBData.json').read().encode('utf-8'))
         print(self.db_guy.send_get('drop').text)
-        self.posts=['addnewuser','validateUserLogin','addcomment','addWorth']
+        self.posts=['addnewuser','validateUserLogin','addcomment','addWorth','addquestion']
         self.run_JSON()
-    
-    def add_tags(self):
-        tag={
-            "tag": "dev-tasks",
-            "quesIds": ",0.1,",
-            "desc": "Developer Tasks"
-        }
 
     def run_JSON(self):
         for key in self.posts:

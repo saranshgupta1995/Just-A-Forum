@@ -1,6 +1,7 @@
 <div class="row">
     <ul>
-        <li *ngIf="privileges.catchPhraseAccess"><i>You can now add a catch phrase to your profile.</i></li>
+        <li *ngIf="privileges.catchPhraseAccess; else noCatchPhraseAccess"><i>You can now add a catch phrase to your profile.</i></li>
+        <ng-template #noCatchPhraseAccess>You should not be allowed to add a catch phrase to your profile.</ng-template>
         <li *ngIf="privileges.profileImageAccess"><i>You can now add a profile picture. Use it wisely.</i></li>
     </ul>
 </div>

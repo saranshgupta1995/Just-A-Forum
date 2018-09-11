@@ -98,9 +98,10 @@ export class QuestionComponent implements OnInit {
                 })
                 this.questionData.comments.push({
                     comment: this.commentText,
-                    commentId: 0,
+                    commentId: this.questionData.comments.length-1,
                     quesId: this.questionData.quesId
                 })
+                this.commentText='';
             }
         })
     }
