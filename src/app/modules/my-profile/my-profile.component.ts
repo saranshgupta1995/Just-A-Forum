@@ -32,18 +32,13 @@ export class MyProfileComponent implements OnInit {
 
     constructor(private route: ActivatedRoute, private profileService: ProfileService, private taskRoutes: TaskRoutes, private router: Router, private questionService: QuestionService, public sessionData: SessionDataService) {
 
-        this.username = sessionData.username;
+        this.username = sessionData.userData.username;
         if (sessionData.fromRegularlogin) {
             this.profileService.fetchUserProfile({ username: this.username }).subscribe(res => {
-                // this.userData=res;
                 sessionData.userData = JSON.parse(JSON.stringify(res));
-                
                 this.sessionData.decideUserPrivileges();
                 this.profileService.fetchUserLevelData({ username: this.username, exp_level: res['exp_level'] }).subscribe(res => {
-                    // this.taskData=res;
-                    sessionData.levelData = res;
-                    
-    
+                    sessionData.levelData = res;    
                     sessionData.levelData.taskList = sessionData.levelTasks[sessionData.userData['exp_level']];
                 });
             });

@@ -23,7 +23,6 @@ levelController.runData = (data) => {
     }
     for (var func = 1; func <= checkFuncs.length; func++) {
         found = levelController[checkFuncs[func]](data);
-        console.log(func, found)
         if (!found)
             break
     }

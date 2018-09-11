@@ -39,7 +39,7 @@ export class BigLoginComponent implements OnInit {
                 else if (res['unverified']) {
                     // this.infoText.showError('Account Pending Email Verification');
                 } else {
-                    this.sessionData.username = this.username;
+                    this.sessionData.userData.username = this.username;
                     this.sessionData.fromRegularlogin = true;
                     // this.infoText.showSuccess('Logged in Successfully');
                     localStorage.setItem("desocializeAuth", res['token'])

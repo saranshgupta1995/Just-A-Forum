@@ -126,7 +126,7 @@ export class ModalLoginComponent implements OnInit {
                 else {
                     // this.loginTrigger.emit("trigger")
                     this.modalReference.close();
-                    this.sessionData.username = this.loginUserName;
+                    this.sessionData.userData.username = this.loginUserName;
                     this.sessionData.fromRegularlogin = true;
                     // this.infoText.showSuccess('Logged in Successfully');
                     localStorage.setItem("desocializeAuth", res['token'])
@@ -170,7 +170,7 @@ export class ModalLoginComponent implements OnInit {
 
                 this.modalReference.close();
                 this.modalReference1.close();
-                this.sessionData.username = this.setUserName;
+                this.sessionData.userData.username = this.setUserName;
                 this.sessionData.fromRegularlogin = true;
                 // this.infoText.showSuccess('Logged in Successfully');
                 localStorage.setItem("desocializeAuth", res['token'])
@@ -220,7 +220,7 @@ export class ModalLoginComponent implements OnInit {
                     // this.loginTrigger.emit("trigger")
                     this.modalReference.close();
                     this.modalReference1.close();
-                    this.sessionData.username = this.setUserName;
+                    this.sessionData.userData.username = this.setUserName;
                     
                     this.sessionData.fromRegularlogin = true;
                     // this.infoText.showSuccess('Logged in Successfully');

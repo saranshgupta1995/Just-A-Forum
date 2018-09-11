@@ -22,6 +22,9 @@ router.get('/drop', (req, res) => {
     loginSignupDbOpr.dropColl('LevelZero').catch(x => {
 
     });
+    loginSignupDbOpr.dropColl('LevelOne').catch(x => {
+
+    });
     loginSignupDbOpr.dropColl('Comments').catch(x => {
 
     });
