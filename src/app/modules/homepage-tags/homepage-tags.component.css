@@ -13,3 +13,29 @@
 .font-button{
     cursor: default ;
 }
+
+
+
+.maindiv{
+    width: 13rem;
+    background-color:#e5e5e5;
+    border:0;
+    margin:10px;
+}
+.footermain{
+    height:15px;
+    background-color:#b2b2b2;
+}
+.footertext{
+    font-size:0.7em;
+    margin-top: -6.8px;
+}
+
+@media screen and (max-width:470px){   
+    .maindiv{
+        width: 8rem;
+    }
+    .tag-box{
+        max-width: 70px;
+    }
+}
