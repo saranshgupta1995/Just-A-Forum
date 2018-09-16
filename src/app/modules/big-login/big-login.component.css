@@ -22,6 +22,9 @@
     font-family: 'Quicksand', sans-serif bold;
     font-size: 25px;
 }
+
+
+
 .login_btn{
     width: 386px;
     height: 60px;
@@ -79,3 +82,41 @@ button.social_btn:hover,button.login_btn:enabled:hover{
 */
 /* font-family: 'Poiret One', cursive;
 */
+@media screen and (max-width:980px){
+    .main{
+        height: 300px;
+    }
+    .input1{
+        width: 60px;
+        height: 35px;
+        font-size: 12px;
+        margin-left: 50px
+    }
+    .input2{
+        width: 180px;
+        height: 35px;
+        font-size: 12px;
+    }
+    .login_btn{
+        width: 241px;
+        height: 35px;        
+        font-size: 15px;       
+        margin-left: 50px;
+
+    }
+    h4{
+        font-size: 25px;
+        margin-left: 50px ;
+    }
+    .social_btn{
+        width: 200px;
+        height: 35px;
+        font-size: 15px;
+    }
+
+}
+@media screen and (max-width:767px){
+    h1{
+        display: none;
+    }
+}

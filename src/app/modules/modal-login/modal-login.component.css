@@ -59,4 +59,13 @@
   .btnn:active{
       transform: scale(1.2);
   }
-  
+  @media screen and (max-width:500px){
+    .google,.facebook{   
+        margin-left: 10%;
+    }
+  }
+  @media screen and (max-width:320px){
+    .google,.facebook{   
+        margin-left:15px;
+    }
+  }
