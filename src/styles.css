@@ -6,6 +6,10 @@ img{
     height: auto;
 }
 
+textarea{
+    resize: none;
+}
+
 .same-line{
     display: inline
 }
