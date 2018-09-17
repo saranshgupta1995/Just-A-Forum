@@ -15,10 +15,10 @@ quesDbOpr.addQuestion = function (ques_data, ques_id) {
     quesDbOpr.getAllTags().then(oprRes => {
         tags = (oprRes.map(x => x.tag));
         for (let i = 0; i < ques_tags.length; i++) {
-            if (tags.indexOf(ques_tags[i][0] < 0)) {
+            if (!~tags.indexOf(ques_tags[i][0])) {
                 quesDbOpr.addTags([{ tag: ques_tags[i][0], quesIds: ',' + ques_data.quesId + ',', desc: ques_tags[i][1] }])
             } else {
-
+                quesDbOpr.addTagQuestion({ tag: ques_tags[i][0], quesId: ques_data.quesId });
             }
         }
     })
@@ -32,6 +32,12 @@ quesDbOpr.getAllTags = function () {
 
 quesDbOpr.addTags = function (tagData) {
     return quesDbOpr.dbOpr.insertManyOpr(quesDbOpr.tagsDataTable, tagData)
+}
+
+quesDbOpr.addTagQuestion = function (tagData) {
+    return quesDbOpr.dbOpr.findDoc(quesDbOpr.tagsDataTable,{tag:tagData.tag}).then(tagDoc=>{
+        return quesDbOpr.dbOpr.updateOne(quesDbOpr.tagsDataTable, { tag: tagData.tag }, { $set: {quesIds: tagDoc[0].quesIds+tagData.quesId+','}})
+    })
 }
 
 quesDbOpr.fetchQuestionCount = function () {
