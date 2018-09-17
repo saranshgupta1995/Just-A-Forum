@@ -1,5 +1,5 @@
 dsclz-crazy-bg{
-    position: absolute;
+    position: fixed;
     top:0px;
     z-index: -99999;
 }
