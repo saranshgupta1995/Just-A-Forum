@@ -58,6 +58,7 @@ import { HomepageTagsComponent } from './modules/homepage-tags/homepage-tags.com
 import { BigLoginComponent } from './modules/big-login/big-login.component';
 import { EasyEditorComponent } from './modules/easy-editor/easy-editor.component';
 import { CrazyBgComponent } from './common/component/crazy-bg/crazy-bg.component';
+import { BigFatTextComponent } from './common/big-fat-text/big-fat-text.component';
 // Configs 
 export function getAuthServiceConfigs() {
     let config = new AuthServiceConfig(
@@ -98,7 +99,8 @@ export function getAuthServiceConfigs() {
         ModalLoginComponent,
         HomepageTagsComponent,
         BigLoginComponent,
-        CrazyBgComponent
+        CrazyBgComponent,
+        BigFatTextComponent
     ],
     imports: [
         // RouterModule.forRoot(appRoutes, { enableTracing: true }),
