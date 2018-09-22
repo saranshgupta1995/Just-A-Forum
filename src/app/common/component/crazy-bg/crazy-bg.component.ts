@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CrazyBgConnect } from './crazy-bg-connect';
 
 @Component({
     selector: 'dsclz-crazy-bg',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrazyBgComponent implements OnInit {
 
-    constructor() { }
+    constructor(private crazyBgConnect: CrazyBgConnect) { }
 
     ngOnInit() {
+
+
+        let connectData = this.crazyBgConnect;
+        document.onclick = (e) => {
+            connectData.targetPos.x = e['clientX']
+            connectData.targetPos.y = e['clientY']
+        }
+
         let randFun = Math.random;
         let currentMousePosition = {
             x: -1,
@@ -72,7 +81,7 @@ export class CrazyBgComponent implements OnInit {
                 setInterval(() => {
                     that.x = randFun() * W;
                     that.y = randFun() * H;
-                }, 100000+ randFun() * 10000)
+                }, 1000 + randFun() * 10000)
             }
 
             draw: () => void = function () {
@@ -84,19 +93,34 @@ export class CrazyBgComponent implements OnInit {
             };
 
             updateSpeed: () => void = function () {
-                // if (!~currentMousePosition.x)
-                //     return
-                // let diffX = this.x - currentMousePosition.x
-                // let diffY = this.y - currentMousePosition.y
+                if (!~connectData.targetPos.x)
+                    return
 
-                // if (diffX * diffX + diffY * diffY < 81) {
-                //     this.x = randFun() * W;
-                //     this.y = randFun() * H;
-                // } 
-                // else if (diffX * diffX + diffY * diffY < 6600) {
-                //     this.x -= diffX / 20;
-                //     this.y -= diffY / 20;
-                // }
+                let diffX = this.x - connectData.targetPos.x
+                let diffY = this.y - connectData.targetPos.y
+
+                if (diffX * diffX + diffY * diffY < 3600) {
+                    this.x -= diffX / 2000;
+                    this.y -= diffY / 2000;
+                } else if (diffX * diffX + diffY * diffY < 6600) {
+                    this.x -= diffX / 20;
+                    this.y -= diffY / 20;
+                } else if (diffX * diffX + diffY * diffY < 16600) {
+                    this.x -= diffX / 2000;
+                    this.y -= diffY / 2000;
+                } else if (diffX * diffX + diffY * diffY < 25600) {
+                    this.x -= diffX / 20;
+                    this.y -= diffY / 20;
+                } else if (diffX * diffX + diffY * diffY < 35600) {
+                    this.x -= diffX / 2000;
+                    this.y -= diffY / 2000;
+                } else if (diffX * diffX + diffY * diffY < 45600) {
+                    this.x -= diffX / 20;
+                    this.y -= diffY / 20;
+                } else {
+                    this.x -= (diffX * diffX >= 1600 ? ((diffX) / 1000) : 0) + randFun() * 1 + randFun() * -1;
+                    this.y -= (diffY * diffY >= 1600 ? ((diffY) / 1000) : 0) + randFun() * 1 + randFun() * -1;
+                }
 
                 // let t = Math.atan2(this.x, this.y);
                 // this.x -= Math.cos(10 * t) * 0.5;
