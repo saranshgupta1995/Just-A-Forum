@@ -47,7 +47,7 @@ export class CrazyBgComponent implements OnInit {
             y: 0
         };
 
-        var particleCount = Math.min(W, H),
+        var particleCount = 400,
             particles = [],
             minDist: any = 70
 
