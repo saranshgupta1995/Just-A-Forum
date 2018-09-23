@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './modules/signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SexyNavbarComponent } from './modules/sexy-navbar/sexy-navbar.component';
 import { UserNavComponent } from './modules/user-nav/user-nav.component';
 import { InfoTextComponent } from './modules/info-text/info-text.component';
@@ -59,6 +59,7 @@ import { BigLoginComponent } from './modules/big-login/big-login.component';
 import { EasyEditorComponent } from './modules/easy-editor/easy-editor.component';
 import { CrazyBgComponent } from './common/component/crazy-bg/crazy-bg.component';
 import { BigFatTextComponent } from './common/big-fat-text/big-fat-text.component';
+import { AppInterceptor } from './http/app-interceptor';
 // Configs 
 export function getAuthServiceConfigs() {
     let config = new AuthServiceConfig(
@@ -115,7 +116,9 @@ export function getAuthServiceConfigs() {
     providers: [{
         provide: AuthServiceConfig,
         useFactory: getAuthServiceConfigs
-    },],
+    },{
+        provide:HTTP_INTERCEPTORS, useClass:AppInterceptor, multi:true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
