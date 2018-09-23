@@ -12,10 +12,10 @@ export class CommentService {
     constructor(private http: HttpClient, private httpUrls: HttpUrls, private sessionData: SessionDataService) { }
     
     addComment(data: any) {
-        return this.http.post(this.httpUrls.addCommentUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.sessionData.handleError));
+        return this.http.post(this.httpUrls.addCommentUrl, data, { headers: { author: this.sessionData.userToken } }).pipe();
     }
 
     fetchQuestionComments(data: any) {
-        return this.http.post(this.httpUrls.fetchQuestionCommentsUrl, data, { headers: { author: this.sessionData.userToken } }).pipe(catchError(this.sessionData.handleError));
+        return this.http.post(this.httpUrls.fetchQuestionCommentsUrl, data, { headers: { author: this.sessionData.userToken } }).pipe();
     }
 }
