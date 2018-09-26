@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     },
     { path: 'question/:ques', component: QuestionComponent },
     { path: 'home', component: HomeComponent },
-    { path: '', component: ModalLoginComponent },//ModalLoginComponentHomeComponent
+    { path: '', component: HomeComponent },//ModalLoginComponentHomeComponent
 ]
 import {
     SocialLoginModule,
